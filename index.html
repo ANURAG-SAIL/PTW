@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>COCCD · Permit to Work</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
 body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; justify-content: center; align-items: flex-start; }
 .app-container { max-width: 1200px; width: 100%; }
 
+/* ========== AUTH ========== */
 .auth-wrapper { position: fixed; inset: 0; z-index: 1000; background: linear-gradient(135deg, #0b2b3c 0%, #1f4b5e 60%, #2c6e8f 100%); display: flex; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
 .auth-card { background: white; border-radius: 1.5rem; padding: 2rem; width: 100%; max-width: 440px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); margin: 1rem auto; }
 .brand-block { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e1eff8; }
@@ -19,7 +20,6 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .auth-tabs { display: flex; gap: 0.4rem; background: #f0f5f8; padding: 0.35rem; border-radius: 2rem; margin-bottom: 1.2rem; }
 .auth-tab { flex: 1; padding: 0.6rem; border: none; background: transparent; border-radius: 2rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: #4a6d80; transition: 0.15s; font-family: inherit; }
 .auth-tab.active { background: #0b2b3c; color: white; }
-.auth-tab:hover:not(.active) { background: #e1eff8; }
 .auth-card label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #2e5467; letter-spacing: 0.3px; display: block; margin-bottom: 0.3rem; margin-top: 0.9rem; }
 .auth-card input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #cddde5; border-radius: 0.8rem; font-size: 0.92rem; background: #f9fbfc; outline: none; transition: 0.15s; font-family: inherit; }
 .auth-card input:focus { border-color: #2c6e8f; background: white; box-shadow: 0 0 0 3px rgba(44, 110, 143, 0.1); }
@@ -27,45 +27,50 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .auth-btn:hover { background: #1f4b5e; }
 .auth-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 .auth-error { margin-top: 1rem; padding: 0.75rem 1rem; background: #fdecea; color: #c0392b; border-radius: 0.8rem; font-size: 0.85rem; text-align: center; border-left: 4px solid #c0392b; display: none; }
+.auth-success { margin-top: 1rem; padding: 0.75rem 1rem; background: #eaf7ef; color: #1f7a4a; border-radius: 0.8rem; font-size: 0.85rem; text-align: center; border-left: 4px solid #1f7a4a; display: none; }
 .auth-hint { font-size: 0.72rem; color: #7d9aab; text-align: center; margin-top: 0.8rem; font-style: italic; }
+.forgot-link { display: block; text-align: right; margin-top: 0.5rem; font-size: 0.78rem; color: #2c6e8f; text-decoration: none; font-weight: 600; cursor: pointer; }
+.forgot-link:hover { text-decoration: underline; }
 
+/* ========== HEADER ========== */
 .header { background: linear-gradient(135deg, #0b2b3c 0%, #1f4b5e 100%); color: white; padding: 1.5rem 2rem; border-radius: 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,20,30,0.25); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .header-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.header-logo { width: 52px; height: 52px; object-fit: contain; background: white; border-radius: 10px; padding: 4px; }
+.header-logo { width: 52px; height: 52px; object-fit: contain; background: white; border-radius: 10px; padding: 4px; flex-shrink: 0; }
 .header h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.3px; }
 .header .subtitle { font-size: 0.8rem; color: #b8cfdb; margin-top: 0.2rem; }
 .header-right { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
 .header .stats { display: flex; gap: 0.5rem; font-size: 0.78rem; }
-.header .stat { background: rgba(255,255,255,0.1); padding: 0.4rem 0.85rem; border-radius: 0.8rem; text-align: center; }
+.header .stat { background: rgba(255,255,255,0.1); padding: 0.4rem 0.85rem; border-radius: 0.8rem; text-align: center; min-width: 60px; }
 .header .stat strong { font-size: 1rem; display: block; }
 .header .stat.rejected-stat { background: rgba(192, 57, 43, 0.35); }
 .header .stat.completed-stat { background: rgba(44, 110, 143, 0.35); }
 .user-chip { background: rgba(255,255,255,0.15); padding: 0.45rem 0.9rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
-.user-chip .avatar { width: 28px; height: 28px; border-radius: 50%; background: #e1eff8; color: #0b2b3c; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; }
-.user-chip .info { line-height: 1.15; }
-.user-chip .name { font-weight: 700; font-size: 0.82rem; }
-.user-chip .desig { font-size: 0.68rem; opacity: 0.85; }
-.logout-btn { background: rgba(255,255,255,0.15); border: none; color: white; cursor: pointer; font-size: 0.72rem; padding: 0.35rem 0.75rem; border-radius: 20px; font-weight: 700; font-family: inherit; }
+.user-chip .avatar { width: 28px; height: 28px; border-radius: 50%; background: #e1eff8; color: #0b2b3c; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; }
+.user-chip .info { line-height: 1.15; min-width: 0; }
+.user-chip .name { font-weight: 700; font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+.user-chip .desig { font-size: 0.68rem; opacity: 0.85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+.logout-btn { background: rgba(255,255,255,0.15); border: none; color: white; cursor: pointer; font-size: 0.72rem; padding: 0.35rem 0.75rem; border-radius: 20px; font-weight: 700; font-family: inherit; white-space: nowrap; }
 .logout-btn:hover { background: #c0392b; }
 
+/* ========== ROLE TOGGLE ========== */
 .role-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.2rem; }
 .role-toggle { display: inline-flex; background: white; padding: 0.4rem; border-radius: 2.5rem; box-shadow: 0 5px 15px -5px rgba(0,20,30,0.15); gap: 0.3rem; }
 .role-toggle-btn { padding: 0.75rem 1.8rem; border: none; background: transparent; border-radius: 2rem; font-size: 0.92rem; font-weight: 700; cursor: pointer; color: #4a6d80; transition: 0.2s; font-family: inherit; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
-.role-toggle-btn:hover { background: #f0f5f8; }
 .role-toggle-btn.active { background: #0b2b3c; color: white; box-shadow: 0 4px 12px rgba(11,43,60,0.25); }
 .role-toggle-btn.active.issuer-mode { background: #1f7a4a; box-shadow: 0 4px 12px rgba(31,122,74,0.25); }
 .role-toggle-btn .badge-count { background: rgba(255,255,255,0.25); padding: 0.1rem 0.5rem; border-radius: 20px; font-size: 0.72rem; font-weight: 800; }
 .role-toggle-btn:not(.active) .badge-count { background: #e1eff8; color: #1f4b5e; }
 
+/* ========== SUB TABS ========== */
 .sub-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; background: white; padding: 0.5rem; border-radius: 2rem; box-shadow: 0 5px 15px -5px rgba(0,20,30,0.08); }
 .tab { padding: 0.7rem 1.4rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; border: none; background: transparent; color: #4a6d80; transition: 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; font-family: inherit; }
-.tab:hover { background: #f0f5f8; }
 .tab.active { background: #0b2b3c; color: white; }
 .tab.tab-rejected.active { background: #c0392b; }
 .tab .count { background: rgba(255,255,255,0.25); color: inherit; padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
 .tab:not(.active) .count { background: #e1eff8; color: #1f4b5e; }
 .tab.tab-rejected:not(.active) .count { background: #f8d7da; color: #842029; }
 
+/* ========== CARD ========== */
 .card { background: white; border-radius: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,20,30,0.15); overflow: hidden; margin-bottom: 1.5rem; }
 .card-header { background: #0b2b3c; color: white; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
 .card-header.rejected-header { background: #7a1f18; }
@@ -74,6 +79,7 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .card-header .badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.8rem; border-radius: 30px; font-size: 0.78rem; font-weight: 500; }
 .card-body { padding: 1.5rem; }
 
+/* ========== FORM ========== */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1rem; }
 .field-full { grid-column: span 2; }
 label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #2e5467; margin-bottom: 0.25rem; }
@@ -82,9 +88,10 @@ input, select, textarea { width: 100%; padding: 0.6rem 0.8rem; border: 1.5px sol
 input:focus, select:focus, textarea:focus { border-color: #2c6e8f; background: white; box-shadow: 0 0 0 3px rgba(44, 110, 143, 0.1); }
 select { cursor: pointer; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232e5467' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.8rem center; padding-right: 2rem; appearance: none; -webkit-appearance: none; }
 textarea { resize: vertical; min-height: 60px; }
-.permit-number { background: #eef3f7; border-radius: 0.8rem; padding: 0.7rem 1rem; font-family: 'Courier New', monospace; font-weight: 700; color: #0b2b3c; border: 1.5px dashed #9bb7c7; letter-spacing: 1px; font-size: 1rem; display: flex; align-items: center; justify-content: space-between; }
+.permit-number { background: #eef3f7; border-radius: 0.8rem; padding: 0.7rem 1rem; font-family: 'Courier New', monospace; font-weight: 700; color: #0b2b3c; border: 1.5px dashed #9bb7c7; letter-spacing: 1px; font-size: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
 .permit-number .hint { font-family: inherit; font-weight: 400; color: #5c7e91; font-size: 0.72rem; letter-spacing: 0; }
 
+/* ========== BUTTONS ========== */
 .btn { border: none; padding: 0.8rem 1.4rem; border-radius: 2rem; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: white; color: #0b2b3c; border: 1.5px solid #b8cfdb; font-family: inherit; }
 .btn-primary { background: #0b2b3c; color: white; border: 1.5px solid #0b2b3c; }
 .btn-primary:hover { background: #1f4b5e; }
@@ -97,6 +104,7 @@ textarea { resize: vertical; min-height: 60px; }
 .btn-complete { background: #2c6e8f; border-color: #2c6e8f; color: white; padding: 0.5rem 1.1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.35rem; transition: 0.15s; }
 .btn-complete:hover { background: #1f4b5e; border-color: #1f4b5e; }
 
+/* ========== QUEUE ========== */
 .queue-list { display: flex; flex-direction: column; gap: 0.8rem; }
 .queue-item { background: #f5f9fc; border-radius: 1rem; padding: 1rem 1.2rem; border: 1px solid #dfe9ef; border-left-width: 5px; border-left-style: solid; border-left-color: #b8cfdb; cursor: pointer; transition: 0.15s; }
 .queue-item:hover { background: #e7f0f6; border-left-color: #2c6e8f; }
@@ -105,28 +113,50 @@ textarea { resize: vertical; min-height: 60px; }
 .queue-item .desc { font-size: 0.85rem; color: #1f4b5e; margin: 0.3rem 0; }
 .queue-item .meta { display: flex; justify-content: space-between; font-size: 0.7rem; color: #5e7e91; margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.3px; flex-wrap: wrap; gap: 0.4rem; }
 .queue-item.rejected-item, .queue-item.rejected-permit { border-left-color: #c0392b; background: #fffafa; }
-.queue-item.rejected-item:hover, .queue-item.rejected-permit:hover { background: #fff5f5; border-left-color: #962d22; }
 .queue-item.completed-permit { border-left-color: #2c6e8f; background: #f0f7fc; }
-.queue-item.completed-permit:hover { background: #e5f0f8; border-left-color: #1f4b5e; }
 
 .section-chip { display: inline-block; background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
 .empty-state { background: #f7fafc; border-radius: 1rem; padding: 2.5rem 1rem; text-align: center; color: #7d9aab; font-size: 0.88rem; border: 1px dashed #b8cfdb; }
 .empty-state .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
 .empty-state.rejected-empty { background: #fff5f5; border-color: #f5c6c0; color: #842029; }
 
+/* ========== FILTER BAR ========== */
 .filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; background: #f6fafd; padding: 0.9rem; border-radius: 1rem; border: 1px solid #d7e5ef; align-items: center; }
 .filter-bar .picker-wrap { display: flex; align-items: center; gap: 0.4rem; background: white; padding: 0.35rem 0.8rem 0.35rem 0.6rem; border-radius: 2rem; border: 1.5px solid #cddde5; }
 .filter-bar .picker-wrap label { margin: 0; font-size: 0.68rem; text-transform: uppercase; color: #2c6e8f; letter-spacing: 0.5px; font-weight: 800; white-space: nowrap; }
-.filter-bar .picker-wrap input[type="date"], .filter-bar .picker-wrap select { padding: 0.3rem 0.5rem; border: none; background: transparent; font-size: 0.85rem; font-weight: 600; color: #0b2b3c; outline: none; cursor: pointer; font-family: inherit; min-width: 130px; }
+.filter-bar .picker-wrap input[type="date"], .filter-bar .picker-wrap select { padding: 0.3rem 0.5rem; border: none; background: transparent; font-size: 0.85rem; font-weight: 600; color: #0b2b3c; outline: none; cursor: pointer; font-family: inherit; min-width: 120px; }
 .filter-bar .picker-wrap select { padding-right: 1.5rem; background-position: right 0.3rem center; }
 .filter-btn { padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: 1.5px solid #cddde5; background: white; color: #2e5467; transition: 0.15s; font-family: inherit; }
-.filter-btn:hover { background: #eef3f7; }
 .filter-btn.active { background: #0b2b3c; color: white; border-color: #0b2b3c; }
 .filter-btn.all-dates-btn.active { background: #2c6e8f; border-color: #2c6e8f; }
 .filter-btn.reject-all-dates-btn.active { background: #c0392b; border-color: #c0392b; }
 .filter-btn.completed-filter.active { background: #2c6e8f; border-color: #2c6e8f; }
 .filter-divider { width: 1px; height: 24px; background: #d7e5ef; margin: 0 0.3rem; }
 
+/* Mobile filter select — hidden on desktop, shown on mobile */
+.mobile-filter-select {
+  display: none;
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid #cddde5;
+  border-radius: 0.8rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0b2b3c;
+  background: white;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%232e5467' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.mobile-filter-select:focus { border-color: #2c6e8f; box-shadow: 0 0 0 3px rgba(44, 110, 143, 0.1); }
+
+/* ========== DETAILS ========== */
 .permit-detail { background: #f6fafd; border-radius: 1rem; padding: 1.2rem; border: 1px solid #d7e5ef; margin-bottom: 1rem; }
 .permit-detail h3 { font-size: 1rem; color: #0b2b3c; margin-bottom: 0.8rem; padding-bottom: 0.6rem; border-bottom: 1px solid #d7e5ef; font-family: monospace; letter-spacing: 0.5px; }
 .detail-row { display: flex; margin-bottom: 0.4rem; font-size: 0.85rem; }
@@ -134,6 +164,7 @@ textarea { resize: vertical; min-height: 60px; }
 .detail-value { color: #0b2b3c; flex: 1; word-break: break-word; white-space: pre-wrap; }
 .detail-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #d7e5ef; }
 
+/* ========== BADGES ========== */
 .badge-status { padding: 0.25rem 0.8rem; border-radius: 30px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 .badge-pending { background: #fff3cd; color: #856404; }
 .badge-issued { background: #d4edda; color: #0a4b2a; }
@@ -141,20 +172,21 @@ textarea { resize: vertical; min-height: 60px; }
 .badge-mine { background: #cfe2ff; color: #084298; }
 .badge-completed { background: #cfe2ff; color: #084298; }
 
+/* ========== SIGNATURE ========== */
 .signature-area { background: #f2f8fc; border-radius: 1rem; padding: 1.2rem; margin-top: 1rem; border: 1px solid #cfe0ea; }
 .signature-area h4 { font-size: 0.85rem; color: #0b2b3c; margin-bottom: 0.8rem; }
 .reject-input-wrap { margin-top: 0.8rem; padding: 0.9rem; background: #fff5f5; border: 1px solid #f5c6c0; border-radius: 0.9rem; }
 .reject-input-wrap label { color: #842029; }
 .reject-input-wrap textarea { border-color: #f5c6c0; background: white; }
-.reject-input-wrap textarea:focus { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1); }
 
+/* ========== DATE GROUP ========== */
 .date-group { margin-bottom: 1.2rem; }
 .date-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1rem; background: #e1eff8; border-radius: 0.8rem; margin-bottom: 0.8rem; font-size: 0.82rem; font-weight: 800; color: #0b2b3c; text-transform: uppercase; letter-spacing: 0.5px; }
 .date-header.rejected-date-header { background: #fdecea; color: #842029; }
-.date-header .date-label { display: flex; align-items: center; gap: 0.5rem; }
-.date-header .date-count { background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0; }
+.date-header .date-count { background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.68rem; font-weight: 700; }
 .date-header.rejected-date-header .date-count { background: #c0392b; }
 
+/* ========== MODAL ========== */
 .modal-backdrop { position: fixed; inset: 0; background: rgba(11,43,60,0.6); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: 0.2s; }
 .modal-backdrop.open { opacity: 1; pointer-events: auto; }
 .modal { background: white; border-radius: 1.5rem; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
@@ -163,10 +195,9 @@ textarea { resize: vertical; min-height: 60px; }
 .modal-head.complete-modal-head { background: #2c6e8f; }
 .modal-head h3 { font-size: 1.1rem; font-weight: 600; font-family: monospace; letter-spacing: 0.5px; }
 .modal-close { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
-.modal-close:hover { background: rgba(255,255,255,0.3); }
 .modal-body { padding: 1.5rem; }
 .modal-section { background: #f6fafd; border-radius: 0.9rem; padding: 1rem 1.1rem; margin-bottom: 1rem; border: 1px solid #d7e5ef; }
-.modal-section h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: #2c6e8f; margin-bottom: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 0.4rem; }
+.modal-section h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: #2c6e8f; margin-bottom: 0.7rem; font-weight: 800; }
 .modal-section.rejected-section { background: #fff5f5; border-color: #f5c6c0; }
 .modal-section.rejected-section h4 { color: #842029; }
 .modal-section.completed-section { background: #f0f7fc; border-color: #c7dff0; }
@@ -175,7 +206,8 @@ textarea { resize: vertical; min-height: 60px; }
 .rejection-reason-box .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; color: #842029; font-weight: 800; margin-bottom: 0.3rem; }
 .rejection-reason-box .value { font-size: 0.9rem; color: #0b2b3c; white-space: pre-wrap; line-height: 1.5; }
 
-.toast { position: fixed; bottom: 30px; right: 30px; background: #0b2b3c; color: white; padding: 1rem 1.5rem; border-radius: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-size: 0.88rem; z-index: 9999; opacity: 0; transform: translateY(20px); transition: all 0.3s; max-width: 380px; }
+/* ========== TOAST / LOADING ========== */
+.toast { position: fixed; bottom: 30px; right: 30px; left: 30px; background: #0b2b3c; color: white; padding: 1rem 1.5rem; border-radius: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-size: 0.88rem; z-index: 9999; opacity: 0; transform: translateY(20px); transition: all 0.3s; max-width: 380px; margin: 0 auto; }
 .toast.show { opacity: 1; transform: translateY(0); }
 .toast.error { background: #c0392b; }
 .toast.success { background: #1f7a4a; }
@@ -185,20 +217,153 @@ textarea { resize: vertical; min-height: 60px; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 .hidden { display: none !important; }
 
-@media (max-width: 640px) {
-  .form-grid { grid-template-columns: 1fr; }
+/* ============================================================
+   MOBILE STYLES
+   ============================================================ */
+@media (max-width: 768px) {
+  body { padding: 0.75rem; }
+  .app-container { max-width: 100%; }
+
+  /* AUTH */
+  .auth-card { padding: 1.5rem 1.25rem; border-radius: 1.2rem; }
+  .sail-logo-img { width: 90px; height: 90px; }
+  .brand-bsp { font-size: 0.88rem; }
+  .brand-coccd { font-size: 1.15rem; letter-spacing: 1px; }
+  .brand-ptw { font-size: 0.82rem; }
+  .brand-block { margin-bottom: 1rem; padding-bottom: 0.9rem; }
+
+  /* HEADER */
+  .header { padding: 1rem; border-radius: 1rem; gap: 0.7rem; flex-direction: column; align-items: stretch; }
+  .header-left { gap: 0.6rem; align-items: flex-start; flex-wrap: nowrap; }
+  .header-logo { width: 42px; height: 42px; border-radius: 8px; padding: 3px; }
+  .header h1 { font-size: 1.02rem; line-height: 1.2; }
+  .header .subtitle { font-size: 0.66rem; line-height: 1.3; }
+  .header-right { width: 100%; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+  .header .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.3rem;
+    width: 100%;
+    order: 1;
+  }
+  .header .stat {
+    padding: 0.4rem 0.3rem;
+    min-width: 0;
+    border-radius: 0.6rem;
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .header .stat strong { font-size: 0.95rem; display: block; margin-bottom: 0.1rem; }
+  .user-chip { order: 2; padding: 0.35rem 0.7rem 0.35rem 0.35rem; font-size: 0.72rem; gap: 0.45rem; flex: 1; min-width: 0; }
+  .user-chip .avatar { width: 26px; height: 26px; font-size: 0.65rem; }
+  .user-chip .name { font-size: 0.74rem; max-width: 100px; }
+  .user-chip .desig { font-size: 0.62rem; max-width: 100px; }
+  .logout-btn { order: 3; font-size: 0.7rem; padding: 0.4rem 0.75rem; }
+
+  /* ROLE TOGGLE */
+  .role-toggle-wrap { margin-bottom: 0.9rem; }
+  .role-toggle { width: 100%; padding: 0.3rem; border-radius: 1.5rem; }
+  .role-toggle-btn { flex: 1; padding: 0.65rem 0.5rem; font-size: 0.78rem; justify-content: center; border-radius: 1.2rem; gap: 0.3rem; }
+  .role-toggle-btn .badge-count { font-size: 0.62rem; padding: 0.05rem 0.4rem; }
+
+  /* SUB TABS */
+  .sub-tabs { padding: 0.35rem; gap: 0.25rem; border-radius: 1.2rem; margin-bottom: 1rem; }
+  .tab { flex: 1; padding: 0.55rem 0.6rem; font-size: 0.72rem; justify-content: center; border-radius: 1rem; gap: 0.3rem; }
+  .tab .count { font-size: 0.6rem; padding: 0.1rem 0.35rem; }
+
+  /* CARD */
+  .card { border-radius: 1rem; margin-bottom: 1rem; }
+  .card-header { padding: 0.8rem 1rem; border-radius: 0; }
+  .card-header h2 { font-size: 0.95rem; line-height: 1.2; }
+  .card-header .badge { font-size: 0.68rem; padding: 0.2rem 0.6rem; }
+  .card-body { padding: 1rem; }
+
+  /* FORM */
+  .form-grid { grid-template-columns: 1fr; gap: 0.75rem; }
   .field-full { grid-column: span 1; }
-  .header { flex-direction: column; align-items: flex-start; }
-  .detail-label { width: 120px; font-size: 0.78rem; }
-  .filter-bar { flex-direction: column; align-items: stretch; }
-  .filter-bar .picker-wrap { justify-content: space-between; }
-  .role-toggle-btn { padding: 0.65rem 1.2rem; font-size: 0.82rem; }
+  input, select, textarea { font-size: 16px !important; padding: 0.65rem 0.8rem; } /* 16px prevents iOS zoom */
+
+  /* FILTER BAR — MOBILE: VERTICAL, DROPDOWNS */
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  .filter-bar .picker-wrap {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.4rem 0.7rem 0.4rem 0.75rem;
+    border-radius: 0.8rem;
+  }
+  .filter-bar .picker-wrap label { font-size: 0.68rem; }
+  .filter-bar .picker-wrap input[type="date"],
+  .filter-bar .picker-wrap select {
+    flex: 1;
+    text-align: right;
+    font-size: 0.85rem;
+    min-width: 0;
+  }
+
+  /* Hide desktop filter buttons on mobile */
+  .filter-btn { display: none; }
+  .filter-divider { display: none; }
+
+  /* Show mobile dropdown selects on mobile */
+  .mobile-filter-select { display: block; }
+
+  /* QUEUE ITEMS */
+  .queue-item { padding: 0.85rem 0.9rem; border-radius: 0.8rem; }
+  .queue-item .permit-id { font-size: 0.85rem; }
+  .queue-item .desc { font-size: 0.78rem; margin: 0.25rem 0; }
+  .queue-item .meta { font-size: 0.62rem; gap: 0.35rem; margin-top: 0.35rem; }
+
+  /* BUTTONS */
+  .btn { padding: 0.7rem 1rem; font-size: 0.82rem; }
+  .btn-complete { font-size: 0.72rem; padding: 0.45rem 0.85rem; }
+
+  /* DETAIL ROWS — MOBILE: STACK LABEL/VALUE */
+  .detail-row { flex-direction: column; margin-bottom: 0.55rem; gap: 0.1rem; }
+  .detail-label { width: auto; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.3px; color: #5e7e91; font-weight: 700; }
+  .detail-value { font-size: 0.85rem; }
+
+  /* MODAL */
+  .modal { border-radius: 1rem; max-height: 94vh; margin: 0.5rem; }
+  .modal-head { padding: 0.85rem 1.1rem; border-radius: 1rem 1rem 0 0; }
+  .modal-head h3 { font-size: 0.95rem; }
+  .modal-close { width: 30px; height: 30px; font-size: 1rem; }
+  .modal-body { padding: 1rem; }
+  .modal-section { padding: 0.8rem 0.9rem; border-radius: 0.75rem; margin-bottom: 0.75rem; }
+  .modal-section h4 { font-size: 0.68rem; }
+
+  /* DATE GROUPS */
+  .date-header { padding: 0.55rem 0.85rem; font-size: 0.72rem; border-radius: 0.7rem; }
+  .date-header .date-count { font-size: 0.62rem; padding: 0.1rem 0.5rem; }
+
+  /* PERMIT NUMBER BOX */
+  .permit-number { font-size: 0.9rem; padding: 0.6rem 0.8rem; }
+  .permit-number .hint { font-size: 0.65rem; }
+
+  /* SIGNATURE AREA */
+  .signature-area { padding: 1rem; }
+  .signature-area h4 { font-size: 0.8rem; }
+
+  /* TOAST */
+  .toast { bottom: 15px; left: 15px; right: 15px; padding: 0.85rem 1rem; font-size: 0.82rem; max-width: none; }
+}
+
+@media (max-width: 380px) {
+  .header .stat { font-size: 0.55rem; padding: 0.35rem 0.2rem; }
+  .header .stat strong { font-size: 0.85rem; }
+  .user-chip .name, .user-chip .desig { max-width: 70px; }
+  .tab { font-size: 0.68rem; padding: 0.5rem 0.4rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- ==================== AUTH SCREEN ==================== -->
 <div class="auth-wrapper" id="authWrapper">
   <div class="auth-card">
     <div class="brand-block">
@@ -216,6 +381,7 @@ textarea { resize: vertical; min-height: 60px; }
       <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" required>
+      <a class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
       <button type="submit" class="auth-btn" id="loginSubmitBtn">🔐 Sign In</button>
       <div class="auth-error" id="loginError"></div>
     </form>
@@ -235,7 +401,30 @@ textarea { resize: vertical; min-height: 60px; }
   </div>
 </div>
 
-<!-- MAIN APP -->
+<!-- ==================== FORGOT PASSWORD MODAL ==================== -->
+<div class="modal-backdrop" id="forgotBackdrop">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-head">
+      <h3>🔑 Reset Password</h3>
+      <button class="modal-close" id="forgotModalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.88rem; color:#2e5467; margin-bottom:1rem; line-height:1.5;">
+        Enter your registered email address. We'll send you a secure link to reset your password.
+      </p>
+      <label>Email Address</label>
+      <input type="email" id="forgotEmail" placeholder="you@example.com" autocomplete="email">
+      <div class="auth-error" id="forgotError" style="margin-top:0.8rem;"></div>
+      <div class="auth-success" id="forgotSuccess" style="margin-top:0.8rem;"></div>
+      <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="sendResetBtn" style="flex:1; min-width:160px;">📧 Send Reset Link</button>
+        <button type="button" class="btn btn-danger" id="cancelForgotBtn">✕ Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MAIN APP ==================== -->
 <div class="app-container hidden" id="appContainer">
   <div class="header">
     <div class="header-left">
@@ -265,14 +454,14 @@ textarea { resize: vertical; min-height: 60px; }
 
   <div class="role-toggle-wrap">
     <div class="role-toggle">
-      <button class="role-toggle-btn active" id="modeInitiatorBtn">🛠️ Initiator Mode</button>
-      <button class="role-toggle-btn issuer-mode" id="modeIssuerBtn">👷 Issuer Mode <span class="badge-count" id="issuerModeBadge">0</span></button>
+      <button class="role-toggle-btn active" id="modeInitiatorBtn">🛠️ Initiator</button>
+      <button class="role-toggle-btn issuer-mode" id="modeIssuerBtn">👷 Issuer <span class="badge-count" id="issuerModeBadge">0</span></button>
     </div>
   </div>
 
   <div class="sub-tabs">
-    <button class="tab" data-tab="issued" id="tabBtnIssued">✅ Issued Permits <span class="count" id="issuedTabCount">0</span></button>
-    <button class="tab tab-rejected" data-tab="rejected" id="tabBtnRejected">❌ Rejected Permits <span class="count" id="rejectedTabCount">0</span></button>
+    <button class="tab" data-tab="issued" id="tabBtnIssued">✅ Issued <span class="count" id="issuedTabCount">0</span></button>
+    <button class="tab tab-rejected" data-tab="rejected" id="tabBtnRejected">❌ Rejected <span class="count" id="rejectedTabCount">0</span></button>
   </div>
 
   <!-- INITIATOR MODE -->
@@ -280,8 +469,8 @@ textarea { resize: vertical; min-height: 60px; }
     <div id="tab-newPermit" class="tab-panel">
       <div class="card">
         <div class="card-header">
-          <h2>🛠️ Initiator · Request Permit to Work</h2>
-          <div class="badge">Fill the form below</div>
+          <h2>🛠️ Initiator · Request Permit</h2>
+          <div class="badge">Form</div>
         </div>
         <div class="card-body">
           <form id="permitForm">
@@ -290,7 +479,7 @@ textarea { resize: vertical; min-height: 60px; }
                 <label>Permit Number (auto-generated)</label>
                 <div class="permit-number">
                   <span id="permitNumber">COCCD/0001</span>
-                  <span class="hint">Predefined format</span>
+                  <span class="hint">Predefined</span>
                 </div>
               </div>
               <div>
@@ -303,11 +492,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. Replace motor of latch-unlatch" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. Replace bearing on conveyor drive motor" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. Pusher Car 9-2" required>
+                <input type="text" id="f_equipment" placeholder="e.g. Conveyor CV-201" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -330,7 +519,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. Endbench 19" required>
+                <input type="text" id="f_location" placeholder="e.g. Conveyor CV-201, near crusher house" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -342,7 +531,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Other Permit Taken Details</label>
-                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Height Permit"></textarea>
+                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Hot work permit #HW-432"></textarea>
               </div>
               <div class="field-full">
                 <label>Hazard Mitigation</label>
@@ -350,15 +539,15 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of</label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, proper grounding"></textarea>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, fire watch, proper grounding"></textarea>
               </div>
               <div class="field-full">
                 <label>Isolation Details</label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation"></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, valve #V-12 locked"></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
-              <button type="submit" class="btn btn-primary" id="submitPermitBtn" style="flex:1; min-width:200px;">📨 Submit Permit Request</button>
+              <button type="submit" class="btn btn-primary" id="submitPermitBtn" style="flex:1; min-width:180px;">📨 Submit Request</button>
               <button type="reset" class="btn btn-danger">🔄 Clear</button>
             </div>
           </form>
@@ -379,6 +568,13 @@ textarea { resize: vertical; min-height: 60px; }
             <button class="filter-btn" data-myfilter="issued">✔ Issued</button>
             <button class="filter-btn" data-myfilter="completed">✅ Completed</button>
             <button class="filter-btn" data-myfilter="rejected">❌ Rejected</button>
+            <select class="mobile-filter-select" id="myFilterSelect">
+              <option value="all">📋 All Permits</option>
+              <option value="pending">⏳ Pending</option>
+              <option value="issued">✔ Issued</option>
+              <option value="completed">✅ Completed</option>
+              <option value="rejected">❌ Rejected</option>
+            </select>
           </div>
           <div id="myPermitsList">
             <div class="empty-state"><span class="icon">📭</span>No permits submitted yet.</div>
@@ -393,7 +589,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div id="tab-pending" class="tab-panel">
       <div class="card">
         <div class="card-header issuer-header">
-          <h2>👷 Issuer · Pending Permit Requests</h2>
+          <h2>👷 Issuer · Pending Requests</h2>
           <div class="badge" id="pendingCount">0 pending</div>
         </div>
         <div class="card-body">
@@ -425,15 +621,15 @@ textarea { resize: vertical; min-height: 60px; }
               <div id="rejectWrap" class="reject-input-wrap hidden">
                 <label>❌ Rejection Reason <span class="req">*</span></label>
                 <textarea id="f_rejectReason" rows="3" placeholder="e.g. Hazards not adequately mitigated."></textarea>
-                <div style="font-size:0.72rem; color:#842029; margin-top:0.3rem;">This reason will be visible to the initiator.</div>
+                <div style="font-size:0.72rem; color:#842029; margin-top:0.3rem;">Visible to the initiator.</div>
               </div>
               <div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
-                <button type="button" class="btn btn-success" id="issueBtn" style="flex:1; min-width:150px;">✅ Issue Permit</button>
-                <button type="button" class="btn btn-reject" id="rejectBtn" style="flex:1; min-width:150px;">❌ Reject Permit</button>
+                <button type="button" class="btn btn-success" id="issueBtn" style="flex:1; min-width:130px;">✅ Issue Permit</button>
+                <button type="button" class="btn btn-reject" id="rejectBtn" style="flex:1; min-width:130px;">❌ Reject</button>
                 <button type="button" class="btn btn-danger" id="cancelIssueBtn">✕ Cancel</button>
               </div>
               <div id="confirmRejectWrap" class="hidden" style="margin-top:0.8rem; padding:0.9rem; background:#fff5f5; border:1px solid #f5c6c0; border-radius:0.9rem;">
-                <div style="font-size:0.82rem; color:#842029; margin-bottom:0.6rem; font-weight:600;">⚠️ Confirm rejection? This cannot be undone.</div>
+                <div style="font-size:0.82rem; color:#842029; margin-bottom:0.6rem; font-weight:600;">⚠️ Confirm rejection?</div>
                 <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                   <button type="button" class="btn btn-reject" id="confirmRejectBtn">✅ Yes, Reject</button>
                   <button type="button" class="btn btn-danger" id="cancelRejectBtn">✕ Cancel</button>
@@ -460,24 +656,32 @@ textarea { resize: vertical; min-height: 60px; }
             <input type="date" id="issuedDatePicker">
           </div>
           <button class="filter-btn all-dates-btn" id="allDatesBtn">📋 All Dates</button>
-          <div class="filter-divider"></div>
           <div class="picker-wrap">
             <label for="issuedSectionFilter">🏭 Section:</label>
             <select id="issuedSectionFilter">
               <option value="__all__">All Sections</option>
             </select>
           </div>
-          <div class="filter-divider"></div>
           <button class="filter-btn active" data-issuedfilter="all">All Users</button>
-          <button class="filter-btn" data-issuedfilter="mine">👤 Initiated by Me</button>
-          <button class="filter-btn" data-issuedfilter="byMe">✍️ Issued by Me</button>
-        </div>
-        <div class="filter-bar" style="margin-top:-0.4rem;">
+          <button class="filter-btn" data-issuedfilter="mine">👤 Mine</button>
+          <button class="filter-btn" data-issuedfilter="byMe">✍️ By Me</button>
           <button class="filter-btn active" data-issuedstatusfilter="all">All Status</button>
-          <button class="filter-btn" data-issuedstatusfilter="active">🔧 Active (In Progress)</button>
+          <button class="filter-btn" data-issuedstatusfilter="active">🔧 Active</button>
           <button class="filter-btn completed-filter" data-issuedstatusfilter="completed">✅ Completed</button>
+
+          <!-- Mobile dropdowns -->
+          <select class="mobile-filter-select" id="issuedUserFilterSelect">
+            <option value="all">👥 All Users</option>
+            <option value="mine">👤 Initiated by Me</option>
+            <option value="byMe">✍️ Issued by Me</option>
+          </select>
+          <select class="mobile-filter-select" id="issuedStatusFilterSelect">
+            <option value="all">📊 All Status</option>
+            <option value="active">🔧 Active (In Progress)</option>
+            <option value="completed">✅ Completed</option>
+          </select>
         </div>
-        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Click any permit to view details. Initiators can mark their own permits as completed.</em></div>
+        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Tap any permit for details. Initiators can mark their own permits as completed.</em></div>
         <div id="issuedList">
           <div class="empty-state"><span class="icon">📋</span>No issued permits for the selected filters.</div>
         </div>
@@ -499,26 +703,29 @@ textarea { resize: vertical; min-height: 60px; }
             <input type="date" id="rejectedDatePicker">
           </div>
           <button class="filter-btn reject-all-dates-btn" id="rejectedAllDatesBtn">📋 All Dates</button>
-          <div class="filter-divider"></div>
           <div class="picker-wrap">
             <label for="rejectedSectionFilter">🏭 Section:</label>
             <select id="rejectedSectionFilter">
               <option value="__all__">All Sections</option>
             </select>
           </div>
-          <div class="filter-divider"></div>
           <button class="filter-btn active" data-rejectedfilter="all">All Users</button>
-          <button class="filter-btn" data-rejectedfilter="mine">👤 Initiated by Me</button>
-          <button class="filter-btn" data-rejectedfilter="byMe">✍️ Rejected by Me</button>
+          <button class="filter-btn" data-rejectedfilter="mine">👤 Mine</button>
+          <button class="filter-btn" data-rejectedfilter="byMe">✍️ By Me</button>
+
+          <select class="mobile-filter-select" id="rejectedUserFilterSelect">
+            <option value="all">👥 All Users</option>
+            <option value="mine">👤 Initiated by Me</option>
+            <option value="byMe">✍️ Rejected by Me</option>
+          </select>
         </div>
-        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Click any rejected permit to view complete details</em></div>
+        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Tap any permit to view complete details</em></div>
         <div id="rejectedList">
           <div class="empty-state rejected-empty"><span class="icon">📋</span>No rejected permits for the selected filters.</div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <!-- PERMIT DETAILS MODAL -->
@@ -548,12 +755,11 @@ textarea { resize: vertical; min-height: 60px; }
         </div>
         <div class="field-full">
           <label>Completion Remarks</label>
-          <textarea id="f_completionRemarks" rows="3" placeholder="e.g. Work completed successfully. All systems restored and tested. Area cleared and handed over."></textarea>
-          <div style="font-size:0.72rem; color:#5e7e91; margin-top:0.3rem;">Optional but recommended. Describe the final state of the job.</div>
+          <textarea id="f_completionRemarks" rows="3" placeholder="e.g. Work completed successfully. All systems restored."></textarea>
         </div>
       </div>
       <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
-        <button type="button" class="btn btn-primary" id="confirmCompleteBtn" style="flex:1; min-width:180px;">✅ Confirm Job Completed</button>
+        <button type="button" class="btn btn-primary" id="confirmCompleteBtn" style="flex:1; min-width:160px;">✅ Confirm Completed</button>
         <button type="button" class="btn btn-danger" id="cancelCompleteBtn">✕ Cancel</button>
       </div>
     </div>
@@ -570,7 +776,7 @@ textarea { resize: vertical; min-height: 60px; }
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, onAuthStateChanged
+  signOut, onAuthStateChanged, sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import {
   getFirestore, collection, doc, setDoc, getDoc, addDoc, updateDoc,
@@ -635,22 +841,13 @@ function showToast(msg, type) {
   t.className = 'toast show ' + type;
   setTimeout(function() { t.className = 'toast ' + type; }, 3000);
 }
-function showLoading(text) {
-  $('loadingText').textContent = text || 'Loading…';
-  $('loadingOverlay').classList.add('open');
-}
+function showLoading(text) { $('loadingText').textContent = text || 'Loading…'; $('loadingOverlay').classList.add('open'); }
 function hideLoading() { $('loadingOverlay').classList.remove('open'); }
-function formatDate(iso) {
-  if (!iso) return '—';
-  try { return new Date(iso).toLocaleString(); } catch (e) { return iso; }
-}
+function formatDate(iso) { if (!iso) return '—'; try { return new Date(iso).toLocaleString(); } catch (e) { return iso; } }
 function formatDateShort(iso) {
   if (!iso) return '—';
-  try {
-    return new Date(iso).toLocaleString(undefined, {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
-    });
-  } catch (e) { return iso; }
+  try { return new Date(iso).toLocaleString(undefined, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+  catch (e) { return iso; }
 }
 function todayKey() {
   const d = new Date();
@@ -667,9 +864,7 @@ function dateLabelFromKey(key) {
   const d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
   const today = new Date();
   const yesterday = new Date(); yesterday.setDate(today.getDate() - 1);
-  const same = function(a, b) {
-    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-  };
+  const same = function(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); };
   let prefix = '📅 ';
   if (same(d, today)) prefix = '📅 Today · ';
   else if (same(d, yesterday)) prefix = '📅 Yesterday · ';
@@ -750,6 +945,62 @@ signupTabBtn.addEventListener('click', function() {
 });
 
 // ============================================================
+// FORGOT PASSWORD
+// ============================================================
+const forgotBackdrop = $('forgotBackdrop');
+
+$('forgotPasswordLink').addEventListener('click', function() {
+  $('forgotEmail').value = $('loginEmail').value.trim();
+  $('forgotError').style.display = 'none';
+  $('forgotSuccess').style.display = 'none';
+  forgotBackdrop.classList.add('open');
+  setTimeout(function() { $('forgotEmail').focus(); }, 100);
+});
+
+function closeForgotModal() {
+  forgotBackdrop.classList.remove('open');
+  $('forgotError').style.display = 'none';
+  $('forgotSuccess').style.display = 'none';
+}
+
+$('forgotModalClose').addEventListener('click', closeForgotModal);
+$('cancelForgotBtn').addEventListener('click', closeForgotModal);
+forgotBackdrop.addEventListener('click', function(e) { if (e.target === forgotBackdrop) closeForgotModal(); });
+
+$('sendResetBtn').addEventListener('click', async function() {
+  const email = $('forgotEmail').value.trim();
+  const errEl = $('forgotError');
+  const successEl = $('forgotSuccess');
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+
+  if (!email) { errEl.textContent = 'Please enter your email address.'; errEl.style.display = 'block'; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
+
+  const btn = this;
+  btn.disabled = true;
+  btn.textContent = '⏳ Sending…';
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    successEl.innerHTML = '✅ <strong>Reset link sent!</strong><br>Check your inbox at <strong>' + escapeHtml(email) + '</strong> for the password reset link. (Also check spam folder.)';
+    successEl.style.display = 'block';
+    $('forgotEmail').value = '';
+    setTimeout(closeForgotModal, 6000);
+  } catch (err) {
+    let msg = err.message || 'Failed to send reset email.';
+    if (err.code === 'auth/user-not-found') msg = 'No account found with that email address.';
+    else if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email address.';
+    else if (err.code === 'auth/too-many-requests') msg = 'Too many attempts. Please try again later.';
+    errEl.textContent = '❌ ' + msg;
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '📧 Send Reset Link';
+  }
+});
+
+// ============================================================
 // SIGNUP
 // ============================================================
 signupForm.addEventListener('submit', async function(e) {
@@ -764,15 +1015,15 @@ signupForm.addEventListener('submit', async function(e) {
   showLoading('Creating account…');
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await setDoc(doc(db, 'users', cred.user.uid), {
-      name: name, designation: designation, email: email, createdAt: serverTimestamp()
-    });
+    await setDoc(doc(db, 'users', cred.user.uid), { name: name, designation: designation, email: email, createdAt: serverTimestamp() });
     hideLoading();
     signupForm.reset();
     showToast('✅ Account created!', 'success');
   } catch (err) {
     hideLoading();
-    errEl.textContent = '❌ ' + (err.message || 'Signup failed.');
+    let msg = err.message || 'Signup failed.';
+    if (err.code === 'auth/email-already-in-use') msg = 'This email is already registered. Please sign in.';
+    errEl.textContent = '❌ ' + msg;
     errEl.style.display = 'block';
   }
 });
@@ -794,7 +1045,13 @@ loginForm.addEventListener('submit', async function(e) {
     showToast('Welcome back!', 'success');
   } catch (err) {
     hideLoading();
-    errEl.textContent = '❌ ' + (err.message || 'Login failed.');
+    let msg = 'Login failed.';
+    if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') msg = 'Incorrect email or password.';
+    else if (err.code === 'auth/user-not-found') msg = 'No account found with this email.';
+    else if (err.code === 'auth/too-many-requests') msg = 'Too many attempts. Try again later.';
+    else if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email.';
+    else msg = err.message || msg;
+    errEl.textContent = '❌ ' + msg;
     errEl.style.display = 'block';
   }
 });
@@ -876,7 +1133,7 @@ function enterApp() {
     refreshAll();
   }, function(error) {
     console.error('Permits listener error:', error);
-    showToast('⚠️ Connection error. Check Firestore index.', 'error');
+    showToast('⚠️ Connection error. Check Firestore.', 'error');
   });
 }
 
@@ -930,13 +1187,14 @@ $('tabBtnRejected').addEventListener('click', function() {
 });
 
 // ============================================================
-// FILTERS
+// FILTERS — DESKTOP BUTTONS
 // ============================================================
 document.querySelectorAll('[data-myfilter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     document.querySelectorAll('[data-myfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     myFilter = btn.dataset.myfilter;
+    $('myFilterSelect').value = myFilter;
     renderMySubmitted();
   });
 });
@@ -945,6 +1203,7 @@ document.querySelectorAll('[data-issuedfilter]').forEach(function(btn) {
     document.querySelectorAll('[data-issuedfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     issuedFilter = btn.dataset.issuedfilter;
+    $('issuedUserFilterSelect').value = issuedFilter;
     renderIssued();
   });
 });
@@ -953,6 +1212,7 @@ document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(btn) {
     document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     issuedStatusFilter = btn.dataset.issuedstatusfilter;
+    $('issuedStatusFilterSelect').value = issuedStatusFilter;
     renderIssued();
   });
 });
@@ -961,10 +1221,38 @@ document.querySelectorAll('[data-rejectedfilter]').forEach(function(btn) {
     document.querySelectorAll('[data-rejectedfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     rejectedFilter = btn.dataset.rejectedfilter;
+    $('rejectedUserFilterSelect').value = rejectedFilter;
     renderRejected();
   });
 });
 
+// ============================================================
+// FILTERS — MOBILE DROPDOWNS
+// ============================================================
+$('myFilterSelect').addEventListener('change', function() {
+  myFilter = this.value;
+  document.querySelectorAll('[data-myfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.myfilter === myFilter); });
+  renderMySubmitted();
+});
+$('issuedUserFilterSelect').addEventListener('change', function() {
+  issuedFilter = this.value;
+  document.querySelectorAll('[data-issuedfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.issuedfilter === issuedFilter); });
+  renderIssued();
+});
+$('issuedStatusFilterSelect').addEventListener('change', function() {
+  issuedStatusFilter = this.value;
+  document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.issuedstatusfilter === issuedStatusFilter); });
+  renderIssued();
+});
+$('rejectedUserFilterSelect').addEventListener('change', function() {
+  rejectedFilter = this.value;
+  document.querySelectorAll('[data-rejectedfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.rejectedfilter === rejectedFilter); });
+  renderRejected();
+});
+
+// ============================================================
+// DATE PICKERS
+// ============================================================
 const issuedDatePicker = $('issuedDatePicker');
 issuedDatePicker.value = todayKey();
 issuedDatePicker.addEventListener('change', function() {
@@ -1133,17 +1421,12 @@ function renderMySubmitted() {
 // RENDER: ISSUED (+ completed)
 // ============================================================
 function renderIssued() {
-  // Include both 'issued' and 'completed' statuses in this tab
   let issued = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed'; });
-
   if (issuedFilter === 'mine') issued = issued.filter(isMine);
   if (issuedFilter === 'byMe') issued = issued.filter(isIssuedByMe);
-
   if (issuedStatusFilter === 'active') issued = issued.filter(function(p) { return p.status === 'issued'; });
   if (issuedStatusFilter === 'completed') issued = issued.filter(function(p) { return p.status === 'completed'; });
-
   if (issuedSectionFilter !== '__all__') issued = issued.filter(function(p) { return String(p.section || '') === issuedSectionFilter; });
-
   if (!showAllDates) {
     issued = issued.filter(function(p) {
       const key = p.status === 'completed' ? dateKey(p.completedAt) : dateKey(p.issuedAt);
@@ -1165,7 +1448,6 @@ function renderIssued() {
     return;
   }
 
-  // Group by relevant date (issuedAt for active, completedAt for completed)
   const groups = {};
   issued.forEach(function(p) {
     const iso = p.status === 'completed' ? p.completedAt : p.issuedAt;
@@ -1218,16 +1500,12 @@ function renderIssued() {
   });
   $('issuedList').innerHTML = html;
 
-  // Click on card → open details modal
   document.querySelectorAll('#issuedList .issued-permit').forEach(function(item) {
     item.addEventListener('click', function(e) {
-      // Ignore if the click is on the "Mark Complete" button
       if (e.target.classList.contains('mark-complete-btn')) return;
       openModal(item.dataset.id);
     });
   });
-
-  // Mark Complete button
   document.querySelectorAll('.mark-complete-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -1319,15 +1597,13 @@ function openModal(id) {
   else statusBadge = '<span class="badge-status badge-pending">⏳ Pending</span>';
 
   let extraHTML = '';
-
   if (p.status === 'completed') {
-    extraHTML =
-      '<div class="modal-section completed-section"><h4>✅ Completed By</h4>' +
-        detailRow('Name', escapeHtml(p.completedBy || p.initiatorName)) +
-        detailRow('Designation', escapeHtml(p.completedByDesig || p.initiatorDesig)) +
-        detailRow('Completed At', formatDate(p.completedAt)) +
-        (p.completionRemarks ? '<div style="margin-top:0.7rem; padding:0.8rem 1rem; background:white; border-radius:0.7rem; border:1px dashed #c7dff0;"><div style="font-size:0.68rem; text-transform:uppercase; letter-spacing:0.5px; color:#1f4b5e; font-weight:800; margin-bottom:0.3rem;">📝 Completion Remarks</div><div style="font-size:0.9rem; color:#0b2b3c; white-space:pre-wrap; line-height:1.5;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
-      '</div>';
+    extraHTML = '<div class="modal-section completed-section"><h4>✅ Completed By</h4>' +
+      detailRow('Name', escapeHtml(p.completedBy || p.initiatorName)) +
+      detailRow('Designation', escapeHtml(p.completedByDesig || p.initiatorDesig)) +
+      detailRow('Completed At', formatDate(p.completedAt)) +
+      (p.completionRemarks ? '<div style="margin-top:0.7rem; padding:0.8rem 1rem; background:white; border-radius:0.7rem; border:1px dashed #c7dff0;"><div style="font-size:0.68rem; text-transform:uppercase; letter-spacing:0.5px; color:#1f4b5e; font-weight:800; margin-bottom:0.3rem;">📝 Completion Remarks</div><div style="font-size:0.9rem; color:#0b2b3c; white-space:pre-wrap; line-height:1.5;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
+    '</div>';
   } else if (p.status === 'issued') {
     extraHTML = '<div class="modal-section" style="background:#eaf7ef; border-color:#b8d9c1;"><h4 style="color:#0a4b2a;">✅ Issued By</h4>' + detailRow('Issuer Name', escapeHtml(p.issuerName)) + detailRow('Designation', escapeHtml(p.issuerDesig)) + detailRow('Issued At', formatDate(p.issuedAt)) + '</div>';
   } else if (p.status === 'rejected') {
@@ -1347,19 +1623,12 @@ function openModal(id) {
     extraHTML +
     '<div class="modal-section" style="background:#f2f8fc;"><h4>📅 Timestamp</h4>' + detailRow('Submitted At', formatDate(p.createdAt)) + '</div>' +
     (isMine(p) && p.status === 'issued'
-      ? '<div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;"><button class="btn btn-complete" id="modalMarkCompleteBtn" style="flex:1; padding:0.9rem;">✅ Mark Job Completed</button></div>'
+      ? '<div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;"><button class="btn btn-complete" id="modalMarkCompleteBtn" style="flex:1; padding:0.9rem; font-size:0.85rem;">✅ Mark Job Completed</button></div>'
       : '');
 
   modalBackdrop.classList.add('open');
-
-  // Attach modal-mark-complete button
   const mmcb = $('modalMarkCompleteBtn');
-  if (mmcb) {
-    mmcb.addEventListener('click', function() {
-      closeModal();
-      openCompleteModal(p.id);
-    });
-  }
+  if (mmcb) mmcb.addEventListener('click', function() { closeModal(); openCompleteModal(p.id); });
 }
 
 function closeModal() { modalBackdrop.classList.remove('open'); modalHead.classList.remove('rejected-modal-head', 'complete-modal-head'); }
@@ -1370,27 +1639,21 @@ modalBackdrop.addEventListener('click', function(e) { if (e.target === modalBack
 // JOB COMPLETION MODAL
 // ============================================================
 const completeBackdrop = $('completeBackdrop');
-const completeModalTitle = $('completeModalTitle');
-const completePermitInfo = $('completePermitInfo');
 
 function openCompleteModal(id) {
   const p = permits.find(function(x) { return x.id === id; });
   if (!p) return;
   if (!isMine(p)) { showToast('⛔ Only the initiator can mark this as completed.', 'error'); return; }
   if (p.status !== 'issued') { showToast('This permit cannot be marked completed.', 'error'); return; }
-
   completingPermitId = id;
-  completeModalTitle.textContent = 'Mark ' + p.permitNumber + ' as Completed';
-  completePermitInfo.innerHTML =
+  $('completeModalTitle').textContent = 'Mark ' + p.permitNumber + ' as Completed';
+  $('completePermitInfo').innerHTML =
     detailRow('Description', escapeHtml(p.description)) +
     detailRow('Equipment', escapeHtml(p.equipment)) +
     detailRow('Location', escapeHtml(p.location)) +
     detailRow('Section', escapeHtml(getSectionLabel(p)));
-
-  // Default completion time = now
   $('f_completedAt').value = toDateTimeLocalValue(new Date());
   $('f_completionRemarks').value = '';
-
   completeBackdrop.classList.add('open');
   setTimeout(function() { $('f_completedAt').focus(); }, 100);
 }
@@ -1411,7 +1674,6 @@ $('confirmCompleteBtn').addEventListener('click', async function() {
   const completedAtVal = $('f_completedAt').value;
   if (!completedAtVal) { showToast('Please enter completion date & time.', 'error'); return; }
   const remarks = $('f_completionRemarks').value.trim();
-
   const p = permits.find(function(x) { return x.id === completingPermitId; });
   if (!p) { showToast('Permit not found.', 'error'); closeCompleteModal(); return; }
   if (!isMine(p)) { showToast('⛔ Only the initiator can complete this.', 'error'); closeCompleteModal(); return; }
@@ -1431,19 +1693,20 @@ $('confirmCompleteBtn').addEventListener('click', async function() {
     });
     closeCompleteModal();
     showToast('✅ Job marked as completed.', 'success');
-    // onSnapshot will refresh UI
   } catch (err) {
     showToast('❌ Failed: ' + err.message, 'error');
   } finally {
     btn.disabled = false;
-    btn.textContent = '✅ Confirm Job Completed';
+    btn.textContent = '✅ Confirm Completed';
   }
 });
 
+// ESC closes both modals
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeModal();
     closeCompleteModal();
+    closeForgotModal();
   }
 });
 
@@ -1508,12 +1771,8 @@ $('permitForm').addEventListener('submit', async function(e) {
     rejectedBy: '', rejectedByDesig: '', rejectedAt: null, rejectionReason: '',
     completedAt: null, completionRemarks: '', completedBy: '', completedByDesig: '', completedByUid: ''
   };
-  if (!data.description || !data.equipment || !data.location || !data.start || !data.end) {
-    showToast('Fill all required fields.', 'error'); return;
-  }
-  if (new Date(data.end) <= new Date(data.start)) {
-    showToast('Completion must be after start.', 'error'); return;
-  }
+  if (!data.description || !data.equipment || !data.location || !data.start || !data.end) { showToast('Fill all required fields.', 'error'); return; }
+  if (new Date(data.end) <= new Date(data.start)) { showToast('Completion must be after start.', 'error'); return; }
 
   try {
     await addDoc(collection(db, 'permits'), data);
@@ -1558,9 +1817,7 @@ $('issueBtn').addEventListener('click', async function() {
     $('issueArea').classList.add('hidden');
     resetRejectState();
     showToast('✅ Permit issued.', 'success');
-  } catch (err) {
-    showToast('❌ Failed: ' + err.message, 'error');
-  }
+  } catch (err) { showToast('❌ Failed: ' + err.message, 'error'); }
 });
 
 // ============================================================
@@ -1598,9 +1855,7 @@ $('confirmRejectBtn').addEventListener('click', async function() {
     $('issueArea').classList.add('hidden');
     resetRejectState();
     showToast('❌ Permit rejected.', 'success');
-  } catch (err) {
-    showToast('❌ Failed: ' + err.message, 'error');
-  }
+  } catch (err) { showToast('❌ Failed: ' + err.message, 'error'); }
 });
 
 $('cancelRejectBtn').addEventListener('click', resetRejectState);
