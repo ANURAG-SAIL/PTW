@@ -378,7 +378,7 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
     <form id="loginForm">
       <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required>
+      <input type="email" id="loginEmail" placeholder="Enter Valid Email" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" required>
       <a class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
@@ -492,11 +492,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. Replace bearing on conveyor drive motor" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. PLC work" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. Conveyor CV-201" required>
+                <input type="text" id="f_equipment" placeholder="e.g. CC 9-2" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -519,7 +519,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. Conveyor CV-201, near crusher house" required>
+                <input type="text" id="f_location" placeholder="e.g. CT 5, repair section" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -529,21 +529,21 @@ textarea { resize: vertical; min-height: 60px; }
                 <label>Expected Completion <span class="req">*</span></label>
                 <input type="datetime-local" id="f_end" required>
               </div>
-              <div class="field-full">
+              <!-- <div class="field-full">
                 <label>Other Permit Taken Details</label>
                 <textarea id="f_otherPermits" rows="1" placeholder="e.g. Hot work permit #HW-432"></textarea>
-              </div>
+              </div> -->
               <div class="field-full">
                 <label>Hazard Mitigation</label>
                 <textarea id="f_hazard" rows="2" placeholder="e.g. Lockout/tagout applied, area barricaded"></textarea>
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of</label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, fire watch, proper grounding"></textarea>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, proper grounding"></textarea>
               </div>
               <div class="field-full">
                 <label>Isolation Details</label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, valve #V-12 locked"></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation"></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
