@@ -9,7 +9,6 @@
 body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; justify-content: center; align-items: flex-start; }
 .app-container { max-width: 1200px; width: 100%; }
 
-/* ========== AUTH ========== */
 .auth-wrapper { position: fixed; inset: 0; z-index: 1000; background: linear-gradient(135deg, #0b2b3c 0%, #1f4b5e 60%, #2c6e8f 100%); display: flex; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
 .auth-card { background: white; border-radius: 1.5rem; padding: 2rem; width: 100%; max-width: 440px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); margin: 1rem auto; }
 .brand-block { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e1eff8; }
@@ -30,7 +29,6 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .auth-error { margin-top: 1rem; padding: 0.75rem 1rem; background: #fdecea; color: #c0392b; border-radius: 0.8rem; font-size: 0.85rem; text-align: center; border-left: 4px solid #c0392b; display: none; }
 .auth-hint { font-size: 0.72rem; color: #7d9aab; text-align: center; margin-top: 0.8rem; font-style: italic; }
 
-/* ========== HEADER ========== */
 .header { background: linear-gradient(135deg, #0b2b3c 0%, #1f4b5e 100%); color: white; padding: 1.5rem 2rem; border-radius: 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,20,30,0.25); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .header-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .header-logo { width: 52px; height: 52px; object-fit: contain; background: white; border-radius: 10px; padding: 4px; }
@@ -41,6 +39,7 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .header .stat { background: rgba(255,255,255,0.1); padding: 0.4rem 0.85rem; border-radius: 0.8rem; text-align: center; }
 .header .stat strong { font-size: 1rem; display: block; }
 .header .stat.rejected-stat { background: rgba(192, 57, 43, 0.35); }
+.header .stat.completed-stat { background: rgba(44, 110, 143, 0.35); }
 .user-chip { background: rgba(255,255,255,0.15); padding: 0.45rem 0.9rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
 .user-chip .avatar { width: 28px; height: 28px; border-radius: 50%; background: #e1eff8; color: #0b2b3c; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; }
 .user-chip .info { line-height: 1.15; }
@@ -49,7 +48,6 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .logout-btn { background: rgba(255,255,255,0.15); border: none; color: white; cursor: pointer; font-size: 0.72rem; padding: 0.35rem 0.75rem; border-radius: 20px; font-weight: 700; font-family: inherit; }
 .logout-btn:hover { background: #c0392b; }
 
-/* ========== ROLE TOGGLE ========== */
 .role-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.2rem; }
 .role-toggle { display: inline-flex; background: white; padding: 0.4rem; border-radius: 2.5rem; box-shadow: 0 5px 15px -5px rgba(0,20,30,0.15); gap: 0.3rem; }
 .role-toggle-btn { padding: 0.75rem 1.8rem; border: none; background: transparent; border-radius: 2rem; font-size: 0.92rem; font-weight: 700; cursor: pointer; color: #4a6d80; transition: 0.2s; font-family: inherit; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
@@ -59,7 +57,6 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .role-toggle-btn .badge-count { background: rgba(255,255,255,0.25); padding: 0.1rem 0.5rem; border-radius: 20px; font-size: 0.72rem; font-weight: 800; }
 .role-toggle-btn:not(.active) .badge-count { background: #e1eff8; color: #1f4b5e; }
 
-/* ========== SUB TABS ========== */
 .sub-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; background: white; padding: 0.5rem; border-radius: 2rem; box-shadow: 0 5px 15px -5px rgba(0,20,30,0.08); }
 .tab { padding: 0.7rem 1.4rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; border: none; background: transparent; color: #4a6d80; transition: 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; font-family: inherit; }
 .tab:hover { background: #f0f5f8; }
@@ -69,7 +66,6 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .tab:not(.active) .count { background: #e1eff8; color: #1f4b5e; }
 .tab.tab-rejected:not(.active) .count { background: #f8d7da; color: #842029; }
 
-/* ========== CARD ========== */
 .card { background: white; border-radius: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,20,30,0.15); overflow: hidden; margin-bottom: 1.5rem; }
 .card-header { background: #0b2b3c; color: white; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
 .card-header.rejected-header { background: #7a1f18; }
@@ -78,7 +74,6 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .card-header .badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.8rem; border-radius: 30px; font-size: 0.78rem; font-weight: 500; }
 .card-body { padding: 1.5rem; }
 
-/* ========== FORM ========== */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1rem; }
 .field-full { grid-column: span 2; }
 label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #2e5467; margin-bottom: 0.25rem; }
@@ -90,7 +85,6 @@ textarea { resize: vertical; min-height: 60px; }
 .permit-number { background: #eef3f7; border-radius: 0.8rem; padding: 0.7rem 1rem; font-family: 'Courier New', monospace; font-weight: 700; color: #0b2b3c; border: 1.5px dashed #9bb7c7; letter-spacing: 1px; font-size: 1rem; display: flex; align-items: center; justify-content: space-between; }
 .permit-number .hint { font-family: inherit; font-weight: 400; color: #5c7e91; font-size: 0.72rem; letter-spacing: 0; }
 
-/* ========== BUTTONS ========== */
 .btn { border: none; padding: 0.8rem 1.4rem; border-radius: 2rem; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: white; color: #0b2b3c; border: 1.5px solid #b8cfdb; font-family: inherit; }
 .btn-primary { background: #0b2b3c; color: white; border: 1.5px solid #0b2b3c; }
 .btn-primary:hover { background: #1f4b5e; }
@@ -100,8 +94,9 @@ textarea { resize: vertical; min-height: 60px; }
 .btn-reject:hover { background: #962d22; }
 .btn-danger { background: #fdecea; color: #c0392b; border-color: #f5c6c0; }
 .btn-danger:hover { background: #c0392b; color: white; }
+.btn-complete { background: #2c6e8f; border-color: #2c6e8f; color: white; padding: 0.5rem 1.1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.35rem; transition: 0.15s; }
+.btn-complete:hover { background: #1f4b5e; border-color: #1f4b5e; }
 
-/* ========== QUEUE ========== */
 .queue-list { display: flex; flex-direction: column; gap: 0.8rem; }
 .queue-item { background: #f5f9fc; border-radius: 1rem; padding: 1rem 1.2rem; border: 1px solid #dfe9ef; border-left-width: 5px; border-left-style: solid; border-left-color: #b8cfdb; cursor: pointer; transition: 0.15s; }
 .queue-item:hover { background: #e7f0f6; border-left-color: #2c6e8f; }
@@ -111,27 +106,27 @@ textarea { resize: vertical; min-height: 60px; }
 .queue-item .meta { display: flex; justify-content: space-between; font-size: 0.7rem; color: #5e7e91; margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.3px; flex-wrap: wrap; gap: 0.4rem; }
 .queue-item.rejected-item, .queue-item.rejected-permit { border-left-color: #c0392b; background: #fffafa; }
 .queue-item.rejected-item:hover, .queue-item.rejected-permit:hover { background: #fff5f5; border-left-color: #962d22; }
+.queue-item.completed-permit { border-left-color: #2c6e8f; background: #f0f7fc; }
+.queue-item.completed-permit:hover { background: #e5f0f8; border-left-color: #1f4b5e; }
 
 .section-chip { display: inline-block; background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
 .empty-state { background: #f7fafc; border-radius: 1rem; padding: 2.5rem 1rem; text-align: center; color: #7d9aab; font-size: 0.88rem; border: 1px dashed #b8cfdb; }
 .empty-state .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
 .empty-state.rejected-empty { background: #fff5f5; border-color: #f5c6c0; color: #842029; }
 
-/* ========== FILTER BAR ========== */
 .filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; background: #f6fafd; padding: 0.9rem; border-radius: 1rem; border: 1px solid #d7e5ef; align-items: center; }
 .filter-bar .picker-wrap { display: flex; align-items: center; gap: 0.4rem; background: white; padding: 0.35rem 0.8rem 0.35rem 0.6rem; border-radius: 2rem; border: 1.5px solid #cddde5; }
 .filter-bar .picker-wrap label { margin: 0; font-size: 0.68rem; text-transform: uppercase; color: #2c6e8f; letter-spacing: 0.5px; font-weight: 800; white-space: nowrap; }
 .filter-bar .picker-wrap input[type="date"], .filter-bar .picker-wrap select { padding: 0.3rem 0.5rem; border: none; background: transparent; font-size: 0.85rem; font-weight: 600; color: #0b2b3c; outline: none; cursor: pointer; font-family: inherit; min-width: 130px; }
 .filter-bar .picker-wrap select { padding-right: 1.5rem; background-position: right 0.3rem center; }
-.filter-bar .picker-wrap input[type="date"]:focus, .filter-bar .picker-wrap select:focus { background: #eef3f7; border-radius: 0.5rem; }
 .filter-btn { padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: 1.5px solid #cddde5; background: white; color: #2e5467; transition: 0.15s; font-family: inherit; }
 .filter-btn:hover { background: #eef3f7; }
 .filter-btn.active { background: #0b2b3c; color: white; border-color: #0b2b3c; }
 .filter-btn.all-dates-btn.active { background: #2c6e8f; border-color: #2c6e8f; }
 .filter-btn.reject-all-dates-btn.active { background: #c0392b; border-color: #c0392b; }
+.filter-btn.completed-filter.active { background: #2c6e8f; border-color: #2c6e8f; }
 .filter-divider { width: 1px; height: 24px; background: #d7e5ef; margin: 0 0.3rem; }
 
-/* ========== DETAILS ========== */
 .permit-detail { background: #f6fafd; border-radius: 1rem; padding: 1.2rem; border: 1px solid #d7e5ef; margin-bottom: 1rem; }
 .permit-detail h3 { font-size: 1rem; color: #0b2b3c; margin-bottom: 0.8rem; padding-bottom: 0.6rem; border-bottom: 1px solid #d7e5ef; font-family: monospace; letter-spacing: 0.5px; }
 .detail-row { display: flex; margin-bottom: 0.4rem; font-size: 0.85rem; }
@@ -139,14 +134,13 @@ textarea { resize: vertical; min-height: 60px; }
 .detail-value { color: #0b2b3c; flex: 1; word-break: break-word; white-space: pre-wrap; }
 .detail-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #d7e5ef; }
 
-/* ========== BADGES ========== */
 .badge-status { padding: 0.25rem 0.8rem; border-radius: 30px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 .badge-pending { background: #fff3cd; color: #856404; }
 .badge-issued { background: #d4edda; color: #0a4b2a; }
 .badge-rejected { background: #f8d7da; color: #842029; }
 .badge-mine { background: #cfe2ff; color: #084298; }
+.badge-completed { background: #cfe2ff; color: #084298; }
 
-/* ========== SIGNATURE ========== */
 .signature-area { background: #f2f8fc; border-radius: 1rem; padding: 1.2rem; margin-top: 1rem; border: 1px solid #cfe0ea; }
 .signature-area h4 { font-size: 0.85rem; color: #0b2b3c; margin-bottom: 0.8rem; }
 .reject-input-wrap { margin-top: 0.8rem; padding: 0.9rem; background: #fff5f5; border: 1px solid #f5c6c0; border-radius: 0.9rem; }
@@ -154,7 +148,6 @@ textarea { resize: vertical; min-height: 60px; }
 .reject-input-wrap textarea { border-color: #f5c6c0; background: white; }
 .reject-input-wrap textarea:focus { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1); }
 
-/* ========== DATE GROUP ========== */
 .date-group { margin-bottom: 1.2rem; }
 .date-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1rem; background: #e1eff8; border-radius: 0.8rem; margin-bottom: 0.8rem; font-size: 0.82rem; font-weight: 800; color: #0b2b3c; text-transform: uppercase; letter-spacing: 0.5px; }
 .date-header.rejected-date-header { background: #fdecea; color: #842029; }
@@ -162,12 +155,12 @@ textarea { resize: vertical; min-height: 60px; }
 .date-header .date-count { background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0; }
 .date-header.rejected-date-header .date-count { background: #c0392b; }
 
-/* ========== MODAL ========== */
 .modal-backdrop { position: fixed; inset: 0; background: rgba(11,43,60,0.6); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: 0.2s; }
 .modal-backdrop.open { opacity: 1; pointer-events: auto; }
 .modal { background: white; border-radius: 1.5rem; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
 .modal-head { position: sticky; top: 0; background: #0b2b3c; color: white; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-radius: 1.5rem 1.5rem 0 0; z-index: 10; }
 .modal-head.rejected-modal-head { background: #7a1f18; }
+.modal-head.complete-modal-head { background: #2c6e8f; }
 .modal-head h3 { font-size: 1.1rem; font-weight: 600; font-family: monospace; letter-spacing: 0.5px; }
 .modal-close { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
 .modal-close:hover { background: rgba(255,255,255,0.3); }
@@ -176,11 +169,12 @@ textarea { resize: vertical; min-height: 60px; }
 .modal-section h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: #2c6e8f; margin-bottom: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 0.4rem; }
 .modal-section.rejected-section { background: #fff5f5; border-color: #f5c6c0; }
 .modal-section.rejected-section h4 { color: #842029; }
+.modal-section.completed-section { background: #f0f7fc; border-color: #c7dff0; }
+.modal-section.completed-section h4 { color: #1f4b5e; }
 .rejection-reason-box { margin-top: 0.7rem; padding: 0.8rem 1rem; background: white; border-radius: 0.7rem; border: 1px dashed #f5c6c0; }
 .rejection-reason-box .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; color: #842029; font-weight: 800; margin-bottom: 0.3rem; }
 .rejection-reason-box .value { font-size: 0.9rem; color: #0b2b3c; white-space: pre-wrap; line-height: 1.5; }
 
-/* ========== TOAST / LOADING ========== */
 .toast { position: fixed; bottom: 30px; right: 30px; background: #0b2b3c; color: white; padding: 1rem 1.5rem; border-radius: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-size: 0.88rem; z-index: 9999; opacity: 0; transform: translateY(20px); transition: all 0.3s; max-width: 380px; }
 .toast.show { opacity: 1; transform: translateY(0); }
 .toast.error { background: #c0392b; }
@@ -227,9 +221,9 @@ textarea { resize: vertical; min-height: 60px; }
     </form>
     <form id="signupForm" class="hidden">
       <label>Full Name</label>
-      <input type="text" id="signupName" placeholder="e.g. Rajesh Kumar" required>
+      <input type="text" id="signupName" placeholder="e.g. Anurag Rathore" required>
       <label>Designation</label>
-      <input type="text" id="signupDesig" placeholder="e.g. Maintenance Engineer" required>
+      <input type="text" id="signupDesig" placeholder="e.g. Assistant Manager" required>
       <label>Email</label>
       <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email" required>
       <label>Password</label>
@@ -255,6 +249,7 @@ textarea { resize: vertical; min-height: 60px; }
       <div class="stats">
         <div class="stat"><strong id="statPending">0</strong>Pending</div>
         <div class="stat"><strong id="statIssued">0</strong>Issued</div>
+        <div class="stat completed-stat"><strong id="statCompleted">0</strong>Completed</div>
         <div class="stat rejected-stat"><strong id="statRejected">0</strong>Rejected</div>
       </div>
       <div class="user-chip">
@@ -268,7 +263,6 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
   </div>
 
-  <!-- ROLE TOGGLE -->
   <div class="role-toggle-wrap">
     <div class="role-toggle">
       <button class="role-toggle-btn active" id="modeInitiatorBtn">🛠️ Initiator Mode</button>
@@ -276,7 +270,6 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
   </div>
 
-  <!-- SUB TABS -->
   <div class="sub-tabs">
     <button class="tab" data-tab="issued" id="tabBtnIssued">✅ Issued Permits <span class="count" id="issuedTabCount">0</span></button>
     <button class="tab tab-rejected" data-tab="rejected" id="tabBtnRejected">❌ Rejected Permits <span class="count" id="rejectedTabCount">0</span></button>
@@ -310,11 +303,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. Replace bearing on conveyor drive motor" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. Replace motor of latch-unlatch" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. Conveyor CV-201" required>
+                <input type="text" id="f_equipment" placeholder="e.g. Pusher Car 9-2" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -337,7 +330,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. Conveyor CV-201, near crusher house, Level 3" required>
+                <input type="text" id="f_location" placeholder="e.g. Endbench 19" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -347,21 +340,21 @@ textarea { resize: vertical; min-height: 60px; }
                 <label>Expected Completion <span class="req">*</span></label>
                 <input type="datetime-local" id="f_end" required>
               </div>
-              <div class="field-full">
+              <!-- <div class="field-full">
                 <label>Other Permit Taken Details</label>
-                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Hot work permit #HW-432"></textarea>
-              </div>
+                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Height Permit"></textarea>
+              </div> -->
               <div class="field-full">
                 <label>Hazard Mitigation</label>
                 <textarea id="f_hazard" rows="2" placeholder="e.g. Lockout/tagout applied, area barricaded"></textarea>
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of</label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, fire watch, proper grounding"></textarea>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, proper grounding"></textarea>
               </div>
               <div class="field-full">
                 <label>Isolation Details</label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, valve #V-12 locked"></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation"></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -384,6 +377,7 @@ textarea { resize: vertical; min-height: 60px; }
             <button class="filter-btn active" data-myfilter="all">All</button>
             <button class="filter-btn" data-myfilter="pending">⏳ Pending</button>
             <button class="filter-btn" data-myfilter="issued">✔ Issued</button>
+            <button class="filter-btn" data-myfilter="completed">✅ Completed</button>
             <button class="filter-btn" data-myfilter="rejected">❌ Rejected</button>
           </div>
           <div id="myPermitsList">
@@ -478,7 +472,12 @@ textarea { resize: vertical; min-height: 60px; }
           <button class="filter-btn" data-issuedfilter="mine">👤 Initiated by Me</button>
           <button class="filter-btn" data-issuedfilter="byMe">✍️ Issued by Me</button>
         </div>
-        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Click any permit to view complete details</em></div>
+        <div class="filter-bar" style="margin-top:-0.4rem;">
+          <button class="filter-btn active" data-issuedstatusfilter="all">All Status</button>
+          <button class="filter-btn" data-issuedstatusfilter="active">🔧 Active (In Progress)</button>
+          <button class="filter-btn completed-filter" data-issuedstatusfilter="completed">✅ Completed</button>
+        </div>
+        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Click any permit to view details. Initiators can mark their own permits as completed.</em></div>
         <div id="issuedList">
           <div class="empty-state"><span class="icon">📋</span>No issued permits for the selected filters.</div>
         </div>
@@ -522,7 +521,7 @@ textarea { resize: vertical; min-height: 60px; }
 
 </div>
 
-<!-- MODAL -->
+<!-- PERMIT DETAILS MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
     <div class="modal-head" id="modalHead">
@@ -533,13 +532,40 @@ textarea { resize: vertical; min-height: 60px; }
   </div>
 </div>
 
+<!-- JOB COMPLETION MODAL -->
+<div class="modal-backdrop" id="completeBackdrop">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-head complete-modal-head">
+      <h3 id="completeModalTitle">Mark Job as Completed</h3>
+      <button class="modal-close" id="completeModalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="completePermitInfo" style="background:#f0f7fc; border-radius:0.9rem; padding:1rem 1.1rem; border:1px solid #c7dff0; margin-bottom:1rem;"></div>
+      <div class="form-grid">
+        <div class="field-full">
+          <label>Completion Date &amp; Time <span class="req">*</span></label>
+          <input type="datetime-local" id="f_completedAt">
+        </div>
+        <div class="field-full">
+          <label>Completion Remarks</label>
+          <textarea id="f_completionRemarks" rows="3" placeholder="e.g. Work completed successfully. All systems restored and tested. Area cleared and handed over."></textarea>
+          <div style="font-size:0.72rem; color:#5e7e91; margin-top:0.3rem;">Optional but recommended. Describe the final state of the job.</div>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="confirmCompleteBtn" style="flex:1; min-width:180px;">✅ Confirm Job Completed</button>
+        <button type="button" class="btn btn-danger" id="cancelCompleteBtn">✕ Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <span id="loadingText">Loading…</span>
 </div>
 
-<!-- ========== FIREBASE SDK (modular v11) ========== -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import {
@@ -548,11 +574,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import {
   getFirestore, collection, doc, setDoc, getDoc, addDoc, updateDoc,
-  query, where, orderBy, onSnapshot, serverTimestamp
+  query, orderBy, onSnapshot, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // ============================================================
-// 🔴 CONFIG — REPLACE WITH YOUR FIREBASE CONFIG
+// 🔴 FIREBASE CONFIG — REPLACE WITH YOUR VALUES
 // ============================================================
 const firebaseConfig = {
   apiKey: "AIzaSyBdkYLEc_-Mh_QXdkj0p0v1BcqlkdNLyu8",
@@ -575,8 +601,10 @@ let permits = [];
 let currentUser = null;
 let currentMode = 'initiator';
 let selectedPermitId = null;
+let completingPermitId = null;
 let myFilter = 'all';
 let issuedFilter = 'all';
+let issuedStatusFilter = 'all';
 let rejectedFilter = 'all';
 let issuedDateFilter = todayKey();
 let rejectedDateFilter = todayKey();
@@ -661,8 +689,15 @@ function setDefaultDateTimes() {
   $('f_start').value = fmt(now);
   $('f_end').value = fmt(later);
 }
+function toDateTimeLocalValue(date) {
+  const d = date instanceof Date ? date : new Date(date);
+  const pad = function(n) { return String(n).padStart(2, '0'); };
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
 function isMine(p) {
-  if (!currentUser || !currentUser.name) return false;
+  if (!currentUser) return false;
+  if (p.initiatorUid && currentUser.uid) return p.initiatorUid === currentUser.uid;
+  if (!currentUser.name) return false;
   return String(p.initiatorName || '').trim().toLowerCase() === String(currentUser.name).trim().toLowerCase();
 }
 function isIssuedByMe(p) {
@@ -678,12 +713,6 @@ function getSectionLabel(p) {
   if (!p) return '—';
   if (p.section === 'OTHER') return p.sectionOther ? ('OTHER · ' + p.sectionOther) : 'OTHER';
   return p.section || '—';
-}
-function incrementPermitNumber(pn) {
-  const m = String(pn || 'COCCD/0000').match(/COCCD\/(\d+)/);
-  if (!m) return 'COCCD/0001';
-  const next = parseInt(m[1], 10) + 1;
-  return 'COCCD/' + String(next).padStart(4, '0');
 }
 
 // ============================================================
@@ -732,21 +761,15 @@ signupForm.addEventListener('submit', async function(e) {
   const password = $('signupPassword').value;
   if (!name || !designation || !email || !password) { errEl.textContent = 'All fields required.'; errEl.style.display = 'block'; return; }
   if (password.length < 6) { errEl.textContent = 'Password must be ≥6 chars.'; errEl.style.display = 'block'; return; }
-
   showLoading('Creating account…');
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
-    // Save user profile to Firestore
     await setDoc(doc(db, 'users', cred.user.uid), {
-      name: name,
-      designation: designation,
-      email: email,
-      createdAt: serverTimestamp()
+      name: name, designation: designation, email: email, createdAt: serverTimestamp()
     });
     hideLoading();
     signupForm.reset();
     showToast('✅ Account created!', 'success');
-    // onAuthStateChanged will fire and enter app
   } catch (err) {
     hideLoading();
     errEl.textContent = '❌ ' + (err.message || 'Signup failed.');
@@ -763,14 +786,12 @@ loginForm.addEventListener('submit', async function(e) {
   const email = $('loginEmail').value.trim();
   const password = $('loginPassword').value;
   if (!email || !password) { errEl.textContent = 'Enter credentials.'; errEl.style.display = 'block'; return; }
-
   showLoading('Signing in…');
   try {
     await signInWithEmailAndPassword(auth, email, password);
     hideLoading();
     loginForm.reset();
     showToast('Welcome back!', 'success');
-    // onAuthStateChanged will fire and enter app
   } catch (err) {
     hideLoading();
     errEl.textContent = '❌ ' + (err.message || 'Login failed.');
@@ -799,14 +820,12 @@ $('logoutBtn').addEventListener('click', async function() {
 // ============================================================
 onAuthStateChanged(auth, async function(user) {
   if (user) {
-    // Load user profile
     const userDoc = await getDoc(doc(db, 'users', user.uid));
     if (userDoc.exists()) {
       const data = userDoc.data();
       currentUser = { uid: user.uid, name: data.name, designation: data.designation, email: data.email };
       enterApp();
     } else {
-      // Profile missing — sign out
       await signOut(auth);
     }
   } else {
@@ -836,7 +855,6 @@ function enterApp() {
   setDefaultDateTimes();
   setMode('initiator');
 
-  // Subscribe to real-time permits
   if (unsubscribePermits) unsubscribePermits();
   const permitsQuery = query(collection(db, 'permits'), orderBy('createdAt', 'desc'));
   unsubscribePermits = onSnapshot(permitsQuery, function(snapshot) {
@@ -846,7 +864,6 @@ function enterApp() {
       data.id = docSnap.id;
       permits.push(data);
     });
-    // Compute next permit number
     let maxNum = 0;
     permits.forEach(function(p) {
       if (p.permitNumber && String(p.permitNumber).startsWith('COCCD/')) {
@@ -859,7 +876,7 @@ function enterApp() {
     refreshAll();
   }, function(error) {
     console.error('Permits listener error:', error);
-    showToast('⚠️ Connection error. Check your Firestore index.', 'error');
+    showToast('⚠️ Connection error. Check Firestore index.', 'error');
   });
 }
 
@@ -928,6 +945,14 @@ document.querySelectorAll('[data-issuedfilter]').forEach(function(btn) {
     document.querySelectorAll('[data-issuedfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     issuedFilter = btn.dataset.issuedfilter;
+    renderIssued();
+  });
+});
+document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    issuedStatusFilter = btn.dataset.issuedstatusfilter;
     renderIssued();
   });
 });
@@ -1052,6 +1077,7 @@ function renderMySubmitted() {
   let mine = permits.filter(isMine);
   if (myFilter === 'pending') mine = mine.filter(function(p) { return p.status === 'pending'; });
   if (myFilter === 'issued') mine = mine.filter(function(p) { return p.status === 'issued'; });
+  if (myFilter === 'completed') mine = mine.filter(function(p) { return p.status === 'completed'; });
   if (myFilter === 'rejected') mine = mine.filter(function(p) { return p.status === 'rejected'; });
 
   $('myCount').textContent = mine.length;
@@ -1063,12 +1089,14 @@ function renderMySubmitted() {
   let html = '';
   mine.forEach(function(p) {
     let statusClass, statusLabel;
-    if (p.status === 'issued') { statusClass = 'badge-issued'; statusLabel = '✔ Issued'; }
+    if (p.status === 'completed') { statusClass = 'badge-completed'; statusLabel = '✅ Completed'; }
+    else if (p.status === 'issued') { statusClass = 'badge-issued'; statusLabel = '✔ Issued'; }
     else if (p.status === 'rejected') { statusClass = 'badge-rejected'; statusLabel = '❌ Rejected'; }
     else { statusClass = 'badge-pending'; statusLabel = '⏳ Pending'; }
 
-    const isRejected = p.status === 'rejected';
-    const itemClass = isRejected ? 'queue-item rejected-item' : 'queue-item';
+    let itemClass = 'queue-item';
+    if (p.status === 'rejected') itemClass += ' rejected-item';
+    if (p.status === 'completed') itemClass += ' completed-permit';
 
     html +=
       '<div class="' + itemClass + '" style="cursor:pointer;" data-id="' + escapeHtml(p.id) + '">' +
@@ -1087,7 +1115,10 @@ function renderMySubmitted() {
         (p.status === 'issued'
           ? '<div style="margin-top:0.6rem; padding:0.5rem 0.8rem; background:#eaf7ef; border-radius:0.6rem; font-size:0.78rem; color:#0a4b2a;">✔ Issued by <strong>' + escapeHtml(p.issuerName) + '</strong> on ' + formatDate(p.issuedAt) + '</div>'
           : '') +
-        (isRejected
+        (p.status === 'completed'
+          ? '<div style="margin-top:0.6rem; padding:0.5rem 0.8rem; background:#eaf4fb; border-radius:0.6rem; font-size:0.78rem; color:#1f4b5e;">✅ <strong>Completed</strong> on ' + formatDate(p.completedAt) + (p.completionRemarks ? '<div style="margin-top:0.3rem;"><strong>Remarks:</strong> ' + escapeHtml(p.completionRemarks) + '</div>' : '') + '</div>'
+          : '') +
+        (p.status === 'rejected'
           ? '<div style="margin-top:0.6rem; padding:0.5rem 0.8rem; background:#fff5f5; border-radius:0.6rem; font-size:0.78rem; color:#842029;">❌ Rejected by <strong>' + escapeHtml(p.rejectedBy || p.issuerName) + '</strong> on ' + formatDate(p.rejectedAt) + '<div style="margin-top:0.3rem;"><strong>Reason:</strong> ' + escapeHtml(p.rejectionReason || '—') + '</div></div>'
           : '') +
       '</div>';
@@ -1099,29 +1130,49 @@ function renderMySubmitted() {
 }
 
 // ============================================================
-// RENDER: ISSUED
+// RENDER: ISSUED (+ completed)
 // ============================================================
 function renderIssued() {
-  let issued = permits.filter(function(p) { return p.status === 'issued'; });
+  // Include both 'issued' and 'completed' statuses in this tab
+  let issued = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed'; });
+
   if (issuedFilter === 'mine') issued = issued.filter(isMine);
   if (issuedFilter === 'byMe') issued = issued.filter(isIssuedByMe);
+
+  if (issuedStatusFilter === 'active') issued = issued.filter(function(p) { return p.status === 'issued'; });
+  if (issuedStatusFilter === 'completed') issued = issued.filter(function(p) { return p.status === 'completed'; });
+
   if (issuedSectionFilter !== '__all__') issued = issued.filter(function(p) { return String(p.section || '') === issuedSectionFilter; });
-  if (!showAllDates) issued = issued.filter(function(p) { return dateKey(p.issuedAt) === issuedDateFilter; });
+
+  if (!showAllDates) {
+    issued = issued.filter(function(p) {
+      const key = p.status === 'completed' ? dateKey(p.completedAt) : dateKey(p.issuedAt);
+      return key === issuedDateFilter;
+    });
+  }
 
   $('issuedCount').textContent = issued.length;
-  $('issuedTabCount').textContent = permits.filter(function(p) { return p.status === 'issued'; }).length;
+  $('issuedTabCount').textContent = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed'; }).length;
 
   if (issued.length === 0) {
-    let msg = showAllDates ? 'No issued permits yet.' : 'No issued permits on ' + dateLabelFromKey(issuedDateFilter).replace('📅 ', '') + '.';
-    if (issuedFilter === 'mine') msg = 'No issued permits initiated by you' + (showAllDates ? ' yet.' : ' on this date.');
+    let msg = showAllDates ? 'No permits yet.' : 'No permits on ' + dateLabelFromKey(issuedDateFilter).replace('📅 ', '') + '.';
+    if (issuedStatusFilter === 'completed') msg = 'No completed permits' + (showAllDates ? ' yet.' : ' on this date.');
+    if (issuedStatusFilter === 'active') msg = 'No active issued permits' + (showAllDates ? ' yet.' : ' on this date.');
+    if (issuedFilter === 'mine') msg = 'No permits initiated by you' + (showAllDates ? ' yet.' : ' on this date.');
     if (issuedFilter === 'byMe') msg = 'No permits issued by you' + (showAllDates ? ' yet.' : ' on this date.');
     if (issuedSectionFilter !== '__all__') msg += ' (Section: ' + issuedSectionFilter + ')';
     $('issuedList').innerHTML = '<div class="empty-state"><span class="icon">📋</span>' + escapeHtml(msg) + '</div>';
     return;
   }
 
+  // Group by relevant date (issuedAt for active, completedAt for completed)
   const groups = {};
-  issued.forEach(function(p) { const key = dateKey(p.issuedAt); if (!groups[key]) groups[key] = []; groups[key].push(p); });
+  issued.forEach(function(p) {
+    const iso = p.status === 'completed' ? p.completedAt : p.issuedAt;
+    const key = dateKey(iso);
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(p);
+  });
   const sortedKeys = Object.keys(groups).sort(function(a, b) { return b.localeCompare(a); });
 
   let html = '';
@@ -1130,13 +1181,20 @@ function renderIssued() {
     html += '<div class="date-group"><div class="date-header"><span class="date-label">' + dateLabelFromKey(key) + '</span><span class="date-count">' + items.length + ' permit' + (items.length > 1 ? 's' : '') + '</span></div>';
     items.forEach(function(p) {
       const mineBadge = isMine(p) ? ' <span class="badge-status badge-mine" style="font-size:0.6rem; padding:0.15rem 0.5rem;">Mine</span>' : '';
+      const isCompleted = p.status === 'completed';
+      const canComplete = isMine(p) && p.status === 'issued';
+      const cardClass = isCompleted ? 'queue-item issued-permit completed-permit' : 'queue-item issued-permit';
+      const statusBadge = isCompleted
+        ? '<span class="badge-status badge-completed">✅ Completed</span>'
+        : '<span class="badge-status badge-issued">✔ Issued</span>';
+
       html +=
-        '<div class="queue-item issued-permit" data-id="' + escapeHtml(p.id) + '" style="margin-bottom:0.7rem;">' +
+        '<div class="' + cardClass + '" data-id="' + escapeHtml(p.id) + '" style="margin-bottom:0.7rem;">' +
           '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">' +
             '<div class="permit-id">' + escapeHtml(p.permitNumber) + mineBadge + '</div>' +
             '<div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">' +
               '<span class="section-chip">' + escapeHtml(getSectionLabel(p)) + '</span>' +
-              '<span class="badge-status badge-issued">✔ Issued</span>' +
+              statusBadge +
             '</div>' +
           '</div>' +
           '<div class="desc">' + escapeHtml(p.description) + '</div>' +
@@ -1144,15 +1202,37 @@ function renderIssued() {
             '<span>👤 ' + escapeHtml(p.initiatorName) + '</span>' +
             '<span>✍ ' + escapeHtml(p.issuerName) + '</span>' +
             '<span>📍 ' + escapeHtml(p.location) + '</span>' +
-            '<span>🕒 ' + formatDateShort(p.issuedAt) + '</span>' +
+            '<span>🕒 ' + (isCompleted ? formatDateShort(p.completedAt) : formatDateShort(p.issuedAt)) + '</span>' +
           '</div>' +
+          (isCompleted && p.completionRemarks
+            ? '<div style="margin-top:0.6rem; padding:0.5rem 0.8rem; background:#eaf4fb; border-radius:0.6rem; font-size:0.78rem; color:#1f4b5e;">✅ <strong>Completed:</strong> ' + escapeHtml(p.completionRemarks) + '</div>'
+            : '') +
+          (canComplete
+            ? '<div style="margin-top:0.7rem; display:flex; gap:0.5rem; flex-wrap:wrap;">' +
+                '<button class="btn-complete mark-complete-btn" data-id="' + escapeHtml(p.id) + '">✅ Mark Job Completed</button>' +
+              '</div>'
+            : '') +
         '</div>';
     });
     html += '</div>';
   });
   $('issuedList').innerHTML = html;
+
+  // Click on card → open details modal
   document.querySelectorAll('#issuedList .issued-permit').forEach(function(item) {
-    item.addEventListener('click', function() { openModal(item.dataset.id); });
+    item.addEventListener('click', function(e) {
+      // Ignore if the click is on the "Mark Complete" button
+      if (e.target.classList.contains('mark-complete-btn')) return;
+      openModal(item.dataset.id);
+    });
+  });
+
+  // Mark Complete button
+  document.querySelectorAll('.mark-complete-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      openCompleteModal(btn.dataset.id);
+    });
   });
 }
 
@@ -1216,7 +1296,7 @@ function renderRejected() {
 }
 
 // ============================================================
-// MODAL
+// PERMIT DETAILS MODAL
 // ============================================================
 const modalBackdrop = $('modalBackdrop');
 const modalTitle = $('modalTitle');
@@ -1227,14 +1307,32 @@ function openModal(id) {
   const p = permits.find(function(x) { return x.id === id; });
   if (!p) return;
   modalTitle.textContent = 'Permit ' + p.permitNumber;
+  modalHead.classList.remove('rejected-modal-head', 'complete-modal-head');
   if (p.status === 'rejected') modalHead.classList.add('rejected-modal-head');
-  else modalHead.classList.remove('rejected-modal-head');
+  else if (p.status === 'completed') modalHead.classList.add('complete-modal-head');
 
   const mineBadge = isMine(p) ? '<span class="badge-status badge-mine" style="font-size:0.65rem; padding:0.2rem 0.7rem;">Initiated by Me</span>' : '';
   let statusBadge;
-  if (p.status === 'issued') statusBadge = '<span class="badge-status badge-issued">✔ Issued</span>';
+  if (p.status === 'completed') statusBadge = '<span class="badge-status badge-completed">✅ Completed</span>';
+  else if (p.status === 'issued') statusBadge = '<span class="badge-status badge-issued">✔ Issued</span>';
   else if (p.status === 'rejected') statusBadge = '<span class="badge-status badge-rejected">❌ Rejected</span>';
   else statusBadge = '<span class="badge-status badge-pending">⏳ Pending</span>';
+
+  let extraHTML = '';
+
+  if (p.status === 'completed') {
+    extraHTML =
+      '<div class="modal-section completed-section"><h4>✅ Completed By</h4>' +
+        detailRow('Name', escapeHtml(p.completedBy || p.initiatorName)) +
+        detailRow('Designation', escapeHtml(p.completedByDesig || p.initiatorDesig)) +
+        detailRow('Completed At', formatDate(p.completedAt)) +
+        (p.completionRemarks ? '<div style="margin-top:0.7rem; padding:0.8rem 1rem; background:white; border-radius:0.7rem; border:1px dashed #c7dff0;"><div style="font-size:0.68rem; text-transform:uppercase; letter-spacing:0.5px; color:#1f4b5e; font-weight:800; margin-bottom:0.3rem;">📝 Completion Remarks</div><div style="font-size:0.9rem; color:#0b2b3c; white-space:pre-wrap; line-height:1.5;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
+      '</div>';
+  } else if (p.status === 'issued') {
+    extraHTML = '<div class="modal-section" style="background:#eaf7ef; border-color:#b8d9c1;"><h4 style="color:#0a4b2a;">✅ Issued By</h4>' + detailRow('Issuer Name', escapeHtml(p.issuerName)) + detailRow('Designation', escapeHtml(p.issuerDesig)) + detailRow('Issued At', formatDate(p.issuedAt)) + '</div>';
+  } else if (p.status === 'rejected') {
+    extraHTML = '<div class="modal-section rejected-section"><h4>❌ Rejected By</h4>' + detailRow('Issuer Name', escapeHtml(p.rejectedBy || p.issuerName)) + detailRow('Designation', escapeHtml(p.rejectedByDesig || p.issuerDesig)) + detailRow('Rejected At', formatDate(p.rejectedAt)) + '<div class="rejection-reason-box"><div class="label">📝 Rejection Reason</div><div class="value">' + escapeHtml(p.rejectionReason || '—') + '</div></div></div>';
+  }
 
   modalBody.innerHTML =
     '<div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem; flex-wrap:wrap;">' + statusBadge + '<span class="section-chip">' + escapeHtml(getSectionLabel(p)) + '</span>' + mineBadge + '</div>' +
@@ -1246,21 +1344,108 @@ function openModal(id) {
     '<div class="modal-section"><h4>⚠️ Hazard Mitigation</h4><div style="font-size:0.85rem; color:#0b2b3c; white-space:pre-wrap;">' + (p.hazard ? escapeHtml(p.hazard) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
     '<div class="modal-section"><h4>🦺 Safety Precautions</h4><div style="font-size:0.85rem; color:#0b2b3c; white-space:pre-wrap;">' + (p.safety ? escapeHtml(p.safety) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
     '<div class="modal-section"><h4>🔌 Isolation Details</h4><div style="font-size:0.85rem; color:#0b2b3c; white-space:pre-wrap;">' + (p.isolation ? escapeHtml(p.isolation) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
-    (p.status === 'issued'
-      ? '<div class="modal-section" style="background:#eaf7ef; border-color:#b8d9c1;"><h4 style="color:#0a4b2a;">✅ Issued By</h4>' + detailRow('Issuer Name', escapeHtml(p.issuerName)) + detailRow('Designation', escapeHtml(p.issuerDesig)) + detailRow('Issued At', formatDate(p.issuedAt)) + '</div>'
-      : '') +
-    (p.status === 'rejected'
-      ? '<div class="modal-section rejected-section"><h4>❌ Rejected By</h4>' + detailRow('Issuer Name', escapeHtml(p.rejectedBy || p.issuerName)) + detailRow('Designation', escapeHtml(p.rejectedByDesig || p.issuerDesig)) + detailRow('Rejected At', formatDate(p.rejectedAt)) + '<div class="rejection-reason-box"><div class="label">📝 Rejection Reason</div><div class="value">' + escapeHtml(p.rejectionReason || '—') + '</div></div></div>'
-      : '') +
-    '<div class="modal-section" style="background:#f2f8fc;"><h4>📅 Timestamp</h4>' + detailRow('Submitted At', formatDate(p.createdAt)) + '</div>';
+    extraHTML +
+    '<div class="modal-section" style="background:#f2f8fc;"><h4>📅 Timestamp</h4>' + detailRow('Submitted At', formatDate(p.createdAt)) + '</div>' +
+    (isMine(p) && p.status === 'issued'
+      ? '<div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;"><button class="btn btn-complete" id="modalMarkCompleteBtn" style="flex:1; padding:0.9rem;">✅ Mark Job Completed</button></div>'
+      : '');
 
   modalBackdrop.classList.add('open');
+
+  // Attach modal-mark-complete button
+  const mmcb = $('modalMarkCompleteBtn');
+  if (mmcb) {
+    mmcb.addEventListener('click', function() {
+      closeModal();
+      openCompleteModal(p.id);
+    });
+  }
 }
 
-function closeModal() { modalBackdrop.classList.remove('open'); modalHead.classList.remove('rejected-modal-head'); }
+function closeModal() { modalBackdrop.classList.remove('open'); modalHead.classList.remove('rejected-modal-head', 'complete-modal-head'); }
 $('modalClose').addEventListener('click', closeModal);
 modalBackdrop.addEventListener('click', function(e) { if (e.target === modalBackdrop) closeModal(); });
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+// ============================================================
+// JOB COMPLETION MODAL
+// ============================================================
+const completeBackdrop = $('completeBackdrop');
+const completeModalTitle = $('completeModalTitle');
+const completePermitInfo = $('completePermitInfo');
+
+function openCompleteModal(id) {
+  const p = permits.find(function(x) { return x.id === id; });
+  if (!p) return;
+  if (!isMine(p)) { showToast('⛔ Only the initiator can mark this as completed.', 'error'); return; }
+  if (p.status !== 'issued') { showToast('This permit cannot be marked completed.', 'error'); return; }
+
+  completingPermitId = id;
+  completeModalTitle.textContent = 'Mark ' + p.permitNumber + ' as Completed';
+  completePermitInfo.innerHTML =
+    detailRow('Description', escapeHtml(p.description)) +
+    detailRow('Equipment', escapeHtml(p.equipment)) +
+    detailRow('Location', escapeHtml(p.location)) +
+    detailRow('Section', escapeHtml(getSectionLabel(p)));
+
+  // Default completion time = now
+  $('f_completedAt').value = toDateTimeLocalValue(new Date());
+  $('f_completionRemarks').value = '';
+
+  completeBackdrop.classList.add('open');
+  setTimeout(function() { $('f_completedAt').focus(); }, 100);
+}
+
+function closeCompleteModal() {
+  completeBackdrop.classList.remove('open');
+  completingPermitId = null;
+  $('f_completedAt').value = '';
+  $('f_completionRemarks').value = '';
+}
+
+$('completeModalClose').addEventListener('click', closeCompleteModal);
+$('cancelCompleteBtn').addEventListener('click', closeCompleteModal);
+completeBackdrop.addEventListener('click', function(e) { if (e.target === completeBackdrop) closeCompleteModal(); });
+
+$('confirmCompleteBtn').addEventListener('click', async function() {
+  if (!completingPermitId) return;
+  const completedAtVal = $('f_completedAt').value;
+  if (!completedAtVal) { showToast('Please enter completion date & time.', 'error'); return; }
+  const remarks = $('f_completionRemarks').value.trim();
+
+  const p = permits.find(function(x) { return x.id === completingPermitId; });
+  if (!p) { showToast('Permit not found.', 'error'); closeCompleteModal(); return; }
+  if (!isMine(p)) { showToast('⛔ Only the initiator can complete this.', 'error'); closeCompleteModal(); return; }
+
+  const btn = this;
+  btn.disabled = true;
+  btn.textContent = '⏳ Saving…';
+
+  try {
+    await updateDoc(doc(db, 'permits', p.id), {
+      status: 'completed',
+      completedAt: new Date(completedAtVal).toISOString(),
+      completionRemarks: remarks || '',
+      completedBy: currentUser.name,
+      completedByDesig: currentUser.designation,
+      completedByUid: currentUser.uid
+    });
+    closeCompleteModal();
+    showToast('✅ Job marked as completed.', 'success');
+    // onSnapshot will refresh UI
+  } catch (err) {
+    showToast('❌ Failed: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✅ Confirm Job Completed';
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeCompleteModal();
+  }
+});
 
 // ============================================================
 // SECTION "OTHER" TOGGLE
@@ -1281,16 +1466,18 @@ function refreshAll() {
   renderRejected();
   const pending = permits.filter(function(p) { return p.status === 'pending'; }).length;
   const issued = permits.filter(function(p) { return p.status === 'issued'; }).length;
+  const completed = permits.filter(function(p) { return p.status === 'completed'; }).length;
   const rejected = permits.filter(function(p) { return p.status === 'rejected'; }).length;
   $('statPending').textContent = pending;
   $('statIssued').textContent = issued;
+  $('statCompleted').textContent = completed;
   $('statRejected').textContent = rejected;
   $('issuerModeBadge').textContent = pending;
   $('permitNumber').textContent = pendingPermitNumber;
 }
 
 // ============================================================
-// SUBMIT PERMIT (Firestore)
+// SUBMIT PERMIT
 // ============================================================
 $('permitForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -1317,13 +1504,9 @@ $('permitForm').addEventListener('submit', async function(e) {
     isolation: $('f_isolation').value.trim(),
     status: 'pending',
     createdAt: new Date().toISOString(),
-    issuerName: '',
-    issuerDesig: '',
-    issuedAt: null,
-    rejectedBy: '',
-    rejectedByDesig: '',
-    rejectedAt: null,
-    rejectionReason: ''
+    issuerName: '', issuerDesig: '', issuedAt: null,
+    rejectedBy: '', rejectedByDesig: '', rejectedAt: null, rejectionReason: '',
+    completedAt: null, completionRemarks: '', completedBy: '', completedByDesig: '', completedByUid: ''
   };
   if (!data.description || !data.equipment || !data.location || !data.start || !data.end) {
     showToast('Fill all required fields.', 'error'); return;
@@ -1332,7 +1515,6 @@ $('permitForm').addEventListener('submit', async function(e) {
     showToast('Completion must be after start.', 'error'); return;
   }
 
-  // Fire and forget — onSnapshot will update UI
   try {
     await addDoc(collection(db, 'permits'), data);
     showToast('✅ Permit ' + data.permitNumber + ' submitted.', 'success');
@@ -1359,13 +1541,12 @@ $('permitForm').addEventListener('reset', function() {
 });
 
 // ============================================================
-// ISSUE PERMIT (Firestore)
+// ISSUE PERMIT
 // ============================================================
 $('issueBtn').addEventListener('click', async function() {
   if (!selectedPermitId) { showToast('Select a permit first.', 'error'); return; }
   const p = permits.find(function(x) { return x.id === selectedPermitId; });
   if (!p || p.status !== 'pending') { showToast('Permit not found.', 'error'); return; }
-
   try {
     await updateDoc(doc(db, 'permits', p.id), {
       status: 'issued',
@@ -1383,7 +1564,7 @@ $('issueBtn').addEventListener('click', async function() {
 });
 
 // ============================================================
-// REJECT PERMIT (Firestore)
+// REJECT PERMIT
 // ============================================================
 $('rejectBtn').addEventListener('click', function() {
   if (!selectedPermitId) { showToast('Select a permit first.', 'error'); return; }
@@ -1403,7 +1584,6 @@ $('confirmRejectBtn').addEventListener('click', async function() {
   if (!reason) { showToast('Reason required.', 'error'); return; }
   const p = permits.find(function(x) { return x.id === selectedPermitId; });
   if (!p || p.status !== 'pending') { showToast('Permit not found.', 'error'); return; }
-
   try {
     await updateDoc(doc(db, 'permits', p.id), {
       status: 'rejected',
