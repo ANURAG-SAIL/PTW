@@ -348,7 +348,7 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
     <form id="loginForm">
       <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required>
+      <input type="email" id="loginEmail" placeholder="Enter Registered Email Address" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" required>
       <a class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
@@ -357,11 +357,11 @@ textarea { resize: vertical; min-height: 60px; }
     </form>
     <form id="signupForm" class="hidden">
       <label>Full Name</label>
-      <input type="text" id="signupName" placeholder="e.g. Rajesh Kumar" required>
+      <input type="text" id="signupName" placeholder="e.g. Anurag Rathore" required>
       <label>Designation</label>
-      <input type="text" id="signupDesig" placeholder="e.g. Maintenance Engineer" required>
+      <input type="text" id="signupDesig" placeholder="e.g. Assistant Manager" required>
       <label>Email</label>
-      <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email" required>
+      <input type="email" id="signupEmail" placeholder="Enter Valid Email Address" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="signupPassword" placeholder="At least 6 characters" autocomplete="new-password" required>
 
@@ -412,7 +412,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div class="modal-body">
       <p style="font-size:0.88rem; color:#2e5467; margin-bottom:1rem; line-height:1.5;">Enter your registered email address. We'll send you a secure link to reset your password.</p>
       <label>Email Address</label>
-      <input type="email" id="forgotEmail" placeholder="you@example.com" autocomplete="email">
+      <input type="email" id="forgotEmail" placeholder="Enter Registered Email" autocomplete="email">
       <div class="auth-error" id="forgotError" style="margin-top:0.8rem;"></div>
       <div class="auth-success" id="forgotSuccess" style="margin-top:0.8rem;"></div>
       <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -490,11 +490,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. Replace bearing on conveyor drive motor" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. PLC work" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. Conveyor CV-201" required>
+                <input type="text" id="f_equipment" placeholder="e.g. CP 9-2" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -512,7 +512,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. Conveyor CV-201, near crusher house" required>
+                <input type="text" id="f_location" placeholder="e.g. CT 5, repair section" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -524,7 +524,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Other Permit Taken Details <span class="req">*</span></label>
-                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Hot work permit #HW-432, Confined space #CS-87" required></textarea>
+                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Height Permit, Hot Work Permit" required></textarea>
               </div>
               <div class="field-full">
                 <label>Hazard Mitigation <span class="req">*</span></label>
@@ -532,11 +532,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of <span class="req">*</span></label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, fire watch, proper grounding" required></textarea>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, proper earthing" required></textarea>
               </div>
               <div class="field-full">
                 <label>Isolation Details <span class="req">*</span></label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, valve #V-12 locked" required></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, Mechanical isolation" required></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -836,6 +836,7 @@ const firebaseConfig = {
   measurementId: "G-WKWJTBDKZ6"
 };
 
+
 // ============================================================
 // 🔴 ADMIN EMAILS — REPLACE
 // ============================================================
@@ -976,9 +977,6 @@ function getMyIssuableSections() {
   return assigned;
 }
 
-// ============================================================
-// SIGNUP SECTION PICKER
-// ============================================================
 function renderSignupSections() {
   const grid = $('signupSectionsGrid');
   if (!grid) return;
@@ -1058,6 +1056,47 @@ function updateIssuerNotice() {
   } else {
     noticeEl.style.display = 'block';
     textEl.innerHTML = 'You can only issue permits for: <strong>' + assigned.map(escapeHtml).join(', ') + '</strong>';
+  }
+}
+
+function applyRoleBasedFilterVisibility() {
+  const issuedAllBtn = document.querySelector('[data-issuedfilter="all"]');
+  const rejectedAllBtn = document.querySelector('[data-rejectedfilter="all"]');
+  const issuedUserSel = $('issuedUserFilterSelect');
+  const rejectedUserSel = $('rejectedUserFilterSelect');
+
+  if (currentUser && currentUser.isAdmin) {
+    if (issuedAllBtn) issuedAllBtn.classList.remove('hidden');
+    if (rejectedAllBtn) rejectedAllBtn.classList.remove('hidden');
+    if (issuedUserSel) {
+      Array.from(issuedUserSel.options).forEach(function(opt) { opt.style.display = ''; });
+    }
+    if (rejectedUserSel) {
+      Array.from(rejectedUserSel.options).forEach(function(opt) { opt.style.display = ''; });
+    }
+  } else {
+    if (issuedAllBtn) issuedAllBtn.classList.add('hidden');
+    if (rejectedAllBtn) rejectedAllBtn.classList.add('hidden');
+    issuedFilter = 'mine';
+    rejectedFilter = 'mine';
+    document.querySelectorAll('[data-issuedfilter]').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.issuedfilter === 'mine');
+    });
+    document.querySelectorAll('[data-rejectedfilter]').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.rejectedfilter === 'mine');
+    });
+    if (issuedUserSel) {
+      Array.from(issuedUserSel.options).forEach(function(opt) {
+        if (opt.value === 'all') opt.style.display = 'none';
+      });
+      issuedUserSel.value = 'mine';
+    }
+    if (rejectedUserSel) {
+      Array.from(rejectedUserSel.options).forEach(function(opt) {
+        if (opt.value === 'all') opt.style.display = 'none';
+      });
+      rejectedUserSel.value = 'mine';
+    }
   }
 }
 
@@ -1199,6 +1238,7 @@ async function doLogout() {
   $('appContainer').classList.add('hidden');
   loginTabBtn.click();
   $('loginEmail').value = ''; $('loginPassword').value = '';
+  issuedFilter = 'mine'; rejectedFilter = 'mine';
 }
 $('logoutBtn').addEventListener('click', doLogout);
 $('pendingLogoutBtn').addEventListener('click', doLogout);
@@ -1265,6 +1305,9 @@ function enterApp() {
   else { avatar.classList.remove('admin-glow'); avatar.title = ''; }
   if (currentUser.isAdmin) $('tabBtnAdmin').classList.remove('hidden');
   else $('tabBtnAdmin').classList.add('hidden');
+
+  applyRoleBasedFilterVisibility();
+
   $('f_initiatorName').value = currentUser.name;
   $('f_initiatorDesig').value = currentUser.designation;
   $('f_issuerName').value = currentUser.name;
@@ -1366,8 +1409,13 @@ document.querySelectorAll('[data-myfilter]').forEach(function(btn) {
     renderMySubmitted();
   });
 });
+
 document.querySelectorAll('[data-issuedfilter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
+    if ((!currentUser || !currentUser.isAdmin) && btn.dataset.issuedfilter === 'all') {
+      showToast('⛔ Only admins can view all users\' permits.', 'error');
+      return;
+    }
     document.querySelectorAll('[data-issuedfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     issuedFilter = btn.dataset.issuedfilter;
@@ -1375,6 +1423,7 @@ document.querySelectorAll('[data-issuedfilter]').forEach(function(btn) {
     renderIssued();
   });
 });
+
 document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(b) { b.classList.remove('active'); });
@@ -1384,8 +1433,13 @@ document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(btn) {
     renderIssued();
   });
 });
+
 document.querySelectorAll('[data-rejectedfilter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
+    if ((!currentUser || !currentUser.isAdmin) && btn.dataset.rejectedfilter === 'all') {
+      showToast('⛔ Only admins can view all users\' permits.', 'error');
+      return;
+    }
     document.querySelectorAll('[data-rejectedfilter]').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     rejectedFilter = btn.dataset.rejectedfilter;
@@ -1393,6 +1447,7 @@ document.querySelectorAll('[data-rejectedfilter]').forEach(function(btn) {
     renderRejected();
   });
 });
+
 document.querySelectorAll('[data-adminfilter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     document.querySelectorAll('[data-adminfilter]').forEach(function(b) { b.classList.remove('active'); });
@@ -1402,26 +1457,41 @@ document.querySelectorAll('[data-adminfilter]').forEach(function(btn) {
     renderAdminUsers();
   });
 });
+
 $('myFilterSelect').addEventListener('change', function() {
   myFilter = this.value;
   document.querySelectorAll('[data-myfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.myfilter === myFilter); });
   renderMySubmitted();
 });
+
 $('issuedUserFilterSelect').addEventListener('change', function() {
+  if ((!currentUser || !currentUser.isAdmin) && this.value === 'all') {
+    showToast('⛔ Only admins can view all users\' permits.', 'error');
+    this.value = 'mine';
+    return;
+  }
   issuedFilter = this.value;
   document.querySelectorAll('[data-issuedfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.issuedfilter === issuedFilter); });
   renderIssued();
 });
+
 $('issuedStatusFilterSelect').addEventListener('change', function() {
   issuedStatusFilter = this.value;
   document.querySelectorAll('[data-issuedstatusfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.issuedstatusfilter === issuedStatusFilter); });
   renderIssued();
 });
+
 $('rejectedUserFilterSelect').addEventListener('change', function() {
+  if ((!currentUser || !currentUser.isAdmin) && this.value === 'all') {
+    showToast('⛔ Only admins can view all users\' permits.', 'error');
+    this.value = 'mine';
+    return;
+  }
   rejectedFilter = this.value;
   document.querySelectorAll('[data-rejectedfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.rejectedfilter === rejectedFilter); });
   renderRejected();
 });
+
 $('adminFilterSelect').addEventListener('change', function() {
   adminFilter = this.value;
   document.querySelectorAll('[data-adminfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.adminfilter === adminFilter); });
@@ -1587,8 +1657,14 @@ function renderMySubmitted() {
 
 function renderIssued() {
   let issued = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed'; });
-  if (issuedFilter === 'mine') issued = issued.filter(isMine);
-  if (issuedFilter === 'byMe') issued = issued.filter(isIssuedByMe);
+  const isAdmin = currentUser && currentUser.isAdmin;
+  if (issuedFilter === 'all') {
+    if (!isAdmin) issuedFilter = 'mine';
+  } else if (issuedFilter === 'mine') {
+    issued = issued.filter(isMine);
+  } else if (issuedFilter === 'byMe') {
+    issued = issued.filter(isIssuedByMe);
+  }
   if (issuedStatusFilter === 'active') issued = issued.filter(function(p) { return p.status === 'issued'; });
   if (issuedStatusFilter === 'completed') issued = issued.filter(function(p) { return p.status === 'completed'; });
   if (issuedSectionFilter !== '__all__') issued = issued.filter(function(p) { return String(p.section || '') === issuedSectionFilter; });
@@ -1677,8 +1753,14 @@ function renderIssued() {
 
 function renderRejected() {
   let rejected = permits.filter(function(p) { return p.status === 'rejected'; });
-  if (rejectedFilter === 'mine') rejected = rejected.filter(isMine);
-  if (rejectedFilter === 'byMe') rejected = rejected.filter(isRejectedByMe);
+  const isAdmin = currentUser && currentUser.isAdmin;
+  if (rejectedFilter === 'all') {
+    if (!isAdmin) rejectedFilter = 'mine';
+  } else if (rejectedFilter === 'mine') {
+    rejected = rejected.filter(isMine);
+  } else if (rejectedFilter === 'byMe') {
+    rejected = rejected.filter(isRejectedByMe);
+  }
   if (rejectedSectionFilter !== '__all__') rejected = rejected.filter(function(p) { return String(p.section || '') === rejectedSectionFilter; });
   if (!showAllRejectedDates) rejected = rejected.filter(function(p) { return dateKey(p.rejectedAt) === rejectedDateFilter; });
   $('rejectedCount').textContent = rejected.length;
