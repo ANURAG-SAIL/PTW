@@ -9,7 +9,6 @@
 body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; justify-content: center; align-items: flex-start; }
 .app-container { max-width: 1200px; width: 100%; }
 
-/* ========== AUTH ========== */
 .auth-wrapper { position: fixed; inset: 0; z-index: 1000; background: linear-gradient(135deg, #0b2b3c 0%, #1f4b5e 60%, #2c6e8f 100%); display: flex; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
 .auth-card { background: white; border-radius: 1.5rem; padding: 2rem; width: 100%; max-width: 440px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); margin: 1rem auto; }
 .brand-block { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e1eff8; }
@@ -32,7 +31,19 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .forgot-link { display: block; text-align: right; margin-top: 0.5rem; font-size: 0.78rem; color: #2c6e8f; text-decoration: none; font-weight: 600; cursor: pointer; }
 .forgot-link:hover { text-decoration: underline; }
 
-/* ========== HEADER ========== */
+.pending-card { background: white; border-radius: 1.5rem; padding: 2.5rem 2rem; width: 100%; max-width: 480px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); margin: 1rem auto; text-align: center; }
+.pending-icon { width: 90px; height: 90px; margin: 0 auto 1.2rem; border-radius: 50%; background: linear-gradient(135deg, #fef3c7, #fde68a); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+.pending-card h2 { color: #0b2b3c; font-size: 1.3rem; font-weight: 800; margin-bottom: 0.6rem; }
+.pending-card p { color: #5e7e91; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+.pending-info { background: #f6fafd; border-radius: 1rem; padding: 1rem 1.2rem; margin-bottom: 1.5rem; border: 1px solid #d7e5ef; text-align: left; }
+.pending-info .row { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.85rem; }
+.pending-info .row:not(:last-child) { border-bottom: 1px dashed #d7e5ef; }
+.pending-info .lbl { color: #5e7e91; font-weight: 600; }
+.pending-info .val { color: #0b2b3c; font-weight: 700; }
+.pending-logout-btn { width: 100%; padding: 0.85rem; border: none; border-radius: 2rem; background: #fdecea; color: #c0392b; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.15s; }
+.pending-logout-btn:hover { background: #c0392b; color: white; }
+
 .header { background: linear-gradient(135deg, #0b2b3c 0%, #1f4b5e 100%); color: white; padding: 1.5rem 2rem; border-radius: 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,20,30,0.25); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .header-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .header-logo { width: 52px; height: 52px; object-fit: contain; background: white; border-radius: 10px; padding: 4px; flex-shrink: 0; }
@@ -46,13 +57,13 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .header .stat.completed-stat { background: rgba(44, 110, 143, 0.35); }
 .user-chip { background: rgba(255,255,255,0.15); padding: 0.45rem 0.9rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
 .user-chip .avatar { width: 28px; height: 28px; border-radius: 50%; background: #e1eff8; color: #0b2b3c; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; }
+.user-chip .avatar.admin-glow { box-shadow: 0 0 0 2px #fbbf24, 0 0 12px rgba(251, 191, 36, 0.6); }
 .user-chip .info { line-height: 1.15; min-width: 0; }
 .user-chip .name { font-weight: 700; font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
 .user-chip .desig { font-size: 0.68rem; opacity: 0.85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
 .logout-btn { background: rgba(255,255,255,0.15); border: none; color: white; cursor: pointer; font-size: 0.72rem; padding: 0.35rem 0.75rem; border-radius: 20px; font-weight: 700; font-family: inherit; white-space: nowrap; }
 .logout-btn:hover { background: #c0392b; }
 
-/* ========== ROLE TOGGLE ========== */
 .role-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.2rem; }
 .role-toggle { display: inline-flex; background: white; padding: 0.4rem; border-radius: 2.5rem; box-shadow: 0 5px 15px -5px rgba(0,20,30,0.15); gap: 0.3rem; }
 .role-toggle-btn { padding: 0.75rem 1.8rem; border: none; background: transparent; border-radius: 2rem; font-size: 0.92rem; font-weight: 700; cursor: pointer; color: #4a6d80; transition: 0.2s; font-family: inherit; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
@@ -61,37 +72,38 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .role-toggle-btn .badge-count { background: rgba(255,255,255,0.25); padding: 0.1rem 0.5rem; border-radius: 20px; font-size: 0.72rem; font-weight: 800; }
 .role-toggle-btn:not(.active) .badge-count { background: #e1eff8; color: #1f4b5e; }
 
-/* ========== SUB TABS ========== */
 .sub-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; background: white; padding: 0.5rem; border-radius: 2rem; box-shadow: 0 5px 15px -5px rgba(0,20,30,0.08); }
 .tab { padding: 0.7rem 1.4rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; border: none; background: transparent; color: #4a6d80; transition: 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; font-family: inherit; }
 .tab.active { background: #0b2b3c; color: white; }
 .tab.tab-rejected.active { background: #c0392b; }
+.tab.tab-admin.active { background: #f59e0b; color: #78350f; }
 .tab .count { background: rgba(255,255,255,0.25); color: inherit; padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
 .tab:not(.active) .count { background: #e1eff8; color: #1f4b5e; }
 .tab.tab-rejected:not(.active) .count { background: #f8d7da; color: #842029; }
+.tab.tab-admin:not(.active) .count { background: #fef3c7; color: #78350f; }
+.tab.tab-admin:not(.active) { color: #b45309; }
 
-/* ========== CARD ========== */
 .card { background: white; border-radius: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,20,30,0.15); overflow: hidden; margin-bottom: 1.5rem; }
 .card-header { background: #0b2b3c; color: white; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
 .card-header.rejected-header { background: #7a1f18; }
 .card-header.issuer-header { background: #145a35; }
+.card-header.admin-header { background: #b45309; }
 .card-header h2 { font-size: 1.15rem; font-weight: 500; }
 .card-header .badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.8rem; border-radius: 30px; font-size: 0.78rem; font-weight: 500; }
 .card-body { padding: 1.5rem; }
 
-/* ========== FORM ========== */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1rem; }
 .field-full { grid-column: span 2; }
 label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #2e5467; margin-bottom: 0.25rem; }
 label .req { color: #c0392b; }
 input, select, textarea { width: 100%; padding: 0.6rem 0.8rem; border: 1.5px solid #cddde5; border-radius: 0.8rem; font-size: 0.9rem; background: #f9fbfc; transition: 0.15s; outline: none; font-family: inherit; }
 input:focus, select:focus, textarea:focus { border-color: #2c6e8f; background: white; box-shadow: 0 0 0 3px rgba(44, 110, 143, 0.1); }
+input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) { border-color: #f5c6c0; }
 select { cursor: pointer; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232e5467' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.8rem center; padding-right: 2rem; appearance: none; -webkit-appearance: none; }
 textarea { resize: vertical; min-height: 60px; }
 .permit-number { background: #eef3f7; border-radius: 0.8rem; padding: 0.7rem 1rem; font-family: 'Courier New', monospace; font-weight: 700; color: #0b2b3c; border: 1.5px dashed #9bb7c7; letter-spacing: 1px; font-size: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
 .permit-number .hint { font-family: inherit; font-weight: 400; color: #5c7e91; font-size: 0.72rem; letter-spacing: 0; }
 
-/* ========== BUTTONS ========== */
 .btn { border: none; padding: 0.8rem 1.4rem; border-radius: 2rem; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: white; color: #0b2b3c; border: 1.5px solid #b8cfdb; font-family: inherit; }
 .btn-primary { background: #0b2b3c; color: white; border: 1.5px solid #0b2b3c; }
 .btn-primary:hover { background: #1f4b5e; }
@@ -103,8 +115,15 @@ textarea { resize: vertical; min-height: 60px; }
 .btn-danger:hover { background: #c0392b; color: white; }
 .btn-complete { background: #2c6e8f; border-color: #2c6e8f; color: white; padding: 0.5rem 1.1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.35rem; transition: 0.15s; }
 .btn-complete:hover { background: #1f4b5e; border-color: #1f4b5e; }
+.btn-print { background: #6b21a8; border-color: #6b21a8; color: white; padding: 0.5rem 1.1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.35rem; transition: 0.15s; }
+.btn-print:hover { background: #581c87; border-color: #581c87; }
+.btn-approve { background: #1f7a4a; border-color: #1f7a4a; color: white; padding: 0.5rem 1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.3rem; }
+.btn-approve:hover { background: #16643b; }
+.btn-revoke { background: #fdecea; color: #c0392b; border: 1.5px solid #f5c6c0; padding: 0.5rem 1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.3rem; }
+.btn-revoke:hover { background: #c0392b; color: white; border-color: #c0392b; }
+.btn-edit-sections { background: #ede9fe; color: #6b21a8; border: 1.5px solid #ddd6fe; padding: 0.5rem 1rem; font-size: 0.78rem; border-radius: 2rem; cursor: pointer; font-weight: 700; font-family: inherit; display: inline-flex; align-items: center; gap: 0.3rem; }
+.btn-edit-sections:hover { background: #6b21a8; color: white; border-color: #6b21a8; }
 
-/* ========== QUEUE ========== */
 .queue-list { display: flex; flex-direction: column; gap: 0.8rem; }
 .queue-item { background: #f5f9fc; border-radius: 1rem; padding: 1rem 1.2rem; border: 1px solid #dfe9ef; border-left-width: 5px; border-left-style: solid; border-left-color: #b8cfdb; cursor: pointer; transition: 0.15s; }
 .queue-item:hover { background: #e7f0f6; border-left-color: #2c6e8f; }
@@ -115,12 +134,29 @@ textarea { resize: vertical; min-height: 60px; }
 .queue-item.rejected-item, .queue-item.rejected-permit { border-left-color: #c0392b; background: #fffafa; }
 .queue-item.completed-permit { border-left-color: #2c6e8f; background: #f0f7fc; }
 
+.user-card { background: #f5f9fc; border-radius: 1rem; padding: 1rem 1.2rem; border: 1px solid #dfe9ef; border-left-width: 5px; border-left-style: solid; border-left-color: #b8cfdb; margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+.user-card.pending { border-left-color: #f59e0b; background: #fffbeb; }
+.user-card.approved { border-left-color: #1f7a4a; }
+.user-card.admin { border-left-color: #fbbf24; background: #fefce8; }
+.user-card-info { flex: 1; min-width: 200px; }
+.user-card-name { font-weight: 700; color: #0b2b3c; font-size: 0.95rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.user-card-email { font-size: 0.78rem; color: #2c6e8f; font-family: monospace; margin-bottom: 0.2rem; word-break: break-all; }
+.user-card-desig { font-size: 0.75rem; color: #5e7e91; margin-bottom: 0.5rem; }
+.user-card-sections { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.user-card-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: flex-start; }
+.user-card-status { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+.user-card-status.pending { background: #fef3c7; color: #78350f; }
+.user-card-status.approved { background: #d4edda; color: #0a4b2a; }
+.user-card-status.admin { background: #fbbf24; color: #78350f; }
+
+.perm-badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.3px; }
+.perm-badge.all { background: #d1fae5; color: #065f46; }
+
 .section-chip { display: inline-block; background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
 .empty-state { background: #f7fafc; border-radius: 1rem; padding: 2.5rem 1rem; text-align: center; color: #7d9aab; font-size: 0.88rem; border: 1px dashed #b8cfdb; }
 .empty-state .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
 .empty-state.rejected-empty { background: #fff5f5; border-color: #f5c6c0; color: #842029; }
 
-/* ========== FILTER BAR ========== */
 .filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; background: #f6fafd; padding: 0.9rem; border-radius: 1rem; border: 1px solid #d7e5ef; align-items: center; }
 .filter-bar .picker-wrap { display: flex; align-items: center; gap: 0.4rem; background: white; padding: 0.35rem 0.8rem 0.35rem 0.6rem; border-radius: 2rem; border: 1.5px solid #cddde5; }
 .filter-bar .picker-wrap label { margin: 0; font-size: 0.68rem; text-transform: uppercase; color: #2c6e8f; letter-spacing: 0.5px; font-weight: 800; white-space: nowrap; }
@@ -133,30 +169,9 @@ textarea { resize: vertical; min-height: 60px; }
 .filter-btn.completed-filter.active { background: #2c6e8f; border-color: #2c6e8f; }
 .filter-divider { width: 1px; height: 24px; background: #d7e5ef; margin: 0 0.3rem; }
 
-/* Mobile filter select */
-.mobile-filter-select {
-  display: none;
-  width: 100%;
-  padding: 0.65rem 0.9rem;
-  border: 1.5px solid #cddde5;
-  border-radius: 0.8rem;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #0b2b3c;
-  background: white;
-  outline: none;
-  font-family: inherit;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%232e5467' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
-  appearance: none;
-  -webkit-appearance: none;
-}
+.mobile-filter-select { display: none; width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #cddde5; border-radius: 0.8rem; font-size: 0.88rem; font-weight: 600; color: #0b2b3c; background: white; outline: none; font-family: inherit; cursor: pointer; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%232e5467' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; appearance: none; -webkit-appearance: none; }
 .mobile-filter-select:focus { border-color: #2c6e8f; box-shadow: 0 0 0 3px rgba(44, 110, 143, 0.1); }
 
-/* ========== DETAILS ========== */
 .permit-detail { background: #f6fafd; border-radius: 1rem; padding: 1.2rem; border: 1px solid #d7e5ef; margin-bottom: 1rem; }
 .permit-detail h3 { font-size: 1rem; color: #0b2b3c; margin-bottom: 0.8rem; padding-bottom: 0.6rem; border-bottom: 1px solid #d7e5ef; font-family: monospace; letter-spacing: 0.5px; }
 .detail-row { display: flex; margin-bottom: 0.4rem; font-size: 0.85rem; }
@@ -164,7 +179,6 @@ textarea { resize: vertical; min-height: 60px; }
 .detail-value { color: #0b2b3c; flex: 1; word-break: break-word; white-space: pre-wrap; }
 .detail-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #d7e5ef; }
 
-/* ========== BADGES ========== */
 .badge-status { padding: 0.25rem 0.8rem; border-radius: 30px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 .badge-pending { background: #fff3cd; color: #856404; }
 .badge-issued { background: #d4edda; color: #0a4b2a; }
@@ -172,21 +186,18 @@ textarea { resize: vertical; min-height: 60px; }
 .badge-mine { background: #cfe2ff; color: #084298; }
 .badge-completed { background: #cfe2ff; color: #084298; }
 
-/* ========== SIGNATURE ========== */
 .signature-area { background: #f2f8fc; border-radius: 1rem; padding: 1.2rem; margin-top: 1rem; border: 1px solid #cfe0ea; }
 .signature-area h4 { font-size: 0.85rem; color: #0b2b3c; margin-bottom: 0.8rem; }
 .reject-input-wrap { margin-top: 0.8rem; padding: 0.9rem; background: #fff5f5; border: 1px solid #f5c6c0; border-radius: 0.9rem; }
 .reject-input-wrap label { color: #842029; }
 .reject-input-wrap textarea { border-color: #f5c6c0; background: white; }
 
-/* ========== DATE GROUP ========== */
 .date-group { margin-bottom: 1.2rem; }
 .date-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1rem; background: #e1eff8; border-radius: 0.8rem; margin-bottom: 0.8rem; font-size: 0.82rem; font-weight: 800; color: #0b2b3c; text-transform: uppercase; letter-spacing: 0.5px; }
 .date-header.rejected-date-header { background: #fdecea; color: #842029; }
 .date-header .date-count { background: #0b2b3c; color: white; padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.68rem; font-weight: 700; }
 .date-header.rejected-date-header .date-count { background: #c0392b; }
 
-/* ========== MODAL ========== */
 .modal-backdrop { position: fixed; inset: 0; background: rgba(11,43,60,0.6); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: 0.2s; }
 .modal-backdrop.open { opacity: 1; pointer-events: auto; }
 .modal { background: white; border-radius: 1.5rem; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
@@ -206,7 +217,13 @@ textarea { resize: vertical; min-height: 60px; }
 .rejection-reason-box .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; color: #842029; font-weight: 800; margin-bottom: 0.3rem; }
 .rejection-reason-box .value { font-size: 0.9rem; color: #0b2b3c; white-space: pre-wrap; line-height: 1.5; }
 
-/* ========== TOAST / LOADING ========== */
+.sections-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem; }
+.section-check { display: flex; align-items: center; gap: 0.5rem; padding: 0.7rem 0.9rem; background: #f9fbfc; border: 1.5px solid #cddde5; border-radius: 0.8rem; cursor: pointer; transition: 0.15s; user-select: none; }
+.section-check:hover { border-color: #2c6e8f; background: #f0f5f8; }
+.section-check.checked { border-color: #0b2b3c; background: #e1eff8; }
+.section-check input { width: auto; margin: 0; cursor: pointer; }
+.section-check .lbl { font-size: 0.85rem; font-weight: 600; color: #0b2b3c; }
+
 .toast { position: fixed; bottom: 30px; right: 30px; left: 30px; background: #0b2b3c; color: white; padding: 1rem 1.5rem; border-radius: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-size: 0.88rem; z-index: 9999; opacity: 0; transform: translateY(20px); transition: all 0.3s; max-width: 380px; margin: 0 auto; }
 .toast.show { opacity: 1; transform: translateY(0); }
 .toast.error { background: #c0392b; }
@@ -217,9 +234,6 @@ textarea { resize: vertical; min-height: 60px; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 .hidden { display: none !important; }
 
-/* ============================================================
-   MOBILE STYLES
-   ============================================================ */
 @media (max-width: 768px) {
   body { padding: 0.75rem; }
   .app-container { max-width: 100%; }
@@ -229,6 +243,8 @@ textarea { resize: vertical; min-height: 60px; }
   .brand-coccd { font-size: 1.15rem; letter-spacing: 1px; }
   .brand-ptw { font-size: 0.82rem; }
   .brand-block { margin-bottom: 1rem; padding-bottom: 0.9rem; }
+  .pending-card { padding: 2rem 1.25rem; }
+  .pending-icon { width: 70px; height: 70px; font-size: 2.2rem; }
 
   .header { padding: 1rem; border-radius: 1rem; gap: 0.7rem; flex-direction: column; align-items: stretch; }
   .header-left { gap: 0.6rem; align-items: flex-start; flex-wrap: nowrap; }
@@ -251,8 +267,8 @@ textarea { resize: vertical; min-height: 60px; }
   .role-toggle-btn .badge-count { font-size: 0.62rem; padding: 0.05rem 0.4rem; }
 
   .sub-tabs { padding: 0.35rem; gap: 0.25rem; border-radius: 1.2rem; margin-bottom: 1rem; }
-  .tab { flex: 1; padding: 0.55rem 0.6rem; font-size: 0.72rem; justify-content: center; border-radius: 1rem; gap: 0.3rem; }
-  .tab .count { font-size: 0.6rem; padding: 0.1rem 0.35rem; }
+  .tab { flex: 1; padding: 0.55rem 0.5rem; font-size: 0.68rem; justify-content: center; border-radius: 1rem; gap: 0.25rem; }
+  .tab .count { font-size: 0.58rem; padding: 0.1rem 0.35rem; }
 
   .card { border-radius: 1rem; margin-bottom: 1rem; }
   .card-header { padding: 0.8rem 1rem; border-radius: 0; }
@@ -277,8 +293,11 @@ textarea { resize: vertical; min-height: 60px; }
   .queue-item .desc { font-size: 0.78rem; margin: 0.25rem 0; }
   .queue-item .meta { font-size: 0.62rem; gap: 0.35rem; margin-top: 0.35rem; }
 
+  .user-card { flex-direction: column; align-items: stretch; padding: 0.9rem 1rem; }
+  .user-card-actions { justify-content: flex-end; }
+
   .btn { padding: 0.7rem 1rem; font-size: 0.82rem; }
-  .btn-complete { font-size: 0.72rem; padding: 0.45rem 0.85rem; }
+  .btn-complete, .btn-print { font-size: 0.72rem; padding: 0.45rem 0.85rem; }
 
   .detail-row { flex-direction: column; margin-bottom: 0.55rem; gap: 0.1rem; }
   .detail-label { width: auto; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.3px; color: #5e7e91; font-weight: 700; }
@@ -291,6 +310,8 @@ textarea { resize: vertical; min-height: 60px; }
   .modal-body { padding: 1rem; }
   .modal-section { padding: 0.8rem 0.9rem; border-radius: 0.75rem; margin-bottom: 0.75rem; }
   .modal-section h4 { font-size: 0.68rem; }
+
+  .sections-grid { grid-template-columns: 1fr; }
 
   .date-header { padding: 0.55rem 0.85rem; font-size: 0.72rem; border-radius: 0.7rem; }
   .date-header .date-count { font-size: 0.62rem; padding: 0.1rem 0.5rem; }
@@ -308,13 +329,12 @@ textarea { resize: vertical; min-height: 60px; }
   .header .stat { font-size: 0.55rem; padding: 0.35rem 0.2rem; }
   .header .stat strong { font-size: 0.85rem; }
   .user-chip .name, .user-chip .desig { max-width: 70px; }
-  .tab { font-size: 0.68rem; padding: 0.5rem 0.4rem; }
+  .tab { font-size: 0.62rem; padding: 0.5rem 0.3rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ==================== AUTH SCREEN ==================== -->
 <div class="auth-wrapper" id="authWrapper">
   <div class="auth-card">
     <div class="brand-block">
@@ -329,7 +349,7 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
     <form id="loginForm">
       <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="Enter Registered Email" autocomplete="email" required>
+      <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" required>
       <a class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
@@ -338,21 +358,41 @@ textarea { resize: vertical; min-height: 60px; }
     </form>
     <form id="signupForm" class="hidden">
       <label>Full Name</label>
-      <input type="text" id="signupName" placeholder="e.g. Anurag Rathore" required>
+      <input type="text" id="signupName" placeholder="e.g. Rajesh Kumar" required>
       <label>Designation</label>
-      <input type="text" id="signupDesig" placeholder="e.g. Assistant Manager" required>
+      <input type="text" id="signupDesig" placeholder="e.g. Maintenance Engineer" required>
       <label>Email</label>
-      <input type="email" id="signupEmail" placeholder="Enter Valid Email" autocomplete="email" required>
+      <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="signupPassword" placeholder="At least 6 characters" autocomplete="new-password" required>
       <button type="submit" class="auth-btn" id="signupSubmitBtn">📝 Create Account</button>
       <div class="auth-error" id="signupError"></div>
+      <div class="auth-hint" style="margin-top:0.5rem;">New accounts require admin approval.</div>
     </form>
-    <div class="auth-hint">Every account can act as both Initiator and Issuer.</div>
   </div>
 </div>
 
-<!-- ==================== FORGOT PASSWORD MODAL ==================== -->
+<div class="auth-wrapper hidden" id="pendingWrapper">
+  <div class="pending-card">
+    <div class="brand-block" style="border-bottom:none; padding-bottom:0; margin-bottom:1rem;">
+      <img src="sail-logo.png" alt="SAIL Logo" class="sail-logo-img" onerror="this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cpolygon points=%2750,5 95,50 50,95 5,50%27 fill=%27%23203166%27/%3E%3Cpath d=%27M30 55 L50 35 L70 55 L70 70 L50 50 L30 70 Z%27 fill=%27white%27/%3E%3C/svg%3E'">
+      <div class="brand-bsp">Bhilai Steel Plant</div>
+      <div class="brand-coccd">COCCD</div>
+      <div class="brand-ptw">Permit To Work</div>
+    </div>
+    <div class="pending-icon">⏳</div>
+    <h2>Pending Approval</h2>
+    <p>Your account has been created successfully. Please wait for an administrator to approve your access.</p>
+    <div class="pending-info">
+      <div class="row"><span class="lbl">Name</span><span class="val" id="pendName">—</span></div>
+      <div class="row"><span class="lbl">Email</span><span class="val" id="pendEmail" style="word-break:break-all;">—</span></div>
+      <div class="row"><span class="lbl">Designation</span><span class="val" id="pendDesig">—</span></div>
+    </div>
+    <p style="font-size:0.78rem; color:#7d9aab; margin-bottom:1rem;">💡 This page auto-refreshes. You'll be logged in automatically once approved.</p>
+    <button class="pending-logout-btn" id="pendingLogoutBtn">↩ Logout</button>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="forgotBackdrop">
   <div class="modal" style="max-width:460px;">
     <div class="modal-head">
@@ -360,9 +400,7 @@ textarea { resize: vertical; min-height: 60px; }
       <button class="modal-close" id="forgotModalClose">✕</button>
     </div>
     <div class="modal-body">
-      <p style="font-size:0.88rem; color:#2e5467; margin-bottom:1rem; line-height:1.5;">
-        Enter your registered email address. We'll send you a secure link to reset your password.
-      </p>
+      <p style="font-size:0.88rem; color:#2e5467; margin-bottom:1rem; line-height:1.5;">Enter your registered email address. We'll send you a secure link to reset your password.</p>
       <label>Email Address</label>
       <input type="email" id="forgotEmail" placeholder="you@example.com" autocomplete="email">
       <div class="auth-error" id="forgotError" style="margin-top:0.8rem;"></div>
@@ -375,7 +413,6 @@ textarea { resize: vertical; min-height: 60px; }
   </div>
 </div>
 
-<!-- ==================== MAIN APP ==================== -->
 <div class="app-container hidden" id="appContainer">
   <div class="header">
     <div class="header-left">
@@ -413,15 +450,15 @@ textarea { resize: vertical; min-height: 60px; }
   <div class="sub-tabs">
     <button class="tab" data-tab="issued" id="tabBtnIssued">✅ Issued <span class="count" id="issuedTabCount">0</span></button>
     <button class="tab tab-rejected" data-tab="rejected" id="tabBtnRejected">❌ Rejected <span class="count" id="rejectedTabCount">0</span></button>
+    <button class="tab tab-admin hidden" data-tab="admin" id="tabBtnAdmin">👥 Users <span class="count" id="adminTabCount">0</span></button>
   </div>
 
-  <!-- INITIATOR MODE -->
   <div id="initiatorViews">
     <div id="tab-newPermit" class="tab-panel">
       <div class="card">
         <div class="card-header">
           <h2>🛠️ Initiator · Request Permit</h2>
-          <div class="badge">Form</div>
+          <div class="badge">All fields required</div>
         </div>
         <div class="card-body">
           <form id="permitForm">
@@ -443,11 +480,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. PLC Work" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. Replace bearing on conveyor drive motor" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. CC 9-2" required>
+                <input type="text" id="f_equipment" placeholder="e.g. Conveyor CV-201" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -461,16 +498,11 @@ textarea { resize: vertical; min-height: 60px; }
                   <option value="CSP 1-2-3">CSP 1-2-3</option>
                   <option value="CHP">CHP</option>
                   <option value="CPP II &amp; MODEX">CPP II &amp; MODEX</option>
-                  <option value="OTHER">OTHER</option>
                 </select>
-              </div>
-              <div id="otherSectionWrap" class="hidden">
-                <label>Specify Section <span class="req">*</span></label>
-                <input type="text" id="f_sectionOther" placeholder="Enter section name">
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. CT 5, Repair Section" required>
+                <input type="text" id="f_location" placeholder="e.g. Conveyor CV-201, near crusher house" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -481,16 +513,20 @@ textarea { resize: vertical; min-height: 60px; }
                 <input type="datetime-local" id="f_end" required>
               </div>
               <div class="field-full">
-                <label>Hazard Mitigation</label>
-                <textarea id="f_hazard" rows="2" placeholder="e.g. Lockout/tagout applied, area barricaded"></textarea>
+                <label>Other Permit Taken Details <span class="req">*</span></label>
+                <textarea id="f_otherPermits" rows="1" placeholder="e.g. Hot work permit #HW-432, Confined space #CS-87" required></textarea>
               </div>
               <div class="field-full">
-                <label>Safety to be Taken Care Of</label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, Proper Earthing"></textarea>
+                <label>Hazard Mitigation <span class="req">*</span></label>
+                <textarea id="f_hazard" rows="2" placeholder="e.g. Lockout/tagout applied, area barricaded" required></textarea>
               </div>
               <div class="field-full">
-                <label>Isolation Details</label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Main Incoming ACB kept OFF"></textarea>
+                <label>Safety to be Taken Care Of <span class="req">*</span></label>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, fire watch, proper grounding" required></textarea>
+              </div>
+              <div class="field-full">
+                <label>Isolation Details <span class="req">*</span></label>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, valve #V-12 locked" required></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -531,7 +567,6 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
   </div>
 
-  <!-- ISSUER MODE -->
   <div id="issuerViews" class="hidden">
     <div id="tab-pending" class="tab-panel">
       <div class="card">
@@ -540,6 +575,9 @@ textarea { resize: vertical; min-height: 60px; }
           <div class="badge" id="pendingCount">0 pending</div>
         </div>
         <div class="card-body">
+          <div id="issuerSectionNotice" style="display:none; padding:0.7rem 1rem; background:#e1eff8; border-radius:0.8rem; margin-bottom:1rem; font-size:0.82rem; color:#1f4b5e; border-left:4px solid #2c6e8f;">
+            <strong>🔐 Your Permissions:</strong> <span id="issuerSectionNoticeText"></span>
+          </div>
           <div class="filter-bar">
             <div class="picker-wrap">
               <label for="issuerSectionFilter">🏭 Section:</label>
@@ -589,7 +627,6 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
   </div>
 
-  <!-- ISSUED TAB -->
   <div id="tab-issued" class="tab-panel hidden">
     <div class="card">
       <div class="card-header">
@@ -615,7 +652,6 @@ textarea { resize: vertical; min-height: 60px; }
           <button class="filter-btn active" data-issuedstatusfilter="all">All Status</button>
           <button class="filter-btn" data-issuedstatusfilter="active">🔧 Active</button>
           <button class="filter-btn completed-filter" data-issuedstatusfilter="completed">✅ Completed</button>
-
           <select class="mobile-filter-select" id="issuedUserFilterSelect">
             <option value="all">👥 All Users</option>
             <option value="mine">👤 Initiated by Me</option>
@@ -627,7 +663,7 @@ textarea { resize: vertical; min-height: 60px; }
             <option value="completed">✅ Completed</option>
           </select>
         </div>
-        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Tap any permit for details. Initiators can mark their own permits as completed.</em></div>
+        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Tap any permit for details. Click 🖨️ to print / save as PDF with digital signatures.</em></div>
         <div id="issuedList">
           <div class="empty-state"><span class="icon">📋</span>No issued permits for the selected filters.</div>
         </div>
@@ -635,7 +671,6 @@ textarea { resize: vertical; min-height: 60px; }
     </div>
   </div>
 
-  <!-- REJECTED TAB -->
   <div id="tab-rejected" class="tab-panel hidden">
     <div class="card">
       <div class="card-header rejected-header">
@@ -658,7 +693,6 @@ textarea { resize: vertical; min-height: 60px; }
           <button class="filter-btn active" data-rejectedfilter="all">All Users</button>
           <button class="filter-btn" data-rejectedfilter="mine">👤 Mine</button>
           <button class="filter-btn" data-rejectedfilter="byMe">✍️ By Me</button>
-
           <select class="mobile-filter-select" id="rejectedUserFilterSelect">
             <option value="all">👥 All Users</option>
             <option value="mine">👤 Initiated by Me</option>
@@ -672,9 +706,33 @@ textarea { resize: vertical; min-height: 60px; }
       </div>
     </div>
   </div>
+
+  <div id="tab-admin" class="tab-panel hidden">
+    <div class="card">
+      <div class="card-header admin-header">
+        <h2>👥 User Management</h2>
+        <div class="badge" id="adminUserCount">0</div>
+      </div>
+      <div class="card-body">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-adminfilter="pending">⏳ Pending</button>
+          <button class="filter-btn" data-adminfilter="approved">✔ Approved</button>
+          <button class="filter-btn" data-adminfilter="all">All</button>
+          <select class="mobile-filter-select" id="adminFilterSelect">
+            <option value="pending">⏳ Pending Approvals</option>
+            <option value="approved">✔ Approved Users</option>
+            <option value="all">📋 All Users</option>
+          </select>
+        </div>
+        <div style="font-size:0.78rem; color:#5e7e91; margin-bottom:0.8rem;">💡 <em>Approve new signups. Use 🔐 Edit Sections to change which sections a user can issue permits for (can assign multiple).</em></div>
+        <div id="adminUsersList">
+          <div class="empty-state"><span class="icon">👥</span>No users to display.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- PERMIT DETAILS MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
     <div class="modal-head" id="modalHead">
@@ -685,7 +743,6 @@ textarea { resize: vertical; min-height: 60px; }
   </div>
 </div>
 
-<!-- JOB COMPLETION MODAL -->
 <div class="modal-backdrop" id="completeBackdrop">
   <div class="modal" style="max-width:560px;">
     <div class="modal-head complete-modal-head">
@@ -712,6 +769,33 @@ textarea { resize: vertical; min-height: 60px; }
   </div>
 </div>
 
+<div class="modal-backdrop" id="sectionsBackdrop">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-head" style="background:#6b21a8;">
+      <h3 id="sectionsModalTitle">🔐 Edit Issuer Permissions</h3>
+      <button class="modal-close" id="sectionsModalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="sectionsUserInfo" style="background:#ede9fe; border-radius:0.9rem; padding:1rem 1.1rem; border:1px solid #ddd6fe; margin-bottom:1rem;"></div>
+      <p style="font-size:0.85rem; color:#5e7e91; margin-bottom:0.8rem; line-height:1.5;">
+        Select which sections this user can <strong>issue permits</strong> for. You can assign <strong>multiple sections</strong>. Leave <strong>all unchecked</strong> to make them a <strong>Super Issuer</strong> (any section).
+      </p>
+      <div style="display:flex; gap:0.5rem; margin-bottom:0.8rem; flex-wrap:wrap;">
+        <button type="button" class="filter-btn" id="selectAllSectionsBtn" style="font-size:0.75rem;">✅ Select All</button>
+        <button type="button" class="filter-btn" id="clearAllSectionsBtn" style="font-size:0.75rem;">✕ Clear All (Super Issuer)</button>
+      </div>
+      <div class="sections-grid" id="sectionsChecklist"></div>
+      <div style="margin-top:1.2rem; padding:0.8rem 1rem; background:#f0f7fc; border-radius:0.8rem; font-size:0.78rem; color:#1f4b5e; border-left:4px solid #2c6e8f;">
+        <strong>Current selection:</strong> <span id="sectionSelectionSummary">All sections (Super Issuer)</span>
+      </div>
+      <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="saveSectionsBtn" style="flex:1; min-width:160px;">💾 Save Permissions</button>
+        <button type="button" class="btn btn-danger" id="cancelSectionsBtn">✕ Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
@@ -730,7 +814,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // ============================================================
-// 🔴 FIREBASE CONFIG
+// 🔴 FIREBASE CONFIG — REPLACE
 // ============================================================
 const firebaseConfig = {
   apiKey: "AIzaSyBdkYLEc_-Mh_QXdkj0p0v1BcqlkdNLyu8",
@@ -741,23 +825,31 @@ const firebaseConfig = {
   appId: "1:83506933794:web:6e26d82aab494f85961a7b",
   measurementId: "G-WKWJTBDKZ6"
 };
+
+// ============================================================
+// 🔴 ADMIN EMAILS — REPLACE
+// ============================================================
+const ADMIN_EMAILS = ['anurag080402@gmail.com'];
 // ============================================================
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const SECTIONS = ['COB 9-10', 'COB 1-4', 'COB 5-8', 'COB 11 & CDCP', 'CCD 1-2-3', 'CSP 1-2-3', 'CHP', 'CPP II & MODEX', 'OTHER'];
+const SECTIONS = ['COB 9-10', 'COB 1-4', 'COB 5-8', 'COB 11 & CDCP', 'CCD 1-2-3', 'CSP 1-2-3', 'CHP', 'CPP II & MODEX'];
 
 let permits = [];
+let users = [];
 let currentUser = null;
 let currentMode = 'initiator';
 let selectedPermitId = null;
 let completingPermitId = null;
+let editingUid = null;
 let myFilter = 'all';
 let issuedFilter = 'all';
 let issuedStatusFilter = 'all';
 let rejectedFilter = 'all';
+let adminFilter = 'pending';
 let issuedDateFilter = todayKey();
 let rejectedDateFilter = todayKey();
 let showAllDates = false;
@@ -768,12 +860,12 @@ let rejectedSectionFilter = '__all__';
 let pendingPermitNumber = 'COCCD/0001';
 let activeSubTab = null;
 let unsubscribePermits = null;
+let unsubscribeUsers = null;
+let pendingCheckInterval = null;
+let editingSectionsSelection = [];
 
 const $ = function(id) { return document.getElementById(id); };
 
-// ============================================================
-// HELPERS
-// ============================================================
 function escapeHtml(t) {
   if (t === null || t === undefined) return '';
   const d = document.createElement('div');
@@ -852,15 +944,36 @@ function isRejectedByMe(p) {
 }
 function getSectionLabel(p) {
   if (!p) return '—';
-  if (p.section === 'OTHER') return p.sectionOther ? ('OTHER · ' + p.sectionOther) : 'OTHER';
   return p.section || '—';
 }
+function isAdminEmail(email) {
+  if (!email) return false;
+  return ADMIN_EMAILS.some(function(e) { return e.toLowerCase() === String(email).toLowerCase(); });
+}
+function canIssueSection(section) {
+  if (!currentUser) return false;
+  if (currentUser.isAdmin) return true;
+  const assigned = currentUser.assignedSections || [];
+  if (assigned.length === 0) return true;
+  return assigned.indexOf(section) !== -1;
+}
+function getMyIssuableSections() {
+  if (!currentUser) return [];
+  if (currentUser.isAdmin) return SECTIONS.slice();
+  const assigned = currentUser.assignedSections || [];
+  if (assigned.length === 0) return SECTIONS.slice();
+  return assigned;
+}
 
-// ============================================================
-// POPULATE SECTION FILTERS
-// ============================================================
 function populateSectionFilters() {
-  ['issuerSectionFilter', 'issuedSectionFilter', 'rejectedSectionFilter'].forEach(function(id) {
+  const issuerSel = $('issuerSectionFilter');
+  const issuerVal = issuerSel.value;
+  const allowed = getMyIssuableSections();
+  let issuerOpts = '<option value="__all__">All My Sections</option>';
+  allowed.forEach(function(s) { issuerOpts += '<option value="' + escapeHtml(s) + '">' + escapeHtml(s) + '</option>'; });
+  issuerSel.innerHTML = issuerOpts;
+  if ([].slice.call(issuerSel.options).some(function(o) { return o.value === issuerVal; })) issuerSel.value = issuerVal;
+  ['issuedSectionFilter', 'rejectedSectionFilter'].forEach(function(id) {
     const sel = $(id);
     if (!sel) return;
     const val = sel.value;
@@ -869,16 +982,29 @@ function populateSectionFilters() {
     sel.innerHTML = opts;
     if ([].slice.call(sel.options).some(function(o) { return o.value === val; })) sel.value = val;
   });
+  updateIssuerNotice();
+}
+function updateIssuerNotice() {
+  const noticeEl = $('issuerSectionNotice');
+  const textEl = $('issuerSectionNoticeText');
+  if (!currentUser) { noticeEl.style.display = 'none'; return; }
+  const assigned = currentUser.assignedSections || [];
+  if (currentUser.isAdmin) {
+    noticeEl.style.display = 'block';
+    textEl.innerHTML = '<strong>Administrator</strong> — you can issue permits for <strong>all sections</strong>.';
+  } else if (assigned.length === 0) {
+    noticeEl.style.display = 'block';
+    textEl.innerHTML = '<strong>Super Issuer</strong> — you can issue permits for <strong>all sections</strong>.';
+  } else {
+    noticeEl.style.display = 'block';
+    textEl.innerHTML = 'You can only issue permits for: <strong>' + assigned.map(escapeHtml).join(', ') + '</strong>';
+  }
 }
 
-// ============================================================
-// AUTH — TAB SWITCH
-// ============================================================
 const loginTabBtn = $('loginTabBtn');
 const signupTabBtn = $('signupTabBtn');
 const loginForm = $('loginForm');
 const signupForm = $('signupForm');
-
 loginTabBtn.addEventListener('click', function() {
   loginTabBtn.classList.add('active'); signupTabBtn.classList.remove('active');
   loginForm.classList.remove('hidden'); signupForm.classList.add('hidden');
@@ -890,11 +1016,7 @@ signupTabBtn.addEventListener('click', function() {
   $('signupError').style.display = 'none';
 });
 
-// ============================================================
-// FORGOT PASSWORD
-// ============================================================
 const forgotBackdrop = $('forgotBackdrop');
-
 $('forgotPasswordLink').addEventListener('click', function() {
   $('forgotEmail').value = $('loginEmail').value.trim();
   $('forgotError').style.display = 'none';
@@ -902,53 +1024,38 @@ $('forgotPasswordLink').addEventListener('click', function() {
   forgotBackdrop.classList.add('open');
   setTimeout(function() { $('forgotEmail').focus(); }, 100);
 });
-
 function closeForgotModal() {
   forgotBackdrop.classList.remove('open');
   $('forgotError').style.display = 'none';
   $('forgotSuccess').style.display = 'none';
 }
-
 $('forgotModalClose').addEventListener('click', closeForgotModal);
 $('cancelForgotBtn').addEventListener('click', closeForgotModal);
 forgotBackdrop.addEventListener('click', function(e) { if (e.target === forgotBackdrop) closeForgotModal(); });
-
 $('sendResetBtn').addEventListener('click', async function() {
   const email = $('forgotEmail').value.trim();
   const errEl = $('forgotError');
   const successEl = $('forgotSuccess');
-  errEl.style.display = 'none';
-  successEl.style.display = 'none';
-
+  errEl.style.display = 'none'; successEl.style.display = 'none';
   if (!email) { errEl.textContent = 'Please enter your email address.'; errEl.style.display = 'block'; return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
-
-  const btn = this;
-  btn.disabled = true;
-  btn.textContent = '⏳ Sending…';
-
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email.'; errEl.style.display = 'block'; return; }
+  const btn = this; btn.disabled = true; btn.textContent = '⏳ Sending…';
   try {
     await sendPasswordResetEmail(auth, email);
-    successEl.innerHTML = '✅ <strong>Reset link sent!</strong><br>Check your inbox at <strong>' + escapeHtml(email) + '</strong> for the password reset link. (Also check spam folder.)';
+    successEl.innerHTML = '✅ <strong>Reset link sent!</strong><br>Check your inbox at <strong>' + escapeHtml(email) + '</strong>.';
     successEl.style.display = 'block';
     $('forgotEmail').value = '';
     setTimeout(closeForgotModal, 6000);
   } catch (err) {
     let msg = err.message || 'Failed to send reset email.';
-    if (err.code === 'auth/user-not-found') msg = 'No account found with that email address.';
-    else if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email address.';
-    else if (err.code === 'auth/too-many-requests') msg = 'Too many attempts. Please try again later.';
+    if (err.code === 'auth/user-not-found') msg = 'No account found with that email.';
+    else if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email.';
+    else if (err.code === 'auth/too-many-requests') msg = 'Too many attempts. Try later.';
     errEl.textContent = '❌ ' + msg;
     errEl.style.display = 'block';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '📧 Send Reset Link';
-  }
+  } finally { btn.disabled = false; btn.textContent = '📧 Send Reset Link'; }
 });
 
-// ============================================================
-// SIGNUP
-// ============================================================
 signupForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   const errEl = $('signupError'); errEl.style.display = 'none';
@@ -958,25 +1065,28 @@ signupForm.addEventListener('submit', async function(e) {
   const password = $('signupPassword').value;
   if (!name || !designation || !email || !password) { errEl.textContent = 'All fields required.'; errEl.style.display = 'block'; return; }
   if (password.length < 6) { errEl.textContent = 'Password must be ≥6 chars.'; errEl.style.display = 'block'; return; }
+  const isAdmin = isAdminEmail(email);
   showLoading('Creating account…');
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await setDoc(doc(db, 'users', cred.user.uid), { name: name, designation: designation, email: email, createdAt: serverTimestamp() });
-    hideLoading();
-    signupForm.reset();
-    showToast('✅ Account created!', 'success');
+    await setDoc(doc(db, 'users', cred.user.uid), {
+      name: name, designation: designation, email: email,
+      approved: isAdmin, isAdmin: isAdmin, assignedSections: [],
+      createdAt: serverTimestamp(),
+      approvedAt: isAdmin ? new Date().toISOString() : null,
+      approvedBy: isAdmin ? 'auto' : null
+    });
+    hideLoading(); signupForm.reset();
+    if (isAdmin) showToast('✅ Admin account created!', 'success');
+    else showToast('✅ Account created! Awaiting admin approval.', 'success');
   } catch (err) {
     hideLoading();
     let msg = err.message || 'Signup failed.';
     if (err.code === 'auth/email-already-in-use') msg = 'This email is already registered. Please sign in.';
-    errEl.textContent = '❌ ' + msg;
-    errEl.style.display = 'block';
+    errEl.textContent = '❌ ' + msg; errEl.style.display = 'block';
   }
 });
 
-// ============================================================
-// LOGIN
-// ============================================================
 loginForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   const errEl = $('loginError'); errEl.style.display = 'none';
@@ -986,9 +1096,7 @@ loginForm.addEventListener('submit', async function(e) {
   showLoading('Signing in…');
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    hideLoading();
-    loginForm.reset();
-    showToast('Welcome back!', 'success');
+    hideLoading(); loginForm.reset();
   } catch (err) {
     hideLoading();
     let msg = 'Login failed.';
@@ -997,67 +1105,95 @@ loginForm.addEventListener('submit', async function(e) {
     else if (err.code === 'auth/too-many-requests') msg = 'Too many attempts. Try again later.';
     else if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email.';
     else msg = err.message || msg;
-    errEl.textContent = '❌ ' + msg;
-    errEl.style.display = 'block';
+    errEl.textContent = '❌ ' + msg; errEl.style.display = 'block';
   }
 });
 
-// ============================================================
-// LOGOUT
-// ============================================================
-$('logoutBtn').addEventListener('click', async function() {
+async function doLogout() {
   if (!confirm('Log out?')) return;
   if (unsubscribePermits) { unsubscribePermits(); unsubscribePermits = null; }
+  if (unsubscribeUsers) { unsubscribeUsers(); unsubscribeUsers = null; }
+  if (pendingCheckInterval) { clearInterval(pendingCheckInterval); pendingCheckInterval = null; }
   await signOut(auth);
-  currentUser = null;
-  permits = [];
+  currentUser = null; permits = []; users = [];
   $('authWrapper').classList.remove('hidden');
+  $('pendingWrapper').classList.add('hidden');
   $('appContainer').classList.add('hidden');
   loginTabBtn.click();
-  $('loginEmail').value = '';
-  $('loginPassword').value = '';
-});
+  $('loginEmail').value = ''; $('loginPassword').value = '';
+}
+$('logoutBtn').addEventListener('click', doLogout);
+$('pendingLogoutBtn').addEventListener('click', doLogout);
 
-// ============================================================
-// AUTH STATE
-// ============================================================
 onAuthStateChanged(auth, async function(user) {
   if (user) {
     const userDoc = await getDoc(doc(db, 'users', user.uid));
-    if (userDoc.exists()) {
-      const data = userDoc.data();
-      currentUser = { uid: user.uid, name: data.name, designation: data.designation, email: data.email };
-      enterApp();
-    } else {
-      await signOut(auth);
-    }
+    if (!userDoc.exists()) { await signOut(auth); return; }
+    const data = userDoc.data();
+    currentUser = {
+      uid: user.uid,
+      name: data.name,
+      designation: data.designation,
+      email: data.email,
+      approved: data.approved === true,
+      isAdmin: data.isAdmin === true || isAdminEmail(data.email),
+      assignedSections: Array.isArray(data.assignedSections) ? data.assignedSections : []
+    };
+    if (!currentUser.approved && !currentUser.isAdmin) showPendingScreen();
+    else enterApp();
   } else {
     currentUser = null;
     $('authWrapper').classList.remove('hidden');
+    $('pendingWrapper').classList.add('hidden');
     $('appContainer').classList.add('hidden');
   }
 });
 
-// ============================================================
-// ENTER APP
-// ============================================================
-function enterApp() {
+function showPendingScreen() {
   $('authWrapper').classList.add('hidden');
-  $('appContainer').classList.remove('hidden');
+  $('appContainer').classList.add('hidden');
+  $('pendingWrapper').classList.remove('hidden');
+  $('pendName').textContent = currentUser.name || '—';
+  $('pendEmail').textContent = currentUser.email || '—';
+  $('pendDesig').textContent = currentUser.designation || '—';
+  if (pendingCheckInterval) clearInterval(pendingCheckInterval);
+  pendingCheckInterval = setInterval(async function() {
+    if (!auth.currentUser) { clearInterval(pendingCheckInterval); return; }
+    const snap = await getDoc(doc(db, 'users', auth.currentUser.uid));
+    if (snap.exists()) {
+      const data = snap.data();
+      if (data.approved === true) {
+        clearInterval(pendingCheckInterval); pendingCheckInterval = null;
+        currentUser.approved = true;
+        currentUser.isAdmin = data.isAdmin === true;
+        currentUser.assignedSections = Array.isArray(data.assignedSections) ? data.assignedSections : [];
+        showToast('🎉 Your account has been approved!', 'success');
+        enterApp();
+      }
+    }
+  }, 10000);
+}
 
+function enterApp() {
+  if (pendingCheckInterval) { clearInterval(pendingCheckInterval); pendingCheckInterval = null; }
+  $('authWrapper').classList.add('hidden');
+  $('pendingWrapper').classList.add('hidden');
+  $('appContainer').classList.remove('hidden');
   $('userName').textContent = currentUser.name;
   $('userDesig').textContent = currentUser.designation;
   $('userAvatar').textContent = initials(currentUser.name);
-
+  const avatar = $('userAvatar');
+  if (currentUser.isAdmin) { avatar.classList.add('admin-glow'); avatar.title = 'Administrator'; }
+  else { avatar.classList.remove('admin-glow'); avatar.title = ''; }
+  if (currentUser.isAdmin) $('tabBtnAdmin').classList.remove('hidden');
+  else $('tabBtnAdmin').classList.add('hidden');
   $('f_initiatorName').value = currentUser.name;
   $('f_initiatorDesig').value = currentUser.designation;
   $('f_issuerName').value = currentUser.name;
   $('f_issuerDesig').value = currentUser.designation;
-
   populateSectionFilters();
   setDefaultDateTimes();
   setMode('initiator');
-
   if (unsubscribePermits) unsubscribePermits();
   const permitsQuery = query(collection(db, 'permits'), orderBy('createdAt', 'desc'));
   unsubscribePermits = onSnapshot(permitsQuery, function(snapshot) {
@@ -1081,48 +1217,54 @@ function enterApp() {
     console.error('Permits listener error:', error);
     showToast('⚠️ Connection error. Check Firestore.', 'error');
   });
+  if (currentUser.isAdmin) {
+    if (unsubscribeUsers) unsubscribeUsers();
+    const usersQuery = query(collection(db, 'users'), orderBy('createdAt', 'desc'));
+    unsubscribeUsers = onSnapshot(usersQuery, function(snapshot) {
+      users = [];
+      snapshot.forEach(function(docSnap) {
+        const data = docSnap.data();
+        data.uid = docSnap.id;
+        users.push(data);
+      });
+      renderAdminUsers();
+    }, function(error) { console.error('Users listener error:', error); });
+  }
 }
 
-// ============================================================
-// MODE TOGGLE
-// ============================================================
 function setMode(mode) {
   currentMode = mode;
   $('modeInitiatorBtn').classList.toggle('active', mode === 'initiator');
   $('modeIssuerBtn').classList.toggle('active', mode === 'issuer');
-
   if (activeSubTab === null) {
     $('initiatorViews').classList.toggle('hidden', mode !== 'initiator');
     $('issuerViews').classList.toggle('hidden', mode !== 'issuer');
     $('tab-issued').classList.add('hidden');
     $('tab-rejected').classList.add('hidden');
+    $('tab-admin').classList.add('hidden');
     $('tabBtnIssued').classList.remove('active');
     $('tabBtnRejected').classList.remove('active');
-  } else {
-    showSubTab(activeSubTab);
-  }
+    $('tabBtnAdmin').classList.remove('active');
+  } else { showSubTab(activeSubTab); }
 }
-
 $('modeInitiatorBtn').addEventListener('click', function() { activeSubTab = null; setMode('initiator'); });
 $('modeIssuerBtn').addEventListener('click', function() { activeSubTab = null; setMode('issuer'); });
 
-// ============================================================
-// SUB TABS
-// ============================================================
 function showSubTab(tab) {
   activeSubTab = tab;
   $('initiatorViews').classList.add('hidden');
   $('issuerViews').classList.add('hidden');
   document.querySelectorAll('.tab-panel').forEach(function(p) {
-    if (p.id === 'tab-issued' || p.id === 'tab-rejected') p.classList.add('hidden');
+    if (['tab-issued','tab-rejected','tab-admin'].indexOf(p.id) !== -1) p.classList.add('hidden');
   });
   $('tab-' + tab).classList.remove('hidden');
   $('tabBtnIssued').classList.toggle('active', tab === 'issued');
   $('tabBtnRejected').classList.toggle('active', tab === 'rejected');
+  $('tabBtnAdmin').classList.toggle('active', tab === 'admin');
   $('modeInitiatorBtn').classList.remove('active');
   $('modeIssuerBtn').classList.remove('active');
+  if (tab === 'admin') renderAdminUsers();
 }
-
 $('tabBtnIssued').addEventListener('click', function() {
   if (activeSubTab === 'issued') { activeSubTab = null; setMode(currentMode); return; }
   showSubTab('issued');
@@ -1131,10 +1273,12 @@ $('tabBtnRejected').addEventListener('click', function() {
   if (activeSubTab === 'rejected') { activeSubTab = null; setMode(currentMode); return; }
   showSubTab('rejected');
 });
+$('tabBtnAdmin').addEventListener('click', function() {
+  if (!currentUser || !currentUser.isAdmin) return;
+  if (activeSubTab === 'admin') { activeSubTab = null; setMode(currentMode); return; }
+  showSubTab('admin');
+});
 
-// ============================================================
-// FILTERS — DESKTOP BUTTONS
-// ============================================================
 document.querySelectorAll('[data-myfilter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     document.querySelectorAll('[data-myfilter]').forEach(function(b) { b.classList.remove('active'); });
@@ -1171,10 +1315,15 @@ document.querySelectorAll('[data-rejectedfilter]').forEach(function(btn) {
     renderRejected();
   });
 });
-
-// ============================================================
-// FILTERS — MOBILE DROPDOWNS
-// ============================================================
+document.querySelectorAll('[data-adminfilter]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('[data-adminfilter]').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    adminFilter = btn.dataset.adminfilter;
+    $('adminFilterSelect').value = adminFilter;
+    renderAdminUsers();
+  });
+});
 $('myFilterSelect').addEventListener('change', function() {
   myFilter = this.value;
   document.querySelectorAll('[data-myfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.myfilter === myFilter); });
@@ -1195,49 +1344,53 @@ $('rejectedUserFilterSelect').addEventListener('change', function() {
   document.querySelectorAll('[data-rejectedfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.rejectedfilter === rejectedFilter); });
   renderRejected();
 });
+$('adminFilterSelect').addEventListener('change', function() {
+  adminFilter = this.value;
+  document.querySelectorAll('[data-adminfilter]').forEach(function(b) { b.classList.toggle('active', b.dataset.adminfilter === adminFilter); });
+  renderAdminUsers();
+});
 
-// ============================================================
-// DATE PICKERS
-// ============================================================
 const issuedDatePicker = $('issuedDatePicker');
 issuedDatePicker.value = todayKey();
 issuedDatePicker.addEventListener('change', function() {
   if (issuedDatePicker.value) { issuedDateFilter = issuedDatePicker.value; showAllDates = false; $('allDatesBtn').classList.remove('active'); renderIssued(); }
 });
 $('allDatesBtn').addEventListener('click', function() { showAllDates = true; $('allDatesBtn').classList.add('active'); renderIssued(); });
-
 const rejectedDatePicker = $('rejectedDatePicker');
 rejectedDatePicker.value = todayKey();
 rejectedDatePicker.addEventListener('change', function() {
   if (rejectedDatePicker.value) { rejectedDateFilter = rejectedDatePicker.value; showAllRejectedDates = false; $('rejectedAllDatesBtn').classList.remove('active'); renderRejected(); }
 });
 $('rejectedAllDatesBtn').addEventListener('click', function() { showAllRejectedDates = true; $('rejectedAllDatesBtn').classList.add('active'); renderRejected(); });
-
 $('issuerSectionFilter').addEventListener('change', function() { issuerSectionFilter = this.value; renderPending(); });
 $('issuedSectionFilter').addEventListener('change', function() { issuedSectionFilter = this.value; renderIssued(); });
 $('rejectedSectionFilter').addEventListener('change', function() { rejectedSectionFilter = this.value; renderRejected(); });
 
-// ============================================================
-// REJECT HELPERS
-// ============================================================
 function resetRejectState() {
   $('rejectWrap').classList.add('hidden');
   $('confirmRejectWrap').classList.add('hidden');
   $('f_rejectReason').value = '';
 }
 
-// ============================================================
-// RENDER: PENDING
-// ============================================================
 function renderPending() {
   let pending = permits.filter(function(p) { return p.status === 'pending'; });
-  if (issuerSectionFilter !== '__all__') pending = pending.filter(function(p) { return String(p.section || '') === issuerSectionFilter; });
-  const totalPending = permits.filter(function(p) { return p.status === 'pending'; }).length;
-  $('pendingCount').textContent = pending.length + ' pending' + (issuerSectionFilter !== '__all__' ? ' (' + totalPending + ' total)' : '');
-  $('issuerModeBadge').textContent = totalPending;
-
+  const allowed = getMyIssuableSections();
+  if (allowed.length < SECTIONS.length) {
+    pending = pending.filter(function(p) { return allowed.indexOf(p.section) !== -1; });
+  }
+  if (issuerSectionFilter !== '__all__') {
+    pending = pending.filter(function(p) { return String(p.section || '') === issuerSectionFilter; });
+  }
+  const totalForMe = permits.filter(function(p) {
+    if (p.status !== 'pending') return false;
+    if (allowed.length < SECTIONS.length) return allowed.indexOf(p.section) !== -1;
+    return true;
+  }).length;
+  $('pendingCount').textContent = pending.length + ' pending' + (issuerSectionFilter !== '__all__' ? ' (' + totalForMe + ' total)' : '');
+  $('issuerModeBadge').textContent = totalForMe;
   if (pending.length === 0) {
-    let msg = 'No pending permit requests. All clear!';
+    let msg = 'No pending permit requests you can act on. All clear!';
+    if (allowed.length < SECTIONS.length) msg = 'No pending permits for your assigned sections.';
     if (issuerSectionFilter !== '__all__') msg = 'No pending permits for section "' + issuerSectionFilter + '".';
     $('pendingList').innerHTML = '<div class="empty-state"><span class="icon">✅</span>' + escapeHtml(msg) + '</div>';
     return;
@@ -1263,7 +1416,6 @@ function renderPending() {
       '</div>';
   });
   $('pendingList').innerHTML = html;
-
   document.querySelectorAll('#pendingList .queue-item').forEach(function(item) {
     item.addEventListener('click', function() {
       selectedPermitId = item.dataset.id;
@@ -1287,6 +1439,7 @@ function showSelectedPermit() {
     detailRow('Start', formatDate(p.start)) +
     detailRow('Expected Completion', formatDate(p.end)) +
     '<div class="detail-section">' +
+      detailRow('Other Permits', escapeHtml(p.otherPermits) || '—') +
       detailRow('Hazard Mitigation', escapeHtml(p.hazard) || '—') +
       detailRow('Safety Precautions', escapeHtml(p.safety) || '—') +
       detailRow('Isolation', escapeHtml(p.isolation) || '—') +
@@ -1298,27 +1451,21 @@ function showSelectedPermit() {
   resetRejectState();
   $('issueArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
 function detailRow(label, value) {
   return '<div class="detail-row"><span class="detail-label">' + label + ':</span><span class="detail-value">' + value + '</span></div>';
 }
 
-// ============================================================
-// RENDER: MY SUBMITTED
-// ============================================================
 function renderMySubmitted() {
   let mine = permits.filter(isMine);
   if (myFilter === 'pending') mine = mine.filter(function(p) { return p.status === 'pending'; });
   if (myFilter === 'issued') mine = mine.filter(function(p) { return p.status === 'issued'; });
   if (myFilter === 'completed') mine = mine.filter(function(p) { return p.status === 'completed'; });
   if (myFilter === 'rejected') mine = mine.filter(function(p) { return p.status === 'rejected'; });
-
   $('myCount').textContent = mine.length;
   if (mine.length === 0) {
     $('myPermitsList').innerHTML = '<div class="empty-state"><span class="icon">📭</span>No permits found.</div>';
     return;
   }
-
   let html = '';
   mine.forEach(function(p) {
     let statusClass, statusLabel;
@@ -1326,11 +1473,9 @@ function renderMySubmitted() {
     else if (p.status === 'issued') { statusClass = 'badge-issued'; statusLabel = '✔ Issued'; }
     else if (p.status === 'rejected') { statusClass = 'badge-rejected'; statusLabel = '❌ Rejected'; }
     else { statusClass = 'badge-pending'; statusLabel = '⏳ Pending'; }
-
     let itemClass = 'queue-item';
     if (p.status === 'rejected') itemClass += ' rejected-item';
     if (p.status === 'completed') itemClass += ' completed-permit';
-
     html +=
       '<div class="' + itemClass + '" style="cursor:pointer;" data-id="' + escapeHtml(p.id) + '">' +
         '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">' +
@@ -1362,9 +1507,6 @@ function renderMySubmitted() {
   });
 }
 
-// ============================================================
-// RENDER: ISSUED (+ completed)
-// ============================================================
 function renderIssued() {
   let issued = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed'; });
   if (issuedFilter === 'mine') issued = issued.filter(isMine);
@@ -1378,10 +1520,8 @@ function renderIssued() {
       return key === issuedDateFilter;
     });
   }
-
   $('issuedCount').textContent = issued.length;
   $('issuedTabCount').textContent = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed'; }).length;
-
   if (issued.length === 0) {
     let msg = showAllDates ? 'No permits yet.' : 'No permits on ' + dateLabelFromKey(issuedDateFilter).replace('📅 ', '') + '.';
     if (issuedStatusFilter === 'completed') msg = 'No completed permits' + (showAllDates ? ' yet.' : ' on this date.');
@@ -1392,7 +1532,6 @@ function renderIssued() {
     $('issuedList').innerHTML = '<div class="empty-state"><span class="icon">📋</span>' + escapeHtml(msg) + '</div>';
     return;
   }
-
   const groups = {};
   issued.forEach(function(p) {
     const iso = p.status === 'completed' ? p.completedAt : p.issuedAt;
@@ -1401,7 +1540,6 @@ function renderIssued() {
     groups[key].push(p);
   });
   const sortedKeys = Object.keys(groups).sort(function(a, b) { return b.localeCompare(a); });
-
   let html = '';
   sortedKeys.forEach(function(key) {
     const items = groups[key];
@@ -1414,7 +1552,6 @@ function renderIssued() {
       const statusBadge = isCompleted
         ? '<span class="badge-status badge-completed">✅ Completed</span>'
         : '<span class="badge-status badge-issued">✔ Issued</span>';
-
       html +=
         '<div class="' + cardClass + '" data-id="' + escapeHtml(p.id) + '" style="margin-bottom:0.7rem;">' +
           '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">' +
@@ -1434,44 +1571,40 @@ function renderIssued() {
           (isCompleted && p.completionRemarks
             ? '<div style="margin-top:0.6rem; padding:0.5rem 0.8rem; background:#eaf4fb; border-radius:0.6rem; font-size:0.78rem; color:#1f4b5e;">✅ <strong>Completed:</strong> ' + escapeHtml(p.completionRemarks) + '</div>'
             : '') +
-          (canComplete
-            ? '<div style="margin-top:0.7rem; display:flex; gap:0.5rem; flex-wrap:wrap;">' +
-                '<button class="btn-complete mark-complete-btn" data-id="' + escapeHtml(p.id) + '">✅ Mark Job Completed</button>' +
-              '</div>'
-            : '') +
+          '<div style="margin-top:0.7rem; display:flex; gap:0.5rem; flex-wrap:wrap;">' +
+            '<button class="btn-print print-permit-btn" data-id="' + escapeHtml(p.id) + '">🖨️ Print / PDF</button>' +
+            (canComplete
+              ? '<button class="btn-complete mark-complete-btn" data-id="' + escapeHtml(p.id) + '">✅ Mark Job Completed</button>'
+              : '') +
+          '</div>' +
         '</div>';
     });
     html += '</div>';
   });
   $('issuedList').innerHTML = html;
-
   document.querySelectorAll('#issuedList .issued-permit').forEach(function(item) {
     item.addEventListener('click', function(e) {
       if (e.target.classList.contains('mark-complete-btn')) return;
+      if (e.target.classList.contains('print-permit-btn')) return;
       openModal(item.dataset.id);
     });
   });
   document.querySelectorAll('.mark-complete-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      openCompleteModal(btn.dataset.id);
-    });
+    btn.addEventListener('click', function(e) { e.stopPropagation(); openCompleteModal(btn.dataset.id); });
+  });
+  document.querySelectorAll('.print-permit-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) { e.stopPropagation(); printPermit(btn.dataset.id); });
   });
 }
 
-// ============================================================
-// RENDER: REJECTED
-// ============================================================
 function renderRejected() {
   let rejected = permits.filter(function(p) { return p.status === 'rejected'; });
   if (rejectedFilter === 'mine') rejected = rejected.filter(isMine);
   if (rejectedFilter === 'byMe') rejected = rejected.filter(isRejectedByMe);
   if (rejectedSectionFilter !== '__all__') rejected = rejected.filter(function(p) { return String(p.section || '') === rejectedSectionFilter; });
   if (!showAllRejectedDates) rejected = rejected.filter(function(p) { return dateKey(p.rejectedAt) === rejectedDateFilter; });
-
   $('rejectedCount').textContent = rejected.length;
   $('rejectedTabCount').textContent = permits.filter(function(p) { return p.status === 'rejected'; }).length;
-
   if (rejected.length === 0) {
     let msg = showAllRejectedDates ? 'No rejected permits yet.' : 'No rejected permits on ' + dateLabelFromKey(rejectedDateFilter).replace('📅 ', '') + '.';
     if (rejectedFilter === 'mine') msg = 'No rejected permits initiated by you' + (showAllRejectedDates ? ' yet.' : ' on this date.');
@@ -1480,11 +1613,9 @@ function renderRejected() {
     $('rejectedList').innerHTML = '<div class="empty-state rejected-empty"><span class="icon">📋</span>' + escapeHtml(msg) + '</div>';
     return;
   }
-
   const groups = {};
   rejected.forEach(function(p) { const key = dateKey(p.rejectedAt); if (!groups[key]) groups[key] = []; groups[key].push(p); });
   const sortedKeys = Object.keys(groups).sort(function(a, b) { return b.localeCompare(a); });
-
   let html = '';
   sortedKeys.forEach(function(key) {
     const items = groups[key];
@@ -1518,14 +1649,214 @@ function renderRejected() {
   });
 }
 
-// ============================================================
-// PERMIT DETAILS MODAL
-// ============================================================
+function renderAdminUsers() {
+  if (!currentUser || !currentUser.isAdmin) return;
+  let list = users.slice();
+  if (adminFilter === 'pending') list = list.filter(function(u) { return !u.approved && !u.isAdmin; });
+  if (adminFilter === 'approved') list = list.filter(function(u) { return u.approved || u.isAdmin; });
+  const pendingCount = users.filter(function(u) { return !u.approved && !u.isAdmin; }).length;
+  $('adminTabCount').textContent = pendingCount;
+  $('adminUserCount').textContent = list.length + ' user' + (list.length !== 1 ? 's' : '');
+  if (list.length === 0) {
+    let msg = 'No users to display.';
+    if (adminFilter === 'pending') msg = 'No pending approvals. All clear!';
+    $('adminUsersList').innerHTML = '<div class="empty-state"><span class="icon">👥</span>' + escapeHtml(msg) + '</div>';
+    return;
+  }
+  let html = '';
+  list.forEach(function(u) {
+    const isAdmin = u.isAdmin === true;
+    const isApproved = u.approved === true;
+    const cardClass = isAdmin ? 'user-card admin' : (isApproved ? 'user-card approved' : 'user-card pending');
+    const statusLabel = isAdmin ? '👑 ADMIN' : (isApproved ? '✔ APPROVED' : '⏳ PENDING');
+    const statusClass = isAdmin ? 'admin' : (isApproved ? 'approved' : 'pending');
+    const assigned = Array.isArray(u.assignedSections) ? u.assignedSections : [];
+    let sectionBadges = '';
+    if (isAdmin || assigned.length === 0) {
+      sectionBadges = '<span class="perm-badge all">🔓 ALL SECTIONS (Super Issuer)</span>';
+    } else {
+      sectionBadges = assigned.map(function(s) { return '<span class="section-chip" style="background:#3730a3;">' + escapeHtml(s) + '</span>'; }).join(' ');
+    }
+    let actions = '';
+    if (isAdmin) {
+      actions = '<span style="font-size:0.75rem; color:#78350f; font-weight:700;">👑 Administrator</span>';
+    } else if (isApproved) {
+      actions =
+        '<button class="btn-edit-sections" data-uid="' + escapeHtml(u.uid) + '" data-action="editSections">🔐 Edit Sections</button>' +
+        '<button class="btn-revoke" data-uid="' + escapeHtml(u.uid) + '" data-action="revoke">🚫 Revoke</button>';
+    } else {
+      actions =
+        '<button class="btn-edit-sections" data-uid="' + escapeHtml(u.uid) + '" data-action="editSections">🔐 Set Sections</button>' +
+        '<button class="btn-approve" data-uid="' + escapeHtml(u.uid) + '" data-action="approve">✅ Approve</button>' +
+        '<button class="btn-revoke" data-uid="' + escapeHtml(u.uid) + '" data-action="reject">❌ Reject</button>';
+    }
+    html +=
+      '<div class="' + cardClass + '">' +
+        '<div class="user-card-info">' +
+          '<div class="user-card-name">' + escapeHtml(u.name || 'Unnamed') +
+            '<span class="user-card-status ' + statusClass + '">' + statusLabel + '</span>' +
+          '</div>' +
+          '<div class="user-card-email">' + escapeHtml(u.email || '—') + '</div>' +
+          '<div class="user-card-desig">' + escapeHtml(u.designation || '—') + '</div>' +
+          '<div class="user-card-sections">' + sectionBadges + '</div>' +
+        '</div>' +
+        '<div class="user-card-actions">' + actions + '</div>' +
+      '</div>';
+  });
+  $('adminUsersList').innerHTML = html;
+  document.querySelectorAll('#adminUsersList [data-action]').forEach(function(btn) {
+    btn.addEventListener('click', function() { handleAdminAction(btn.dataset.uid, btn.dataset.action); });
+  });
+}
+
+async function handleAdminAction(uid, action) {
+  const target = users.find(function(u) { return u.uid === uid; });
+  if (!target) return;
+  const name = target.name || 'this user';
+  if (action === 'editSections') { openSectionsModal(uid); return; }
+  let confirmMsg = '';
+  if (action === 'approve') confirmMsg = 'Approve access for ' + name + '?';
+  else if (action === 'reject') confirmMsg = 'Reject and revoke access for ' + name + '?';
+  else if (action === 'revoke') confirmMsg = 'Revoke access for ' + name + '? They will be locked out.';
+  if (!confirm(confirmMsg)) return;
+  showLoading('Updating user…');
+  try {
+    if (action === 'approve') {
+      await updateDoc(doc(db, 'users', uid), {
+        approved: true,
+        approvedAt: new Date().toISOString(),
+        approvedBy: currentUser.email
+      });
+      showToast('✅ ' + name + ' approved.', 'success');
+    } else {
+      await updateDoc(doc(db, 'users', uid), {
+        approved: false,
+        approvedAt: null,
+        approvedBy: currentUser.email + ' (' + action + ')'
+      });
+      showToast((action === 'reject' ? '❌ ' : '🚫 ') + name + ' ' + action + 'd.', 'success');
+    }
+  } catch (err) {
+    showToast('❌ Failed: ' + err.message, 'error');
+  } finally { hideLoading(); }
+}
+
+const sectionsBackdrop = $('sectionsBackdrop');
+function openSectionsModal(uid) {
+  const target = users.find(function(u) { return u.uid === uid; });
+  if (!target) return;
+  editingUid = uid;
+  editingSectionsSelection = Array.isArray(target.assignedSections) ? target.assignedSections.slice() : [];
+  $('sectionsUserInfo').innerHTML =
+    '<div style="font-weight:700; color:#4c1d95; font-size:0.95rem; margin-bottom:0.2rem;">' + escapeHtml(target.name || 'Unnamed') + '</div>' +
+    '<div style="font-size:0.78rem; color:#6b21a8; font-family:monospace; word-break:break-all;">' + escapeHtml(target.email || '—') + '</div>' +
+    '<div style="font-size:0.75rem; color:#6b21a8; margin-top:0.2rem;">' + escapeHtml(target.designation || '—') + '</div>';
+  renderSectionsChecklist();
+  sectionsBackdrop.classList.add('open');
+}
+function renderSectionsChecklist() {
+  let html = '';
+  SECTIONS.forEach(function(s) {
+    const checked = editingSectionsSelection.indexOf(s) !== -1;
+    html +=
+      '<div class="section-check ' + (checked ? 'checked' : '') + '" data-section="' + escapeHtml(s) + '">' +
+        '<input type="checkbox" ' + (checked ? 'checked' : '') + ' data-section="' + escapeHtml(s) + '">' +
+        '<span class="lbl">' + escapeHtml(s) + '</span>' +
+      '</div>';
+  });
+  $('sectionsChecklist').innerHTML = html;
+  document.querySelectorAll('#sectionsChecklist .section-check').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (e.target.tagName === 'INPUT') return;
+      const section = el.dataset.section;
+      const cb = el.querySelector('input');
+      cb.checked = !cb.checked;
+      toggleSection(section, cb.checked);
+      el.classList.toggle('checked', cb.checked);
+    });
+    const cb = el.querySelector('input');
+    cb.addEventListener('change', function() {
+      toggleSection(el.dataset.section, cb.checked);
+      el.classList.toggle('checked', cb.checked);
+    });
+  });
+  updateSectionsSummary();
+}
+function toggleSection(section, isChecked) {
+  const idx = editingSectionsSelection.indexOf(section);
+  if (isChecked && idx === -1) editingSectionsSelection.push(section);
+  else if (!isChecked && idx !== -1) editingSectionsSelection.splice(idx, 1);
+  updateSectionsSummary();
+}
+function updateSectionsSummary() {
+  const summaryEl = $('sectionSelectionSummary');
+  if (editingSectionsSelection.length === 0) summaryEl.innerHTML = '<strong>All sections</strong> (Super Issuer)';
+  else summaryEl.innerHTML = editingSectionsSelection.map(escapeHtml).join(', ');
+}
+$('selectAllSectionsBtn').addEventListener('click', function() {
+  editingSectionsSelection = SECTIONS.slice();
+  renderSectionsChecklist();
+});
+$('clearAllSectionsBtn').addEventListener('click', function() {
+  editingSectionsSelection = [];
+  renderSectionsChecklist();
+});
+function closeSectionsModal() {
+  sectionsBackdrop.classList.remove('open');
+  editingUid = null;
+  editingSectionsSelection = [];
+}
+$('sectionsModalClose').addEventListener('click', closeSectionsModal);
+$('cancelSectionsBtn').addEventListener('click', closeSectionsModal);
+sectionsBackdrop.addEventListener('click', function(e) { if (e.target === sectionsBackdrop) closeSectionsModal(); });
+$('saveSectionsBtn').addEventListener('click', async function() {
+  if (!editingUid) return;
+  const btn = this;
+  btn.disabled = true;
+  btn.textContent = '⏳ Saving…';
+  try {
+    await updateDoc(doc(db, 'users', editingUid), {
+      assignedSections: editingSectionsSelection,
+      sectionsUpdatedAt: new Date().toISOString(),
+      sectionsUpdatedBy: currentUser.email
+    });
+    showToast('✅ Permissions saved.', 'success');
+    closeSectionsModal();
+  } catch (err) {
+    showToast('❌ Failed: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '💾 Save Permissions';
+  }
+});
+
+function printPermit(permitId) {
+  const p = permits.find(function(x) { return x.id === permitId; });
+  if (!p) { showToast('Permit not found.', 'error'); return; }
+  const status = p.status === 'completed' ? 'COMPLETED' : p.status === 'issued' ? 'ISSUED' : p.status === 'rejected' ? 'REJECTED' : 'PENDING';
+  function signatureBlock(opts) {
+    const name = opts.name || '—';
+    const designation = opts.designation || '—';
+    const dateIso = opts.date;
+    const dateStr = dateIso ? new Date(dateIso).toLocaleString(undefined, { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
+    const role = opts.role;
+    if (!opts.name) return '<div class="sig-block empty-sig"><div class="sig-role">' + role + '</div><div class="sig-empty-line"></div><div class="sig-name-empty">(Not signed yet)</div><div class="sig-date-empty">Date: _____________________</div></div>';
+    return '<div class="sig-block"><div class="sig-role">' + role + '</div><div class="sig-stamp"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Digitally Signed</span></div><div class="sig-name">' + escapeHtml(name) + '</div><div class="sig-desig">' + escapeHtml(designation) + '</div><div class="sig-date"><span class="sig-date-lbl">Signed on:</span><span class="sig-date-val">' + dateStr + '</span></div></div>';
+  }
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Permit ' + escapeHtml(p.permitNumber) + '</title><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: Arial, sans-serif; padding: 20px; color: #111; background: white; } .print-container { max-width: 780px; margin: 0 auto; } .header { display: flex; align-items: center; gap: 16px; padding-bottom: 12px; border-bottom: 3px solid #0b2b3c; margin-bottom: 14px; } .header img { width: 70px; height: 70px; object-fit: contain; } .header-text .bsp { font-size: 14px; font-weight: 700; color: #0b2b3c; } .header-text .coccd { font-size: 22px; font-weight: 800; color: #1f4b5e; letter-spacing: 1.5px; } .header-text .ptw { font-size: 14px; font-weight: 600; color: #2c6e8f; text-transform: uppercase; } .permit-bar { display: flex; justify-content: space-between; background: #0b2b3c; color: white; padding: 12px 18px; border-radius: 8px; margin-bottom: 16px; } .permit-bar .num { font-family: monospace; font-size: 20px; font-weight: 700; } .permit-bar .status { font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 20px; background: rgba(255,255,255,0.2); } .section-block { margin-bottom: 14px; page-break-inside: avoid; } .section-block h3 { font-size: 12px; text-transform: uppercase; color: #2c6e8f; padding-bottom: 4px; border-bottom: 1px solid #cfe0ea; margin-bottom: 8px; font-weight: 800; } .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; } .grid.full { grid-template-columns: 1fr; } .field .lbl { font-weight: 700; color: #555; text-transform: uppercase; font-size: 10px; display: block; } .field .val { color: #111; font-size: 13px; font-weight: 500; white-space: pre-wrap; } .signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; } .sig-block { border: 2px solid #0b2b3c; border-radius: 10px; padding: 14px; background: #f8fbfd; min-height: 130px; } .sig-block.empty-sig { border-style: dashed; border-color: #b8cfdb; } .sig-role { font-size: 10px; font-weight: 800; color: #0b2b3c; text-transform: uppercase; padding-bottom: 6px; margin-bottom: 8px; border-bottom: 1px solid #cfe0ea; } .sig-stamp { display: inline-flex; align-items: center; gap: 5px; background: #d1fae5; color: #065f46; padding: 3px 10px; border-radius: 20px; font-size: 9px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; border: 1px solid #34d399; } .sig-name { font-family: "Brush Script MT", cursive; font-size: 24px; color: #1f4b5e; margin-bottom: 4px; } .sig-desig { font-size: 11px; color: #4a6d80; font-weight: 600; margin-bottom: 8px; } .sig-date { padding-top: 6px; border-top: 1px dashed #cfe0ea; font-size: 10px; } .sig-date-lbl { font-weight: 700; text-transform: uppercase; margin-right: 4px; } .sig-date-val { font-family: monospace; font-weight: 600; } .sig-empty-line { height: 26px; border-bottom: 1.5px solid #0b2b3c; margin-bottom: 6px; } .sig-name-empty { font-size: 10px; color: #7d9aab; font-style: italic; text-align: center; margin-bottom: 10px; } .sig-date-empty { font-size: 11px; color: #5e7e91; padding-top: 6px; border-top: 1px dashed #cfe0ea; } .footer { margin-top: 30px; padding-top: 10px; border-top: 1px solid #ccc; font-size: 10px; color: #666; display: flex; justify-content: space-between; } .digital-note { text-align: center; margin-top: 20px; font-size: 9px; color: #7d9aab; font-style: italic; } @page { size: A4; margin: 15mm; }</style></head><body><div class="print-container"><div class="header"><img src="sail-logo.png" onerror="this.style.display=\'none\'"><div class="header-text"><div class="bsp">Bhilai Steel Plant</div><div class="coccd">COCCD</div><div class="ptw">Permit To Work</div></div></div><div class="permit-bar"><span class="num">' + escapeHtml(p.permitNumber) + '</span><span class="status">' + status + '</span></div><div class="section-block"><h3>Initiator Information</h3><div class="grid"><div class="field"><span class="lbl">Name</span><span class="val">' + escapeHtml(p.initiatorName || '—') + '</span></div><div class="field"><span class="lbl">Designation</span><span class="val">' + escapeHtml(p.initiatorDesig || '—') + '</span></div></div></div><div class="section-block"><h3>Section & Location</h3><div class="grid"><div class="field"><span class="lbl">Section</span><span class="val">' + escapeHtml(getSectionLabel(p)) + '</span></div><div class="field"><span class="lbl">Equipment</span><span class="val">' + escapeHtml(p.equipment || '—') + '</span></div><div class="field" style="grid-column: span 2;"><span class="lbl">Location of Work</span><span class="val">' + escapeHtml(p.location || '—') + '</span></div></div></div><div class="section-block"><h3>Work Details</h3><div class="grid full"><div class="field"><span class="lbl">Description</span><span class="val">' + escapeHtml(p.description || '—') + '</span></div></div></div><div class="section-block"><h3>Schedule</h3><div class="grid"><div class="field"><span class="lbl">Start</span><span class="val">' + formatDate(p.start) + '</span></div><div class="field"><span class="lbl">Expected Completion</span><span class="val">' + formatDate(p.end) + '</span></div></div></div><div class="section-block"><h3>Other Permit Taken Details</h3><div class="grid full"><div class="field"><span class="val">' + escapeHtml(p.otherPermits || '—') + '</span></div></div></div><div class="section-block"><h3>Hazard Mitigation</h3><div class="grid full"><div class="field"><span class="val">' + escapeHtml(p.hazard || '—') + '</span></div></div></div><div class="section-block"><h3>Safety to be Taken Care Of</h3><div class="grid full"><div class="field"><span class="val">' + escapeHtml(p.safety || '—') + '</span></div></div></div><div class="section-block"><h3>Isolation Details</h3><div class="grid full"><div class="field"><span class="val">' + escapeHtml(p.isolation || '—') + '</span></div></div></div><div class="signatures">' + signatureBlock({ role: 'Initiator Signature', name: p.initiatorName, designation: p.initiatorDesig, date: p.createdAt }) + signatureBlock({ role: 'Issuer Signature', name: p.issuerName || p.rejectedBy, designation: p.issuerDesig || p.rejectedByDesig, date: p.issuedAt || p.rejectedAt }) + '</div><div class="digital-note">🔒 System-generated document. Signatures are recorded digitally in the COCCD Permit To Work system.</div><div class="footer"><span>Document ID: ' + escapeHtml(p.id || '—') + '</span><span>Generated on ' + new Date().toLocaleString() + '</span></div></div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
+  const iframe = document.createElement('iframe');
+  iframe.style.position = 'fixed'; iframe.style.right = '0'; iframe.style.bottom = '0'; iframe.style.width = '0'; iframe.style.height = '0'; iframe.style.border = '0';
+  document.body.appendChild(iframe);
+  const doc = iframe.contentWindow.document;
+  doc.open(); doc.write(html); doc.close();
+  setTimeout(function() { if (iframe.parentNode) iframe.parentNode.removeChild(iframe); }, 60000);
+  showToast('🖨️ Print dialog opening… (Choose "Save as PDF")', 'success');
+}
+
 const modalBackdrop = $('modalBackdrop');
 const modalTitle = $('modalTitle');
 const modalHead = $('modalHead');
 const modalBody = $('modalBody');
-
 function openModal(id) {
   const p = permits.find(function(x) { return x.id === id; });
   if (!p) return;
@@ -1533,57 +1864,47 @@ function openModal(id) {
   modalHead.classList.remove('rejected-modal-head', 'complete-modal-head');
   if (p.status === 'rejected') modalHead.classList.add('rejected-modal-head');
   else if (p.status === 'completed') modalHead.classList.add('complete-modal-head');
-
   const mineBadge = isMine(p) ? '<span class="badge-status badge-mine" style="font-size:0.65rem; padding:0.2rem 0.7rem;">Initiated by Me</span>' : '';
   let statusBadge;
   if (p.status === 'completed') statusBadge = '<span class="badge-status badge-completed">✅ Completed</span>';
   else if (p.status === 'issued') statusBadge = '<span class="badge-status badge-issued">✔ Issued</span>';
   else if (p.status === 'rejected') statusBadge = '<span class="badge-status badge-rejected">❌ Rejected</span>';
   else statusBadge = '<span class="badge-status badge-pending">⏳ Pending</span>';
-
   let extraHTML = '';
   if (p.status === 'completed') {
-    extraHTML = '<div class="modal-section completed-section"><h4>✅ Completed By</h4>' +
-      detailRow('Name', escapeHtml(p.completedBy || p.initiatorName)) +
-      detailRow('Designation', escapeHtml(p.completedByDesig || p.initiatorDesig)) +
-      detailRow('Completed At', formatDate(p.completedAt)) +
-      (p.completionRemarks ? '<div style="margin-top:0.7rem; padding:0.8rem 1rem; background:white; border-radius:0.7rem; border:1px dashed #c7dff0;"><div style="font-size:0.68rem; text-transform:uppercase; letter-spacing:0.5px; color:#1f4b5e; font-weight:800; margin-bottom:0.3rem;">📝 Completion Remarks</div><div style="font-size:0.9rem; color:#0b2b3c; white-space:pre-wrap; line-height:1.5;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
-    '</div>';
+    extraHTML = '<div class="modal-section completed-section"><h4>✅ Completed By</h4>' + detailRow('Name', escapeHtml(p.completedBy || p.initiatorName)) + detailRow('Designation', escapeHtml(p.completedByDesig || p.initiatorDesig)) + detailRow('Completed At', formatDate(p.completedAt)) + (p.completionRemarks ? '<div style="margin-top:0.7rem; padding:0.8rem 1rem; background:white; border-radius:0.7rem; border:1px dashed #c7dff0;"><div style="font-size:0.68rem; text-transform:uppercase; color:#1f4b5e; font-weight:800; margin-bottom:0.3rem;">📝 Completion Remarks</div><div style="font-size:0.9rem; white-space:pre-wrap; line-height:1.5;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') + '</div>';
   } else if (p.status === 'issued') {
     extraHTML = '<div class="modal-section" style="background:#eaf7ef; border-color:#b8d9c1;"><h4 style="color:#0a4b2a;">✅ Issued By</h4>' + detailRow('Issuer Name', escapeHtml(p.issuerName)) + detailRow('Designation', escapeHtml(p.issuerDesig)) + detailRow('Issued At', formatDate(p.issuedAt)) + '</div>';
   } else if (p.status === 'rejected') {
     extraHTML = '<div class="modal-section rejected-section"><h4>❌ Rejected By</h4>' + detailRow('Issuer Name', escapeHtml(p.rejectedBy || p.issuerName)) + detailRow('Designation', escapeHtml(p.rejectedByDesig || p.issuerDesig)) + detailRow('Rejected At', formatDate(p.rejectedAt)) + '<div class="rejection-reason-box"><div class="label">📝 Rejection Reason</div><div class="value">' + escapeHtml(p.rejectionReason || '—') + '</div></div></div>';
   }
-
   modalBody.innerHTML =
     '<div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem; flex-wrap:wrap;">' + statusBadge + '<span class="section-chip">' + escapeHtml(getSectionLabel(p)) + '</span>' + mineBadge + '</div>' +
     '<div class="modal-section"><h4>👤 Initiator Information</h4>' + detailRow('Name', escapeHtml(p.initiatorName)) + detailRow('Designation', escapeHtml(p.initiatorDesig)) + '</div>' +
     '<div class="modal-section"><h4>🏭 Section & Location</h4>' + detailRow('Section', escapeHtml(getSectionLabel(p))) + detailRow('Location of Work', escapeHtml(p.location)) + '</div>' +
     '<div class="modal-section"><h4>📝 Work Details</h4>' + detailRow('Description', escapeHtml(p.description)) + detailRow('Equipment', escapeHtml(p.equipment)) + '</div>' +
     '<div class="modal-section"><h4>🕒 Schedule</h4>' + detailRow('Start', formatDate(p.start)) + detailRow('Expected Completion', formatDate(p.end)) + '</div>' +
-    '<div class="modal-section"><h4>⚠️ Hazard Mitigation</h4><div style="font-size:0.85rem; color:#0b2b3c; white-space:pre-wrap;">' + (p.hazard ? escapeHtml(p.hazard) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
-    '<div class="modal-section"><h4>🦺 Safety Precautions</h4><div style="font-size:0.85rem; color:#0b2b3c; white-space:pre-wrap;">' + (p.safety ? escapeHtml(p.safety) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
-    '<div class="modal-section"><h4>🔌 Isolation Details</h4><div style="font-size:0.85rem; color:#0b2b3c; white-space:pre-wrap;">' + (p.isolation ? escapeHtml(p.isolation) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
+    '<div class="modal-section"><h4>🔗 Other Permits Taken</h4><div style="font-size:0.85rem; white-space:pre-wrap;">' + (p.otherPermits ? escapeHtml(p.otherPermits) : '<em style="color:#7d9aab;">None</em>') + '</div></div>' +
+    '<div class="modal-section"><h4>⚠️ Hazard Mitigation</h4><div style="font-size:0.85rem; white-space:pre-wrap;">' + (p.hazard ? escapeHtml(p.hazard) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
+    '<div class="modal-section"><h4>🦺 Safety Precautions</h4><div style="font-size:0.85rem; white-space:pre-wrap;">' + (p.safety ? escapeHtml(p.safety) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
+    '<div class="modal-section"><h4>🔌 Isolation Details</h4><div style="font-size:0.85rem; white-space:pre-wrap;">' + (p.isolation ? escapeHtml(p.isolation) : '<em style="color:#7d9aab;">Not specified</em>') + '</div></div>' +
     extraHTML +
     '<div class="modal-section" style="background:#f2f8fc;"><h4>📅 Timestamp</h4>' + detailRow('Submitted At', formatDate(p.createdAt)) + '</div>' +
-    (isMine(p) && p.status === 'issued'
-      ? '<div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;"><button class="btn btn-complete" id="modalMarkCompleteBtn" style="flex:1; padding:0.9rem; font-size:0.85rem;">✅ Mark Job Completed</button></div>'
-      : '');
-
+    '<div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;">' +
+      '<button class="btn btn-print" id="modalPrintBtn" style="flex:1; padding:0.9rem; font-size:0.85rem;">🖨️ Print / Save as PDF</button>' +
+      (isMine(p) && p.status === 'issued' ? '<button class="btn btn-complete" id="modalMarkCompleteBtn" style="flex:1; padding:0.9rem; font-size:0.85rem;">✅ Mark Job Completed</button>' : '') +
+    '</div>';
   modalBackdrop.classList.add('open');
   const mmcb = $('modalMarkCompleteBtn');
   if (mmcb) mmcb.addEventListener('click', function() { closeModal(); openCompleteModal(p.id); });
+  const mpb = $('modalPrintBtn');
+  if (mpb) mpb.addEventListener('click', function() { printPermit(p.id); });
 }
-
 function closeModal() { modalBackdrop.classList.remove('open'); modalHead.classList.remove('rejected-modal-head', 'complete-modal-head'); }
 $('modalClose').addEventListener('click', closeModal);
 modalBackdrop.addEventListener('click', function(e) { if (e.target === modalBackdrop) closeModal(); });
 
-// ============================================================
-// JOB COMPLETION MODAL
-// ============================================================
 const completeBackdrop = $('completeBackdrop');
-
 function openCompleteModal(id) {
   const p = permits.find(function(x) { return x.id === id; });
   if (!p) return;
@@ -1591,28 +1912,20 @@ function openCompleteModal(id) {
   if (p.status !== 'issued') { showToast('This permit cannot be marked completed.', 'error'); return; }
   completingPermitId = id;
   $('completeModalTitle').textContent = 'Mark ' + p.permitNumber + ' as Completed';
-  $('completePermitInfo').innerHTML =
-    detailRow('Description', escapeHtml(p.description)) +
-    detailRow('Equipment', escapeHtml(p.equipment)) +
-    detailRow('Location', escapeHtml(p.location)) +
-    detailRow('Section', escapeHtml(getSectionLabel(p)));
+  $('completePermitInfo').innerHTML = detailRow('Description', escapeHtml(p.description)) + detailRow('Equipment', escapeHtml(p.equipment)) + detailRow('Location', escapeHtml(p.location)) + detailRow('Section', escapeHtml(getSectionLabel(p)));
   $('f_completedAt').value = toDateTimeLocalValue(new Date());
   $('f_completionRemarks').value = '';
   completeBackdrop.classList.add('open');
   setTimeout(function() { $('f_completedAt').focus(); }, 100);
 }
-
 function closeCompleteModal() {
   completeBackdrop.classList.remove('open');
   completingPermitId = null;
-  $('f_completedAt').value = '';
-  $('f_completionRemarks').value = '';
+  $('f_completedAt').value = ''; $('f_completionRemarks').value = '';
 }
-
 $('completeModalClose').addEventListener('click', closeCompleteModal);
 $('cancelCompleteBtn').addEventListener('click', closeCompleteModal);
 completeBackdrop.addEventListener('click', function(e) { if (e.target === completeBackdrop) closeCompleteModal(); });
-
 $('confirmCompleteBtn').addEventListener('click', async function() {
   if (!completingPermitId) return;
   const completedAtVal = $('f_completedAt').value;
@@ -1621,11 +1934,8 @@ $('confirmCompleteBtn').addEventListener('click', async function() {
   const p = permits.find(function(x) { return x.id === completingPermitId; });
   if (!p) { showToast('Permit not found.', 'error'); closeCompleteModal(); return; }
   if (!isMine(p)) { showToast('⛔ Only the initiator can complete this.', 'error'); closeCompleteModal(); return; }
-
   const btn = this;
-  btn.disabled = true;
-  btn.textContent = '⏳ Saving…';
-
+  btn.disabled = true; btn.textContent = '⏳ Saving…';
   try {
     await updateDoc(doc(db, 'permits', p.id), {
       status: 'completed',
@@ -1639,38 +1949,17 @@ $('confirmCompleteBtn').addEventListener('click', async function() {
     showToast('✅ Job marked as completed.', 'success');
   } catch (err) {
     showToast('❌ Failed: ' + err.message, 'error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '✅ Confirm Completed';
-  }
+  } finally { btn.disabled = false; btn.textContent = '✅ Confirm Completed'; }
 });
 
-// ESC closes all modals
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
-    closeModal();
-    closeCompleteModal();
-    closeForgotModal();
+    closeModal(); closeCompleteModal(); closeForgotModal(); closeSectionsModal();
   }
 });
 
-// ============================================================
-// SECTION "OTHER" TOGGLE
-// ============================================================
-$('f_section').addEventListener('change', function() {
-  const wrap = $('otherSectionWrap'); const inp = $('f_sectionOther');
-  if (this.value === 'OTHER') { wrap.classList.remove('hidden'); inp.required = true; }
-  else { wrap.classList.add('hidden'); inp.required = false; inp.value = ''; }
-});
-
-// ============================================================
-// REFRESH ALL
-// ============================================================
 function refreshAll() {
-  renderPending();
-  renderMySubmitted();
-  renderIssued();
-  renderRejected();
+  renderPending(); renderMySubmitted(); renderIssued(); renderRejected();
   const pending = permits.filter(function(p) { return p.status === 'pending'; }).length;
   const issued = permits.filter(function(p) { return p.status === 'issued'; }).length;
   const completed = permits.filter(function(p) { return p.status === 'completed'; }).length;
@@ -1679,20 +1968,13 @@ function refreshAll() {
   $('statIssued').textContent = issued;
   $('statCompleted').textContent = completed;
   $('statRejected').textContent = rejected;
-  $('issuerModeBadge').textContent = pending;
   $('permitNumber').textContent = pendingPermitNumber;
 }
 
-// ============================================================
-// SUBMIT PERMIT
-// ============================================================
 $('permitForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const section = $('f_section').value;
-  const sectionOther = $('f_sectionOther').value.trim();
   if (!section) { showToast('Please select a section.', 'error'); return; }
-  if (section === 'OTHER' && !sectionOther) { showToast('Please specify section name.', 'error'); return; }
-
   const data = {
     permitNumber: pendingPermitNumber,
     initiatorName: currentUser.name,
@@ -1701,10 +1983,11 @@ $('permitForm').addEventListener('submit', async function(e) {
     description: $('f_description').value.trim(),
     equipment: $('f_equipment').value.trim(),
     section: section,
-    sectionOther: section === 'OTHER' ? sectionOther : '',
+    sectionOther: '',
     location: $('f_location').value.trim(),
     start: $('f_start').value,
     end: $('f_end').value,
+    otherPermits: $('f_otherPermits').value.trim(),
     hazard: $('f_hazard').value.trim(),
     safety: $('f_safety').value.trim(),
     isolation: $('f_isolation').value.trim(),
@@ -1714,15 +1997,15 @@ $('permitForm').addEventListener('submit', async function(e) {
     rejectedBy: '', rejectedByDesig: '', rejectedAt: null, rejectionReason: '',
     completedAt: null, completionRemarks: '', completedBy: '', completedByDesig: '', completedByUid: ''
   };
-  if (!data.description || !data.equipment || !data.location || !data.start || !data.end) { showToast('Fill all required fields.', 'error'); return; }
+  if (!data.description || !data.equipment || !data.location || !data.start || !data.end || !data.otherPermits || !data.hazard || !data.safety || !data.isolation) {
+    showToast('All fields are required. Please fill the complete form.', 'error');
+    return;
+  }
   if (new Date(data.end) <= new Date(data.start)) { showToast('Completion must be after start.', 'error'); return; }
-
   try {
     await addDoc(collection(db, 'permits'), data);
     showToast('✅ Permit ' + data.permitNumber + ' submitted.', 'success');
     $('permitForm').reset();
-    $('otherSectionWrap').classList.add('hidden');
-    $('f_sectionOther').required = false;
     $('f_initiatorName').value = currentUser.name;
     $('f_initiatorDesig').value = currentUser.designation;
     setDefaultDateTimes();
@@ -1730,25 +2013,20 @@ $('permitForm').addEventListener('submit', async function(e) {
     showToast('❌ Failed: ' + err.message, 'error');
   }
 });
-
 $('permitForm').addEventListener('reset', function() {
   setTimeout(function() {
     setDefaultDateTimes();
     $('f_initiatorName').value = currentUser.name;
     $('f_initiatorDesig').value = currentUser.designation;
     $('permitNumber').textContent = pendingPermitNumber;
-    $('otherSectionWrap').classList.add('hidden');
-    $('f_sectionOther').required = false;
   }, 0);
 });
 
-// ============================================================
-// ISSUE PERMIT
-// ============================================================
 $('issueBtn').addEventListener('click', async function() {
   if (!selectedPermitId) { showToast('Select a permit first.', 'error'); return; }
   const p = permits.find(function(x) { return x.id === selectedPermitId; });
   if (!p || p.status !== 'pending') { showToast('Permit not found.', 'error'); return; }
+  if (!canIssueSection(p.section)) { showToast('⛔ You are not authorized to issue permits for section "' + p.section + '".', 'error'); return; }
   try {
     await updateDoc(doc(db, 'permits', p.id), {
       status: 'issued',
@@ -1763,27 +2041,25 @@ $('issueBtn').addEventListener('click', async function() {
   } catch (err) { showToast('❌ Failed: ' + err.message, 'error'); }
 });
 
-// ============================================================
-// REJECT PERMIT
-// ============================================================
 $('rejectBtn').addEventListener('click', function() {
   if (!selectedPermitId) { showToast('Select a permit first.', 'error'); return; }
+  const p = permits.find(function(x) { return x.id === selectedPermitId; });
+  if (p && !canIssueSection(p.section)) { showToast('⛔ Not authorized for this section.', 'error'); return; }
   $('rejectWrap').classList.remove('hidden');
   $('f_rejectReason').focus();
   if ($('f_rejectReason').value.trim().length > 0) $('confirmRejectWrap').classList.remove('hidden');
   else $('confirmRejectWrap').classList.add('hidden');
 });
-
 $('f_rejectReason').addEventListener('input', function() {
   if (this.value.trim().length > 0) $('confirmRejectWrap').classList.remove('hidden');
   else $('confirmRejectWrap').classList.add('hidden');
 });
-
 $('confirmRejectBtn').addEventListener('click', async function() {
   const reason = $('f_rejectReason').value.trim();
   if (!reason) { showToast('Reason required.', 'error'); return; }
   const p = permits.find(function(x) { return x.id === selectedPermitId; });
   if (!p || p.status !== 'pending') { showToast('Permit not found.', 'error'); return; }
+  if (!canIssueSection(p.section)) { showToast('⛔ Not authorized.', 'error'); return; }
   try {
     await updateDoc(doc(db, 'permits', p.id), {
       status: 'rejected',
@@ -1800,7 +2076,6 @@ $('confirmRejectBtn').addEventListener('click', async function() {
     showToast('❌ Permit rejected.', 'success');
   } catch (err) { showToast('❌ Failed: ' + err.message, 'error'); }
 });
-
 $('cancelRejectBtn').addEventListener('click', resetRejectState);
 $('cancelIssueBtn').addEventListener('click', function() {
   selectedPermitId = null;
