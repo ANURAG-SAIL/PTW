@@ -425,7 +425,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div class="brand-block">
       <img src="sail-logo.png" alt="SAIL Logo" class="sail-logo-img" onerror="this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cpolygon points=%2750,5 95,50 50,95 5,50%27 fill=%27%23203166%27/%3E%3Cpath d=%27M30 55 L50 35 L70 55 L70 70 L50 50 L30 70 Z%27 fill=%27white%27/%3E%3C/svg%3E'">
       <div class="brand-bsp">Bhilai Steel Plant</div>
-      <div class="brand-coccd">CO&CCD</div>
+      <div class="brand-coccd">CO&amp;CCD</div>
       <div class="brand-ptw">Permit To Work</div>
     </div>
     <div class="auth-tabs">
@@ -435,7 +435,7 @@ textarea { resize: vertical; min-height: 60px; }
 
     <form id="loginForm">
       <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required>
+      <input type="email" id="loginEmail" placeholder="Enter Registered Email" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" required>
       <a class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
@@ -445,11 +445,11 @@ textarea { resize: vertical; min-height: 60px; }
 
     <form id="signupForm" class="hidden">
       <label>Full Name</label>
-      <input type="text" id="signupName" placeholder="e.g. Rajesh Kumar" required>
+      <input type="text" id="signupName" placeholder="Enter Full Name" required>
       <label>Designation</label>
-      <input type="text" id="signupDesig" placeholder="e.g. Maintenance Engineer" required>
+      <input type="text" id="signupDesig" placeholder="Enter Designation" required>
       <label>Email</label>
-      <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email" required>
+      <input type="email" id="signupEmail" placeholder="Enter Valid Email" autocomplete="email" required>
       <label>Password</label>
       <input type="password" id="signupPassword" placeholder="At least 6 characters" autocomplete="new-password" required>
 
@@ -505,7 +505,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div class="brand-block" style="border-bottom:none; padding-bottom:0; margin-bottom:1rem;">
       <img src="sail-logo.png" alt="SAIL Logo" class="sail-logo-img" onerror="this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cpolygon points=%2750,5 95,50 50,95 5,50%27 fill=%27%23203166%27/%3E%3Cpath d=%27M30 55 L50 35 L70 55 L70 70 L50 50 L30 70 Z%27 fill=%27white%27/%3E%3C/svg%3E'">
       <div class="brand-bsp">Bhilai Steel Plant</div>
-      <div class="brand-coccd">CO&CCD</div>
+      <div class="brand-coccd">CO&amp;CCD</div>
       <div class="brand-ptw">Permit To Work</div>
     </div>
     <div class="pending-icon">⏳</div>
@@ -532,7 +532,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div class="modal-body">
       <p style="font-size:0.88rem; color:#2e5467; margin-bottom:1rem;">Enter your registered email to receive a reset link.</p>
       <label>Email Address</label>
-      <input type="email" id="forgotEmail" placeholder="you@example.com">
+      <input type="email" id="forgotEmail" placeholder="Enter Registered Email">
       <div class="auth-error" id="forgotError" style="margin-top:0.8rem;"></div>
       <div class="auth-success" id="forgotSuccess" style="margin-top:0.8rem;"></div>
       <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -549,7 +549,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div class="header-left">
       <img src="sail-logo.png" alt="SAIL" class="header-logo" onerror="this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cpolygon points=%2750,5 95,50 50,95 5,50%27 fill=%27%23203166%27/%3E%3Cpath d=%27M30 55 L50 35 L70 55 L70 70 L50 50 L30 70 Z%27 fill=%27white%27/%3E%3C/svg%3E'">
       <div>
-        <h1>CO&CCD · Permit To Work</h1>
+        <h1>CO&amp;CCD · Permit To Work</h1>
         <div class="subtitle">Bhilai Steel Plant · SAFETY MANAGEMENT SYSTEM</div>
       </div>
     </div>
@@ -600,7 +600,7 @@ textarea { resize: vertical; min-height: 60px; }
             <div class="form-grid">
               <div class="field-full">
                 <label>Permit Number (auto-generated)</label>
-                <div class="permit-number"><span id="permitNumber">COCCD/0001</span><span class="hint">Predefined</span></div>
+                <div class="permit-number"><span id="permitNumber">CO&amp;CCD/0001</span><span class="hint">Predefined</span></div>
               </div>
               <div>
                 <label>Initiator Name <span class="req">*</span></label>
@@ -612,11 +612,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. Replace bearing on conveyor drive motor" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. PLC Work" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. Conveyor CV-201" required>
+                <input type="text" id="f_equipment" placeholder="e.g. CP 9-2" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -634,7 +634,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. Conveyor CV-201, near crusher house" required>
+                <input type="text" id="f_location" placeholder="e.g. CT-5, Repair Section" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -672,7 +672,7 @@ textarea { resize: vertical; min-height: 60px; }
 
               <div class="field-full">
                 <label>Contract / Work Order Name <span class="req">*</span></label>
-                <input type="text" id="f_contractName" placeholder="e.g. AMC-2025-CRUSH-001" required>
+                <input type="text" id="f_contractName" placeholder="Enter Details" required>
               </div>
 
               <div class="field-full">
@@ -695,15 +695,15 @@ textarea { resize: vertical; min-height: 60px; }
 
               <div class="field-full">
                 <label>Hazard Mitigation <span class="req">*</span></label>
-                <textarea id="f_hazard" rows="2" placeholder="e.g. Lockout/tagout applied, area barricaded" required></textarea>
+                <textarea id="f_hazard" rows="2" placeholder="e.g. Area barricaded" required></textarea>
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of <span class="req">*</span></label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, fire watch, proper grounding" required></textarea>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, Proper Earthing" required></textarea>
               </div>
               <div class="field-full">
                 <label>Isolation Details <span class="req">*</span></label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, valve #V-12 locked" required></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, Telescope Valve Locked" required></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -1175,7 +1175,7 @@ let showAllRejectedDates = false;
 let issuerSectionFilter = '__all__';
 let issuedSectionFilter = '__all__';
 let rejectedSectionFilter = '__all__';
-let pendingPermitNumber = 'COCCD/0001';
+let pendingPermitNumber = 'CO&CCD/0001';
 let activeSubTab = null;
 let unsubscribePermits = null;
 let unsubscribeUsers = null;
@@ -1363,7 +1363,7 @@ function renderOtherPermitDetailBoxes() {
     const val = currentOtherPermitDetails[item.key] || '';
     html += '<div class="other-permit-detail-box">' +
               '<div class="opd-label">📄 ' + escapeHtml(item.label) + ' — Details <span class="req" style="color:#c0392b;">*</span></div>' +
-              '<input type="text" class="other-permit-detail-input" data-opkey="' + item.key + '" value="' + escapeHtml(val) + '" placeholder="Permit no., validity, issuing agency, remarks...">' +
+              '<input type="text" class="other-permit-detail-input" data-opkey="' + item.key + '" value="' + escapeHtml(val) + '" placeholder="Permit number, Validity">' +
             '</div>';
   });
   wrap.innerHTML = html;
@@ -1744,12 +1744,13 @@ function enterApp() {
     });
     let maxNum = 0;
     permits.forEach(function(p) {
-      if (p.permitNumber && String(p.permitNumber).startsWith('COCCD/')) {
-        const n = parseInt(String(p.permitNumber).split('/')[1], 10);
+      const pn = String(p.permitNumber || '');
+      if (pn.startsWith('COCCD/') || pn.startsWith('CO&CCD/')) {
+        const n = parseInt(pn.split('/')[1], 10);
         if (!isNaN(n) && n > maxNum) maxNum = n;
       }
     });
-    pendingPermitNumber = 'COCCD/' + String(maxNum + 1).padStart(4, '0');
+    pendingPermitNumber = 'CO&CCD/' + String(maxNum + 1).padStart(4, '0');
     $('permitNumber').textContent = pendingPermitNumber;
     refreshAll();
   }, function(error) { console.error(error); showToast('⚠️ Connection error.', 'error'); });
@@ -3161,7 +3162,7 @@ function printPermit(permitId) {
     '.other-permits-list { font-size: 10pt; white-space: pre-wrap; line-height: 1.5; }' +
     '.footer { margin-top: 8mm; padding-top: 2mm; border-top: 0.3mm solid #ccc; font-size: 7.5pt; color: #666; display: flex; justify-content: space-between; page-break-inside: avoid; break-inside: avoid; }' +
     '</style></head><body><div class="print-container">' +
-    '<div class="header"><img src="sail-logo.png" onerror="this.style.display=\'none\'"><div class="header-text"><div class="bsp">Bhilai Steel Plant</div><div class="coccd">CO&CCD</div><div class="ptw">Permit To Work</div></div></div>' +
+    '<div class="header"><img src="sail-logo.png" onerror="this.style.display=\'none\'"><div class="header-text"><div class="bsp">Bhilai Steel Plant</div><div class="coccd">CO&amp;CCD</div><div class="ptw">Permit To Work</div></div></div>' +
     '<div class="permit-bar"><span class="num">' + escapeHtml(p.permitNumber) + '</span><span class="status">' + status + '</span></div>' +
     '<div class="section-block"><h3>Initiator & Executor</h3><div class="grid">' +
       '<div class="field"><span class="lbl">Initiator</span><span class="val">' + escapeHtml(p.initiatorName || '') + '</span></div>' +
