@@ -452,7 +452,7 @@ textarea { resize: vertical; min-height: 60px; }
       <label>Full Name</label>
       <input type="text" id="signupName" placeholder="Enter Full Name" required>
       <label>Designation</label>
-      <input type="text" id="signupDesig" placeholder="Enter Designation" required>
+      <input type="text" id="signupDesig" placeholder="Eg. AM" required>
       <label>Email</label>
       <input type="email" id="signupEmail" placeholder="Enter Valid Email" autocomplete="email" required>
       <label>Password</label>
@@ -617,11 +617,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g.PLC Work" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. Motor Base Fabrication" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. CP 9-2" required>
+                <input type="text" id="f_equipment" placeholder="e.g. CP 9-0" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -639,7 +639,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. CT-5, Repair Section" required>
+                <input type="text" id="f_location" placeholder="e.g. EB-15, Repair Section" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -707,7 +707,7 @@ textarea { resize: vertical; min-height: 60px; }
 
               <div class="field-full">
                 <label>Hazard Mitigation <span class="req">*</span></label>
-                <textarea id="f_hazard" rows="2" placeholder="e.g. Area barricaded, Fire Catch" required></textarea>
+                <textarea id="f_hazard" rows="2" placeholder="e.g. Area barricaded, Gas Line" required></textarea>
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of <span class="req">*</span></label>
@@ -715,7 +715,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Isolation Details <span class="req">*</span></label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical Isolation, Mechanical Isolation" required></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, Latch Hyd. Valve Kept OFF" required></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -854,6 +854,10 @@ textarea { resize: vertical; min-height: 60px; }
             <div class="checklist-block permit-close">
               <div class="checklist-title">Complete this to close the permit</div>
               <div id="permitClosureList"></div>
+            </div>
+            <div class="field-full" style="margin-top:1rem;">
+              <label for="f_closureDescription" style="color:#166534;">Closure Description (if any)</label>
+              <textarea id="f_closureDescription" rows="3" placeholder="e.g. Additional remarks, deviations from plan, test-run observations, de-isolation notes…"></textarea>
             </div>
             <div style="margin-top:1rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
               <button type="button" class="btn btn-closure" id="confirmClosureBtn" style="flex:1; min-width:180px;">🔒 Close Permit</button>
@@ -2136,6 +2140,7 @@ $('permitForm').addEventListener('submit', async function(e) {
     completedAt: null, completionRemarks: '', completedBy: '', completedByDesig: '', completedByUid: '', completedVia: '',
     workClosureChecklist: {},
     permitClosureChecklist: {},
+    closureDescription: '',
     closedBy: '', closedByDesig: '', closedByUid: '', closedAt: null
   };
 
@@ -2510,6 +2515,7 @@ function renderClosureList() {
     item.addEventListener('click', function() {
       selectedClosureId = item.dataset.id;
       currentPermitClosureSel = {};
+      $('f_closureDescription').value = '';
       renderChecklist('permitClosureList', PERMIT_CLOSURE_CHECKS, currentPermitClosureSel, false);
       renderClosureList();
       showClosureDetail();
@@ -2922,6 +2928,7 @@ function openModal(id) {
     (p.completedAt ? '<div class="modal-section completed-section"><h4>✅ Completed By</h4>' + detailRow('Name', escapeHtml(p.completedBy || '')) + detailRow('At', formatDate(p.completedAt)) + (p.completionRemarks ? detailRow('Remarks', escapeHtml(p.completionRemarks)) : '') + '</div>' : '') +
     (p.workClosureChecklist && Object.keys(p.workClosureChecklist).length > 0 ? '<div class="modal-section" style="background:#faf5ff; border-color:#ddd6fe;"><h4 style="color:#6b21a8;">✅ Work Closure Checklist</h4>' + renderChecksReadonly(WORK_CLOSURE_CHECKS, p.workClosureChecklist) + '</div>' : '') +
     (p.permitClosureChecklist && Object.keys(p.permitClosureChecklist).length > 0 ? '<div class="modal-section" style="background:#f0fdf4; border-color:#bbf7d0;"><h4 style="color:#166534;">🔒 Permit Closure Checklist</h4>' + renderChecksReadonly(PERMIT_CLOSURE_CHECKS, p.permitClosureChecklist) + '</div>' : '') +
+    (p.closureDescription ? '<div class="modal-section" style="background:#f0fdf4; border-color:#bbf7d0;"><h4 style="color:#166534;">📝 Closure Description</h4><div style="font-size:0.9rem; white-space:pre-wrap;">' + escapeHtml(p.closureDescription) + '</div></div>' : '') +
     (p.closedAt ? '<div class="modal-section" style="background:#f0fdf4; border-color:#bbf7d0;"><h4 style="color:#166534;">🔒 Closed By</h4>' + detailRow('Name', escapeHtml(p.closedBy || '')) + detailRow('At', formatDate(p.closedAt)) + '</div>' : '') +
     (p.status === 'rejected' ? '<div class="modal-section rejected-section"><h4>❌ Rejected</h4>' + detailRow('By', escapeHtml(p.rejectedBy || '')) + detailRow('At', formatDate(p.rejectedAt)) + '<div style="margin-top:0.6rem; padding:0.8rem 1rem; background:white; border-radius:0.7rem; border:1px dashed #f5c6c0;"><div style="font-size:0.68rem; color:#842029; font-weight:800; margin-bottom:0.3rem;">📝 Reason</div><div style="font-size:0.9rem; white-space:pre-wrap;">' + escapeHtml(p.rejectionReason || '') + '</div></div></div>' : '') +
     '<div class="modal-section" style="background:#f2f8fc;"><h4>📅 Submitted</h4>' + detailRow('At', formatDate(p.createdAt)) + '</div>' +
@@ -3123,6 +3130,7 @@ $('confirmClosureBtn').addEventListener('click', async function() {
     await updateDoc(doc(db, 'permits', p.id), {
       status: 'closed',
       permitClosureChecklist: Object.assign({}, currentPermitClosureSel),
+      closureDescription: $('f_closureDescription').value.trim(),
       closedBy: currentUser.name,
       closedByDesig: currentUser.designation,
       closedByUid: currentUser.uid,
@@ -3130,6 +3138,7 @@ $('confirmClosureBtn').addEventListener('click', async function() {
     });
     selectedClosureId = null;
     $('closureArea').classList.add('hidden');
+    $('f_closureDescription').value = '';
     showToast('🔒 Permit closed successfully.', 'success');
   } catch (err) { showToast('❌ ' + err.message, 'error'); }
   finally { btn.disabled = false; btn.textContent = '🔒 Close Permit'; }
@@ -3138,6 +3147,7 @@ $('confirmClosureBtn').addEventListener('click', async function() {
 $('cancelClosureBtn').addEventListener('click', function() {
   selectedClosureId = null;
   $('closureArea').classList.add('hidden');
+  $('f_closureDescription').value = '';
   renderClosureList();
 });
 
@@ -3272,6 +3282,7 @@ function printPermit(permitId) {
     (p.preExecutionChecklist && Object.keys(p.preExecutionChecklist).length > 0 ? '<div class="checklist-section exec"><h4>🔧 Pre-Execution Checklist (by Executor)</h4>' + checklistRows(PRE_EXEC_CHECKS, p.preExecutionChecklist) + '</div>' : '') +
     (p.workClosureChecklist && Object.keys(p.workClosureChecklist).length > 0 ? '<div class="checklist-section closure"><h4>✅ Work Closure Checklist (by Executor)</h4>' + checklistRows(WORK_CLOSURE_CHECKS, p.workClosureChecklist) + '</div>' : '') +
     (p.permitClosureChecklist && Object.keys(p.permitClosureChecklist).length > 0 ? '<div class="checklist-section permit-close"><h4>🔒 Permit Closure Checklist (by Issuer)</h4>' + checklistRows(PERMIT_CLOSURE_CHECKS, p.permitClosureChecklist) + '</div>' : '') +
+    (p.closureDescription ? '<div class="section-block"><h3>Closure Description</h3><div style="font-size:10pt; white-space:pre-wrap;">' + escapeHtml(p.closureDescription) + '</div></div>' : '') +
     (p.completionRemarks ? '<div class="section-block"><h3>Completion Remarks</h3><div style="font-size:10pt; white-space:pre-wrap;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
     (p.status === 'rejected' ? '<div class="section-block" style="background:#fff5f5;padding:2.5mm;border-left:1mm solid #c0392b;"><h3 style="color:#842029;border-color:#f5c6c0;">❌ Rejection</h3><div style="font-size:10pt;"><b>By:</b> ' + escapeHtml(p.rejectedBy || '') + ' on ' + formatDate(p.rejectedAt) + '<br><b>Reason:</b> ' + escapeHtml(p.rejectionReason || '') + '</div></div>' : '') +
     '<div class="signatures">' +
