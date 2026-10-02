@@ -128,6 +128,11 @@ textarea { resize: vertical; min-height: 60px; }
 .other-permit-detail-box input { background: white; border-color: #bbf7d0; font-size: 0.88rem; padding: 0.55rem 0.8rem; }
 .other-permit-detail-box input:focus { border-color: #166534; box-shadow: 0 0 0 3px rgba(22,101,52,0.1); }
 
+.search-input-wrap { position: relative; }
+.search-input-wrap input { padding-right: 2.2rem; }
+.search-input-wrap .clear-search-btn { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); background: #e1eff8; border: none; color: #2e5467; font-size: 0.75rem; font-weight: 700; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: inherit; }
+.search-input-wrap .clear-search-btn:hover { background: #c0392b; color: white; }
+
 .btn { border: none; padding: 0.8rem 1.4rem; border-radius: 2rem; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: white; color: #0b2b3c; border: 1.5px solid #b8cfdb; font-family: inherit; }
 .btn-primary { background: #0b2b3c; color: white; border: 1.5px solid #0b2b3c; }
 .btn-primary:hover { background: #1f4b5e; }
@@ -451,7 +456,7 @@ textarea { resize: vertical; min-height: 60px; }
       <label>Email</label>
       <input type="email" id="signupEmail" placeholder="Enter Valid Email" autocomplete="email" required>
       <label>Password</label>
-      <input type="password" id="signupPassword" placeholder="At least 6 characters" autocomplete="new-password" required>
+      <input type="password" id="signupPassword" placeholder="Enter Password" autocomplete="new-password" required>
 
       <label style="margin-top:1rem;">Select Your Role(s) <span class="req">*</span></label>
       <div style="font-size:0.72rem; color:#5e7e91; margin-bottom:0.5rem;">Pick all that apply.</div>
@@ -612,7 +617,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. PLC Work" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g.PLC Work" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
@@ -662,17 +667,24 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
 
               <div id="executorSelectWrap" class="field-full hidden">
-                <label>Select Registered Executor <span class="req">*</span></label>
+                <label>Search & Select Registered Executor <span class="req">*</span></label>
+                <div class="search-input-wrap" style="margin-bottom:0.5rem;">
+                  <input type="text" id="executorSearchInput" placeholder="🔍 Search by name, designation or agency…">
+                  <button type="button" class="clear-search-btn hidden" id="executorSearchClear">✕</button>
+                </div>
                 <select id="f_executorUid"><option value="">— Select Executor —</option></select>
                 <div id="selectedExecutorInfo" class="hidden" style="margin-top:0.6rem; padding:0.8rem 1rem; background:#f0fdfa; border-radius:0.8rem; border:1px solid #99f6e4; font-size:0.82rem; color:#0f766e;"></div>
                 <div id="executorEmptyNote" class="hidden" style="margin-top:0.6rem; padding:0.8rem 1rem; background:#fef3c7; border-radius:0.8rem; border:1px solid #fde68a; font-size:0.82rem; color:#78350f;">
                   ⚠️ No registered executors found. Users must sign up with "Executor" role and be approved by admin first.
                 </div>
+                <div id="executorNoMatchNote" class="hidden" style="margin-top:0.6rem; padding:0.8rem 1rem; background:#fef3c7; border-radius:0.8rem; border:1px solid #fde68a; font-size:0.82rem; color:#78350f;">
+                  🔍 No executors match your search.
+                </div>
               </div>
 
               <div class="field-full">
                 <label>Contract / Work Order Name <span class="req">*</span></label>
-                <input type="text" id="f_contractName" placeholder="Enter Details" required>
+                <input type="text" id="f_contractName" placeholder="e.g. AMC-2025-CRUSH-001" required>
               </div>
 
               <div class="field-full">
@@ -695,7 +707,7 @@ textarea { resize: vertical; min-height: 60px; }
 
               <div class="field-full">
                 <label>Hazard Mitigation <span class="req">*</span></label>
-                <textarea id="f_hazard" rows="2" placeholder="e.g. Area barricaded" required></textarea>
+                <textarea id="f_hazard" rows="2" placeholder="e.g. Area barricaded, Fire Catch" required></textarea>
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of <span class="req">*</span></label>
@@ -703,7 +715,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Isolation Details <span class="req">*</span></label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, Telescope Valve Locked" required></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical Isolation, Mechanical Isolation" required></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -914,6 +926,12 @@ textarea { resize: vertical; min-height: 60px; }
         <div class="badge" id="adminUserCount">0</div>
       </div>
       <div class="card-body">
+        <div class="filter-bar">
+          <div class="search-input-wrap" style="flex:1; min-width:220px;">
+            <input type="text" id="adminUserSearchInput" placeholder="🔍 Search by name, email, designation or section…">
+            <button type="button" class="clear-search-btn hidden" id="adminUserSearchClear">✕</button>
+          </div>
+        </div>
         <div class="filter-bar">
           <button class="filter-btn active" data-adminfilter="pending">⏳ Pending</button>
           <button class="filter-btn" data-adminfilter="approved">✔ Approved</button>
@@ -1192,6 +1210,10 @@ let currentPreExecSel = {};
 let currentWorkClosureSel = {};
 let currentPermitClosureSel = {};
 
+// Search state
+let executorSearchQuery = '';
+let adminUserSearchQuery = '';
+
 const $ = function(id) { return document.getElementById(id); };
 
 function escapeHtml(t) {
@@ -1363,7 +1385,7 @@ function renderOtherPermitDetailBoxes() {
     const val = currentOtherPermitDetails[item.key] || '';
     html += '<div class="other-permit-detail-box">' +
               '<div class="opd-label">📄 ' + escapeHtml(item.label) + ' — Details <span class="req" style="color:#c0392b;">*</span></div>' +
-              '<input type="text" class="other-permit-detail-input" data-opkey="' + item.key + '" value="' + escapeHtml(val) + '" placeholder="Permit number, Validity">' +
+              '<input type="text" class="other-permit-detail-input" data-opkey="' + item.key + '" value="' + escapeHtml(val) + '" placeholder="Permit no., validity, issuing agency, remarks...">' +
             '</div>';
   });
   wrap.innerHTML = html;
@@ -1774,25 +1796,39 @@ function populateExecutorDropdown() {
   if (!sel) return;
   const val = sel.value;
   let opts = '<option value="">— Select Executor —</option>';
-  let count = 0;
+  let totalExecutors = 0;
+  let matchCount = 0;
+  const q = (executorSearchQuery || '').trim().toLowerCase();
   users.forEach(function(u) {
     if (!u.approved) return;
     const roles = Array.isArray(u.roles) ? u.roles : [];
     if (roles.indexOf('executor') === -1) return;
     if (currentUser && u.uid === currentUser.uid) return;
-    count++;
+    totalExecutors++;
+    const hay = ((u.name || '') + ' ' + (u.designation || '') + ' ' + (u.agencyName || '')).toLowerCase();
+    if (q && hay.indexOf(q) === -1) return;
+    matchCount++;
     const isExt = u.executorType === 'external';
     const tag = isExt ? ' 🏢 ' + (u.agencyName || 'External') : ' 👤 Internal';
     opts += '<option value="' + escapeHtml(u.uid) + '">' + escapeHtml(u.name || '') + ' (' + escapeHtml(u.designation || '—') + ')' + escapeHtml(tag) + '</option>';
   });
   sel.innerHTML = opts;
   if ([].slice.call(sel.options).some(function(o) { return o.value === val; })) sel.value = val;
+  else { sel.value = ''; $('selectedExecutorInfo').classList.add('hidden'); }
 
   const emptyNote = $('executorEmptyNote');
+  const noMatchNote = $('executorNoMatchNote');
   if (emptyNote) {
-    if (count === 0) emptyNote.classList.remove('hidden');
+    if (totalExecutors === 0) emptyNote.classList.remove('hidden');
     else emptyNote.classList.add('hidden');
   }
+  if (noMatchNote) {
+    if (totalExecutors > 0 && matchCount === 0 && q) noMatchNote.classList.remove('hidden');
+    else noMatchNote.classList.add('hidden');
+  }
+
+  const clearBtn = $('executorSearchClear');
+  if (clearBtn) clearBtn.classList.toggle('hidden', !q);
 }
 
 function populateSectionFilters() {
@@ -1977,6 +2013,32 @@ $('issuedSectionFilter').addEventListener('change', function() { issuedSectionFi
 $('rejectedSectionFilter').addEventListener('change', function() { rejectedSectionFilter = this.value; renderRejected(); });
 
 // ============================================================
+// EXECUTOR SEARCH (Option A — filters the existing dropdown)
+// ============================================================
+$('executorSearchInput').addEventListener('input', function() {
+  executorSearchQuery = this.value;
+  populateExecutorDropdown();
+});
+$('executorSearchClear').addEventListener('click', function() {
+  executorSearchQuery = '';
+  $('executorSearchInput').value = '';
+  populateExecutorDropdown();
+});
+
+// ============================================================
+// ADMIN USER SEARCH (Option A — filters the rendered list)
+// ============================================================
+$('adminUserSearchInput').addEventListener('input', function() {
+  adminUserSearchQuery = this.value;
+  renderAdminUsers();
+});
+$('adminUserSearchClear').addEventListener('click', function() {
+  adminUserSearchQuery = '';
+  $('adminUserSearchInput').value = '';
+  renderAdminUsers();
+});
+
+// ============================================================
 // EXECUTOR CHOICE
 // ============================================================
 $('execSelfChoice').addEventListener('click', function() {
@@ -2100,6 +2162,8 @@ function resetPermitForm() {
   $('selectedExecutorInfo').classList.add('hidden');
   currentPrePermitSel = {}; currentEmergencySel = {};
   currentOtherPermitsSel = []; currentOtherPermitDetails = {};
+  executorSearchQuery = '';
+  $('executorSearchInput').value = '';
   renderChecklist('prePermitChecksList', PRE_PERMIT_CHECKS, currentPrePermitSel, true);
   renderChecklist('emergencyChecksList', EMERGENCY_CHECKS, currentEmergencySel, true);
   renderOtherPermitsChecklist();
@@ -2124,6 +2188,8 @@ $('permitForm').addEventListener('reset', function() {
     $('selectedExecutorInfo').classList.add('hidden');
     currentPrePermitSel = {}; currentEmergencySel = {};
     currentOtherPermitsSel = []; currentOtherPermitDetails = {};
+    executorSearchQuery = '';
+    $('executorSearchInput').value = '';
     renderChecklist('prePermitChecksList', PRE_PERMIT_CHECKS, currentPrePermitSel, true);
     renderChecklist('emergencyChecksList', EMERGENCY_CHECKS, currentEmergencySel, true);
     renderOtherPermitsChecklist();
@@ -2574,6 +2640,16 @@ function renderAdminUsers() {
   if (adminFilter === 'rejected') list = list.filter(function(u) { return u.status === 'rejected'; });
   if (adminRoleFilter !== 'all') list = list.filter(function(u) { const r = Array.isArray(u.roles) ? u.roles : []; return r.indexOf(adminRoleFilter) !== -1; });
 
+  const q = (adminUserSearchQuery || '').trim().toLowerCase();
+  if (q) {
+    list = list.filter(function(u) {
+      const assigned = Array.isArray(u.assignedSections) ? u.assignedSections.join(' ') : '';
+      const roles = Array.isArray(u.roles) ? u.roles.join(' ') : '';
+      const hay = ((u.name || '') + ' ' + (u.email || '') + ' ' + (u.designation || '') + ' ' + assigned + ' ' + roles + ' ' + (u.agencyName || '')).toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
   const pendingCount = users.filter(function(u) { return !u.approved && !u.isAdmin && u.status !== 'rejected'; }).length;
   const initCount = users.filter(function(u) { const r = Array.isArray(u.roles) ? u.roles : []; return r.indexOf('initiator') !== -1; }).length;
   const issCount = users.filter(function(u) { const r = Array.isArray(u.roles) ? u.roles : []; return r.indexOf('issuer') !== -1; }).length;
@@ -2585,7 +2661,13 @@ function renderAdminUsers() {
   $('roleExecCount').textContent = '(' + exCount + ')';
   $('adminUserCount').textContent = list.length + ' user' + (list.length !== 1 ? 's' : '');
 
-  if (list.length === 0) { $('adminUsersList').innerHTML = '<div class="empty-state"><span class="icon">👥</span>No users.</div>'; return; }
+  const clearBtn = $('adminUserSearchClear');
+  if (clearBtn) clearBtn.classList.toggle('hidden', !q);
+
+  if (list.length === 0) {
+    $('adminUsersList').innerHTML = '<div class="empty-state"><span class="icon">👥</span>' + (q ? 'No users match your search.' : 'No users.') + '</div>';
+    return;
+  }
   let html = '';
   list.forEach(function(u) {
     const isAdmin = u.isAdmin === true;
@@ -3084,7 +3166,7 @@ function refreshAll() {
 }
 
 // ============================================================
-// PRINT — REFINED FOR A4
+// PRINT — reverted font sizes, no forced page break on signatures
 // ============================================================
 function printPermit(permitId) {
   const p = permits.find(function(x) { return x.id === permitId; });
@@ -3142,7 +3224,7 @@ function printPermit(permitId) {
     '.field { page-break-inside: avoid; break-inside: avoid; }' +
     '.field .lbl { font-weight: 700; color: #555; text-transform: uppercase; font-size: 7.5pt; display: block; letter-spacing: 0.2mm; }' +
     '.field .val { color: #111; font-size: 10pt; font-weight: 500; white-space: pre-wrap; }' +
-    '.signatures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin-top: 8mm; page-break-inside: avoid; break-inside: avoid; }' +
+    '.signatures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin-top: 6mm; page-break-inside: avoid; break-inside: avoid; }' +
     '.sig-block { border: 0.6mm solid #0b2b3c; border-radius: 2.5mm; padding: 3mm; background: #f8fbfd; min-height: 32mm; page-break-inside: avoid; break-inside: avoid; }' +
     '.sig-block.empty-sig { border-style: dashed; border-color: #b8cfdb; }' +
     '.sig-role { font-size: 7.5pt; font-weight: 800; color: #0b2b3c; text-transform: uppercase; padding-bottom: 1.2mm; margin-bottom: 1.5mm; border-bottom: 0.3mm solid #cfe0ea; letter-spacing: 0.3mm; }' +
@@ -3160,7 +3242,7 @@ function printPermit(permitId) {
     '.checklist-section.permit-close { background: #f0fdf4; border-color: #bbf7d0; }' +
     '.checklist-section h4 { font-size: 9pt; text-transform: uppercase; margin-bottom: 1.5mm; color: #0b2b3c; font-weight: 800; letter-spacing: 0.3mm; }' +
     '.other-permits-list { font-size: 10pt; white-space: pre-wrap; line-height: 1.5; }' +
-    '.footer { margin-top: 8mm; padding-top: 2mm; border-top: 0.3mm solid #ccc; font-size: 7.5pt; color: #666; display: flex; justify-content: space-between; page-break-inside: avoid; break-inside: avoid; }' +
+    '.footer { margin-top: 6mm; padding-top: 2mm; border-top: 0.3mm solid #ccc; font-size: 7.5pt; color: #666; display: flex; justify-content: space-between; page-break-inside: avoid; break-inside: avoid; }' +
     '</style></head><body><div class="print-container">' +
     '<div class="header"><img src="sail-logo.png" onerror="this.style.display=\'none\'"><div class="header-text"><div class="bsp">Bhilai Steel Plant</div><div class="coccd">CO&amp;CCD</div><div class="ptw">Permit To Work</div></div></div>' +
     '<div class="permit-bar"><span class="num">' + escapeHtml(p.permitNumber) + '</span><span class="status">' + status + '</span></div>' +
