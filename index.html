@@ -62,12 +62,16 @@ body { background: #e9eef2; min-height: 100vh; padding: 1.5rem; display: flex; j
 .header .stat strong { font-size: 1rem; display: block; }
 .header .stat.rejected-stat { background: rgba(192, 57, 43, 0.35); }
 .header .stat.completed-stat { background: rgba(44, 110, 143, 0.35); }
-.user-chip { background: rgba(255,255,255,0.15); padding: 0.45rem 0.9rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+.header .stat.closed-stat { background: rgba(22, 101, 52, 0.35); }
+.user-chip { background: rgba(255,255,255,0.15); padding: 0.45rem 0.9rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.6rem; cursor: pointer; transition: background 0.15s, border-color 0.15s; border: 1.5px solid transparent; }
+.user-chip:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.4); }
+.user-chip:active { transform: scale(0.98); }
 .user-chip .avatar { width: 28px; height: 28px; border-radius: 50%; background: #e1eff8; color: #0b2b3c; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; }
 .user-chip .avatar.admin-glow { box-shadow: 0 0 0 2px #fbbf24, 0 0 12px rgba(251, 191, 36, 0.6); }
 .user-chip .info { line-height: 1.15; min-width: 0; }
 .user-chip .name { font-weight: 700; font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
 .user-chip .desig { font-size: 0.68rem; opacity: 0.85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+.user-chip .edit-hint { font-size: 0.72rem; opacity: 0.8; flex-shrink: 0; }
 .logout-btn { background: rgba(255,255,255,0.15); border: none; color: white; cursor: pointer; font-size: 0.72rem; padding: 0.35rem 0.75rem; border-radius: 20px; font-weight: 700; font-family: inherit; white-space: nowrap; }
 .logout-btn:hover { background: #c0392b; }
 
@@ -289,6 +293,7 @@ textarea { resize: vertical; min-height: 60px; }
 .modal-head.accept-modal-head { background: #0f766e; }
 .modal-head.review-modal-head { background: #6b21a8; }
 .modal-head.closure-modal-head { background: #166534; }
+.modal-head.profile-modal-head { background: #1f4b5e; }
 .modal-head h3 { font-size: 1.1rem; font-weight: 600; font-family: monospace; letter-spacing: 0.5px; }
 .modal-close { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
 .modal-body { padding: 1.5rem; }
@@ -305,6 +310,8 @@ textarea { resize: vertical; min-height: 60px; }
 .section-check.checked { border-color: #0b2b3c; background: #e1eff8; }
 .section-check input { width: auto; margin: 0; cursor: pointer; }
 .section-check .lbl { font-size: 0.85rem; font-weight: 600; color: #0b2b3c; }
+
+.readonly-field { background: #f1f5f9; color: #64748b; cursor: not-allowed; }
 
 .toast { position: fixed; bottom: 30px; right: 30px; left: 30px; background: #0b2b3c; color: white; padding: 1rem 1.5rem; border-radius: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-size: 0.88rem; z-index: 9999; opacity: 0; transform: translateY(20px); transition: all 0.3s; max-width: 380px; margin: 0 auto; }
 .toast.show { opacity: 1; transform: translateY(0); }
@@ -335,7 +342,7 @@ textarea { resize: vertical; min-height: 60px; }
   .header h1 { font-size: 1.02rem; line-height: 1.2; }
   .header .subtitle { font-size: 0.66rem; line-height: 1.3; }
   .header-right { width: 100%; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
-  .header .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.3rem; width: 100%; order: 1; }
+  .header .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.3rem; width: 100%; order: 1; }
   .header .stat { padding: 0.4rem 0.3rem; min-width: 0; border-radius: 0.6rem; font-size: 0.6rem; text-align: center; line-height: 1.1; }
   .header .stat strong { font-size: 0.95rem; display: block; margin-bottom: 0.1rem; }
   .user-chip { order: 2; padding: 0.35rem 0.7rem 0.35rem 0.35rem; font-size: 0.72rem; gap: 0.45rem; flex: 1; min-width: 0; }
@@ -452,11 +459,11 @@ textarea { resize: vertical; min-height: 60px; }
       <label>Full Name</label>
       <input type="text" id="signupName" placeholder="Enter Full Name" required>
       <label>Designation</label>
-      <input type="text" id="signupDesig" placeholder="Eg. AM" required>
+      <input type="text" id="signupDesig" placeholder="Enter Designation" required>
       <label>Email</label>
       <input type="email" id="signupEmail" placeholder="Enter Valid Email" autocomplete="email" required>
       <label>Password</label>
-      <input type="password" id="signupPassword" placeholder="Enter Password" autocomplete="new-password" required>
+      <input type="password" id="signupPassword" placeholder="At least 6 characters" autocomplete="new-password" required>
 
       <label style="margin-top:1rem;">Select Your Role(s) <span class="req">*</span></label>
       <div style="font-size:0.72rem; color:#5e7e91; margin-bottom:0.5rem;">Pick all that apply.</div>
@@ -563,14 +570,16 @@ textarea { resize: vertical; min-height: 60px; }
         <div class="stat"><strong id="statPending">0</strong>Pending</div>
         <div class="stat"><strong id="statIssued">0</strong>Issued</div>
         <div class="stat completed-stat"><strong id="statCompleted">0</strong>Completed</div>
+        <div class="stat closed-stat"><strong id="statClosed">0</strong>Closed</div>
         <div class="stat rejected-stat"><strong id="statRejected">0</strong>Rejected</div>
       </div>
-      <div class="user-chip">
+      <div class="user-chip" id="userChip" title="Click to edit your profile">
         <div class="avatar" id="userAvatar">?</div>
         <div class="info">
           <div class="name" id="userName">—</div>
           <div class="desig" id="userDesig">—</div>
         </div>
+        <span class="edit-hint">✏️</span>
       </div>
       <button class="logout-btn" id="logoutBtn">Logout</button>
     </div>
@@ -617,11 +626,11 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Brief Description of Work <span class="req">*</span></label>
-                <textarea id="f_description" rows="2" placeholder="e.g. Motor Base Fabrication" required></textarea>
+                <textarea id="f_description" rows="2" placeholder="e.g. Power Collector strengthening work" required></textarea>
               </div>
               <div>
                 <label>Equipment Name <span class="req">*</span></label>
-                <input type="text" id="f_equipment" placeholder="e.g. CP 9-0" required>
+                <input type="text" id="f_equipment" placeholder="e.g. CC 9-1" required>
               </div>
               <div>
                 <label>Section <span class="req">*</span></label>
@@ -639,7 +648,7 @@ textarea { resize: vertical; min-height: 60px; }
               </div>
               <div class="field-full">
                 <label>Location of Work <span class="req">*</span></label>
-                <input type="text" id="f_location" placeholder="e.g. EB-15, Repair Section" required>
+                <input type="text" id="f_location" placeholder="e.g. EB 15, Repair Section" required>
               </div>
               <div>
                 <label>Start Date &amp; Time <span class="req">*</span></label>
@@ -684,7 +693,7 @@ textarea { resize: vertical; min-height: 60px; }
 
               <div class="field-full">
                 <label>Contract / Work Order Name <span class="req">*</span></label>
-                <input type="text" id="f_contractName" placeholder="e.g. AMC-2025-CRUSH-001" required>
+                <input type="text" id="f_contractName" placeholder="Enter Contract/WO details (if any), else write NA" required>
               </div>
 
               <div class="field-full">
@@ -707,15 +716,15 @@ textarea { resize: vertical; min-height: 60px; }
 
               <div class="field-full">
                 <label>Hazard Mitigation <span class="req">*</span></label>
-                <textarea id="f_hazard" rows="2" placeholder="e.g. Area barricaded, Gas Line" required></textarea>
+                <textarea id="f_hazard" rows="2" placeholder="e.g. Gas Line, Area barricaded" required></textarea>
               </div>
               <div class="field-full">
                 <label>Safety to be Taken Care Of <span class="req">*</span></label>
-                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, Proper Earthing" required></textarea>
+                <textarea id="f_safety" rows="2" placeholder="e.g. Full PPE, proper Earthing" required></textarea>
               </div>
               <div class="field-full">
                 <label>Isolation Details <span class="req">*</span></label>
-                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation, Latch Hyd. Valve Kept OFF" required></textarea>
+                <textarea id="f_isolation" rows="2" placeholder="e.g. Electrical isolation" required></textarea>
               </div>
             </div>
             <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
@@ -1074,6 +1083,39 @@ textarea { resize: vertical; min-height: 60px; }
   </div>
 </div>
 
+<!-- PROFILE MODAL -->
+<div class="modal-backdrop" id="profileBackdrop">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-head profile-modal-head">
+      <h3>👤 Edit Profile</h3>
+      <button class="modal-close" id="profileModalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="profileUserInfo" style="background:#e1eff8; border-radius:0.9rem; padding:1rem 1.1rem; border:1px solid #cfe0ea; margin-bottom:1rem; display:flex; align-items:center; gap:0.8rem;">
+        <div id="profileAvatar" style="width:44px; height:44px; border-radius:50%; background:#0b2b3c; color:white; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">?</div>
+        <div style="min-width:0;">
+          <div style="font-weight:700; color:#0b2b3c; font-size:0.95rem;" id="profileHeaderName">—</div>
+          <div style="font-size:0.75rem; color:#5e7e91; font-family:monospace; word-break:break-all;" id="profileHeaderEmail">—</div>
+        </div>
+      </div>
+      <label>Full Name <span class="req">*</span></label>
+      <input type="text" id="profileName" placeholder="e.g. Rajesh Kumar" required>
+      <label>Designation <span class="req">*</span></label>
+      <input type="text" id="profileDesig" placeholder="e.g. Maintenance Engineer" required>
+      <label>Email Address</label>
+      <input type="email" id="profileEmail" readonly class="readonly-field" title="Email cannot be edited here">
+      <div style="font-size:0.72rem; color:#7d9aab; margin-top:0.6rem; font-style:italic; padding:0.6rem 0.8rem; background:#f6fafd; border-radius:0.6rem; border-left:3px solid #2c6e8f;">
+        ℹ️ Email address cannot be changed here. Contact the administrator to update login credentials.
+      </div>
+      <div class="auth-error" id="profileError" style="margin-top:0.8rem;"></div>
+      <div style="margin-top:1.2rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="saveProfileBtn" style="flex:1; min-width:160px;">💾 Save Changes</button>
+        <button type="button" class="btn btn-danger" id="cancelProfileBtn">✕ Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
@@ -1104,9 +1146,6 @@ const firebaseConfig = {
   measurementId: "G-WKWJTBDKZ6"
 };
 
-// ============================================================
-// 🔴 ADMIN EMAILS
-// ============================================================
 const ADMIN_EMAILS = ['anurag080402@gmail.com'];
 
 const app = initializeApp(firebaseConfig);
@@ -1214,7 +1253,6 @@ let currentPreExecSel = {};
 let currentWorkClosureSel = {};
 let currentPermitClosureSel = {};
 
-// Search state
 let executorSearchQuery = '';
 let adminUserSearchQuery = '';
 
@@ -1237,6 +1275,11 @@ function showLoading(text) { $('loadingText').textContent = text || 'Loading…'
 function hideLoading() { $('loadingOverlay').classList.remove('open'); }
 function formatDate(iso) { if (!iso) return '—'; try { return new Date(iso).toLocaleString(); } catch (e) { return iso; } }
 function formatDateShort(iso) { if (!iso) return '—'; try { return new Date(iso).toLocaleString(undefined, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) { return iso; } }
+function formatDateLong(iso) {
+  if (!iso) return '—';
+  try { return new Date(iso).toLocaleString(undefined, { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+  catch (e) { return iso; }
+}
 function todayKey() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 function dateKey(iso) { if (!iso) return 'unknown'; const d = new Date(iso); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 function dateLabelFromKey(key) {
@@ -2017,7 +2060,7 @@ $('issuedSectionFilter').addEventListener('change', function() { issuedSectionFi
 $('rejectedSectionFilter').addEventListener('change', function() { rejectedSectionFilter = this.value; renderRejected(); });
 
 // ============================================================
-// EXECUTOR SEARCH (Option A — filters the existing dropdown)
+// EXECUTOR SEARCH
 // ============================================================
 $('executorSearchInput').addEventListener('input', function() {
   executorSearchQuery = this.value;
@@ -2030,7 +2073,7 @@ $('executorSearchClear').addEventListener('click', function() {
 });
 
 // ============================================================
-// ADMIN USER SEARCH (Option A — filters the rendered list)
+// ADMIN USER SEARCH
 // ============================================================
 $('adminUserSearchInput').addEventListener('input', function() {
   adminUserSearchQuery = this.value;
@@ -2040,6 +2083,55 @@ $('adminUserSearchClear').addEventListener('click', function() {
   adminUserSearchQuery = '';
   $('adminUserSearchInput').value = '';
   renderAdminUsers();
+});
+
+// ============================================================
+// PROFILE MODAL (Name + Designation only; email read-only)
+// ============================================================
+const profileBackdrop = $('profileBackdrop');
+function openProfileModal() {
+  if (!currentUser) return;
+  $('profileAvatar').textContent = initials(currentUser.name);
+  $('profileHeaderName').textContent = currentUser.name || '—';
+  $('profileHeaderEmail').textContent = currentUser.email || '—';
+  $('profileName').value = currentUser.name || '';
+  $('profileDesig').value = currentUser.designation || '';
+  $('profileEmail').value = currentUser.email || '';
+  $('profileError').style.display = 'none';
+  profileBackdrop.classList.add('open');
+}
+function closeProfileModal() { profileBackdrop.classList.remove('open'); }
+$('userChip').addEventListener('click', openProfileModal);
+$('profileModalClose').addEventListener('click', closeProfileModal);
+$('cancelProfileBtn').addEventListener('click', closeProfileModal);
+profileBackdrop.addEventListener('click', function(e) { if (e.target === profileBackdrop) closeProfileModal(); });
+$('saveProfileBtn').addEventListener('click', async function() {
+  if (!currentUser) return;
+  const errEl = $('profileError'); errEl.style.display = 'none';
+  const newName = $('profileName').value.trim();
+  const newDesig = $('profileDesig').value.trim();
+  if (!newName || !newDesig) { errEl.textContent = 'Name and Designation are required.'; errEl.style.display = 'block'; return; }
+  const btn = this; btn.disabled = true; btn.textContent = '⏳ Saving…';
+  try {
+    await updateDoc(doc(db, 'users', currentUser.uid), {
+      name: newName,
+      designation: newDesig,
+      profileUpdatedAt: new Date().toISOString()
+    });
+    currentUser.name = newName;
+    currentUser.designation = newDesig;
+    $('userName').textContent = currentUser.name;
+    $('userDesig').textContent = currentUser.designation;
+    $('userAvatar').textContent = initials(currentUser.name);
+    $('f_initiatorName').value = currentUser.name;
+    $('f_initiatorDesig').value = currentUser.designation;
+    closeProfileModal();
+    showToast('✅ Profile updated.', 'success');
+    refreshAll();
+  } catch (err) {
+    errEl.textContent = '❌ ' + (err.message || 'Failed to update.');
+    errEl.style.display = 'block';
+  } finally { btn.disabled = false; btn.textContent = '💾 Save Changes'; }
 });
 
 // ============================================================
@@ -2488,7 +2580,9 @@ function renderClosureList() {
   let completed = permits.filter(function(p) { return p.status === 'completed'; });
   if (!currentUser.isAdmin) completed = completed.filter(isIssuedByMe);
   $('closureCount').textContent = completed.length;
-  $('closureTabCount').textContent = completed.length;
+  const today = todayKey();
+  $('closureTabCount').textContent = completed.filter(function(p) { return dateKey(p.completedAt) === today; }).length;
+
   if (completed.length === 0) {
     $('closureList').innerHTML = '<div class="empty-state"><span class="icon">✅</span>No permits ready for closure.</div>';
     $('closureArea').classList.add('hidden');
@@ -2553,7 +2647,11 @@ function renderIssued() {
   if (issuedSectionFilter !== '__all__') issued = issued.filter(function(p) { return String(p.section || '') === issuedSectionFilter; });
   if (!showAllDates) issued = issued.filter(function(p) { return dateKey(p.issuedAt) === issuedDateFilter; });
   $('issuedCount').textContent = issued.length;
-  $('issuedTabCount').textContent = permits.filter(function(p) { return p.status === 'issued' || p.status === 'completed' || p.status === 'closed'; }).length;
+  const today = todayKey();
+  $('issuedTabCount').textContent = permits.filter(function(p) {
+    return (p.status === 'issued' || p.status === 'completed' || p.status === 'closed') && dateKey(p.issuedAt) === today;
+  }).length;
+
   if (issued.length === 0) { $('issuedList').innerHTML = '<div class="empty-state"><span class="icon">📋</span>No issued permits.</div>'; return; }
   const groups = {};
   issued.forEach(function(p) { const key = dateKey(p.issuedAt); if (!groups[key]) groups[key] = []; groups[key].push(p); });
@@ -2615,7 +2713,9 @@ function renderRejected() {
   if (rejectedSectionFilter !== '__all__') rejected = rejected.filter(function(p) { return String(p.section || '') === rejectedSectionFilter; });
   if (!showAllRejectedDates) rejected = rejected.filter(function(p) { return dateKey(p.rejectedAt) === rejectedDateFilter; });
   $('rejectedCount').textContent = rejected.length;
-  $('rejectedTabCount').textContent = permits.filter(function(p) { return p.status === 'rejected'; }).length;
+  const today = todayKey();
+  $('rejectedTabCount').textContent = permits.filter(function(p) { return p.status === 'rejected' && dateKey(p.rejectedAt) === today; }).length;
+
   if (rejected.length === 0) { $('rejectedList').innerHTML = '<div class="empty-state rejected-empty"><span class="icon">📋</span>No rejected permits.</div>'; return; }
   let html = '';
   rejected.forEach(function(p) {
@@ -3152,7 +3252,7 @@ $('cancelClosureBtn').addEventListener('click', function() {
 });
 
 // ============================================================
-// REFRESH
+// REFRESH — header shows TOTAL counts of all permits
 // ============================================================
 function refreshAll() {
   const isInitiator = currentUser.isAdmin || userHasRole('initiator');
@@ -3164,19 +3264,24 @@ function refreshAll() {
   if (isIssuer) renderClosureList();
   renderIssued();
   renderRejected();
-  const pending = permits.filter(function(p) { return p.status === 'pending'; }).length;
-  const issued = permits.filter(function(p) { return p.status === 'issued'; }).length;
-  const completed = permits.filter(function(p) { return p.status === 'completed'; }).length;
-  const rejected = permits.filter(function(p) { return p.status === 'rejected'; }).length;
-  $('statPending').textContent = pending;
-  $('statIssued').textContent = issued;
-  $('statCompleted').textContent = completed;
-  $('statRejected').textContent = rejected;
+
+  // ===== HEADER STATS: total counts of ALL permits =====
+  const totalPending = permits.filter(function(p) { return p.status === 'pending'; }).length;
+  const totalIssued = permits.filter(function(p) { return p.status === 'issued'; }).length;
+  const totalCompleted = permits.filter(function(p) { return p.status === 'completed'; }).length;
+  const totalClosed = permits.filter(function(p) { return p.status === 'closed'; }).length;
+  const totalRejected = permits.filter(function(p) { return p.status === 'rejected'; }).length;
+  $('statPending').textContent = totalPending;
+  $('statIssued').textContent = totalIssued;
+  $('statCompleted').textContent = totalCompleted;
+  $('statClosed').textContent = totalClosed;
+  $('statRejected').textContent = totalRejected;
+
   $('permitNumber').textContent = pendingPermitNumber;
 }
 
 // ============================================================
-// PRINT — reverted font sizes, no forced page break on signatures
+// PRINT — timeline heading styled as other sections; includes desig
 // ============================================================
 function printPermit(permitId) {
   const p = permits.find(function(x) { return x.id === permitId; });
@@ -3213,6 +3318,17 @@ function printPermit(permitId) {
     });
     return lines.join('\n');
   }
+  function timelineRow(label, iso, who, desig, color) {
+    const dateStr = iso ? formatDateLong(iso) : '—';
+    let whoStr = '';
+    if (who) {
+      whoStr = ' <span style="color:#2c6e8f;font-weight:600;">(' + escapeHtml(who) + (desig ? ', ' + escapeHtml(desig) : '') + ')</span>';
+    }
+    return '<tr style="page-break-inside:avoid;break-inside:avoid;">' +
+             '<td style="padding:1.5mm 2mm;border-bottom:0.3mm solid #e2e8f0;width:38mm;font-weight:700;color:' + color + ';white-space:nowrap;">' + label + '</td>' +
+             '<td style="padding:1.5mm 2mm;border-bottom:0.3mm solid #e2e8f0;">' + dateStr + whoStr + '</td>' +
+           '</tr>';
+  }
   const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Permit ' + escapeHtml(p.permitNumber) + '</title><style>' +
     '@page { size: A4 portrait; margin: 12mm; }' +
     '* { box-sizing: border-box; margin: 0; padding: 0; }' +
@@ -3234,6 +3350,7 @@ function printPermit(permitId) {
     '.field { page-break-inside: avoid; break-inside: avoid; }' +
     '.field .lbl { font-weight: 700; color: #555; text-transform: uppercase; font-size: 7.5pt; display: block; letter-spacing: 0.2mm; }' +
     '.field .val { color: #111; font-size: 10pt; font-weight: 500; white-space: pre-wrap; }' +
+    '.timeline-table { width:100%; border-collapse:collapse; font-size:10pt; background:#f8fbfd; border:0.3mm solid #d7e5ef; border-radius:2mm; overflow:hidden; }' +
     '.signatures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin-top: 6mm; page-break-inside: avoid; break-inside: avoid; }' +
     '.sig-block { border: 0.6mm solid #0b2b3c; border-radius: 2.5mm; padding: 3mm; background: #f8fbfd; min-height: 32mm; page-break-inside: avoid; break-inside: avoid; }' +
     '.sig-block.empty-sig { border-style: dashed; border-color: #b8cfdb; }' +
@@ -3285,6 +3402,18 @@ function printPermit(permitId) {
     (p.closureDescription ? '<div class="section-block"><h3>Closure Description</h3><div style="font-size:10pt; white-space:pre-wrap;">' + escapeHtml(p.closureDescription) + '</div></div>' : '') +
     (p.completionRemarks ? '<div class="section-block"><h3>Completion Remarks</h3><div style="font-size:10pt; white-space:pre-wrap;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
     (p.status === 'rejected' ? '<div class="section-block" style="background:#fff5f5;padding:2.5mm;border-left:1mm solid #c0392b;"><h3 style="color:#842029;border-color:#f5c6c0;">❌ Rejection</h3><div style="font-size:10pt;"><b>By:</b> ' + escapeHtml(p.rejectedBy || '') + ' on ' + formatDate(p.rejectedAt) + '<br><b>Reason:</b> ' + escapeHtml(p.rejectionReason || '') + '</div></div>' : '') +
+    // ===== PERMIT TIMELINE (aligned as Closure Remarks, no icon, includes designation) =====
+    '<div class="section-block">' +
+      '<h3>Permit Timeline</h3>' +
+      '<table class="timeline-table">' +
+        timelineRow('🛠️ Initiated', p.createdAt, p.initiatorName, p.initiatorDesig, '#1f4b5e') +
+        timelineRow('📤 Issued', p.issuedAt, p.issuerName, p.issuerDesig, '#1f7a4a') +
+        timelineRow('✅ Accepted', p.acceptedAt, p.acceptedBy, p.acceptedByDesig, '#0f766e') +
+        timelineRow('🏁 Completed', p.completedAt, p.completedBy, p.completedByDesig, '#2c6e8f') +
+        timelineRow('🔒 Closed', p.closedAt, p.closedBy, p.closedByDesig, '#166534') +
+        (p.rejectedAt ? timelineRow('❌ Rejected', p.rejectedAt, p.rejectedBy, p.rejectedByDesig, '#c0392b') : '') +
+      '</table>' +
+    '</div>' +
     '<div class="signatures">' +
       sigBlock('Initiator', p.initiatorName, p.initiatorDesig, p.createdAt) +
       sigBlock('Issuer', p.issuerName || p.rejectedBy, p.issuerDesig || p.rejectedByDesig, p.issuedAt || p.rejectedAt) +
@@ -3303,7 +3432,7 @@ function printPermit(permitId) {
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeModal(); closeCompleteModal(); closeAcceptModal(); closeForgotModal(); closeSectionsModal(); closeRolesModal(); }
+  if (e.key === 'Escape') { closeModal(); closeCompleteModal(); closeAcceptModal(); closeForgotModal(); closeSectionsModal(); closeRolesModal(); closeProfileModal(); }
 });
 
 refreshSignupVisibility();
