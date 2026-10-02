@@ -1099,9 +1099,9 @@ textarea { resize: vertical; min-height: 60px; }
         </div>
       </div>
       <label>Full Name <span class="req">*</span></label>
-      <input type="text" id="profileName" placeholder="e.g. Rajesh Kumar" required>
+      <input type="text" id="profileName" placeholder="Enter Full Name" required>
       <label>Designation <span class="req">*</span></label>
-      <input type="text" id="profileDesig" placeholder="e.g. Maintenance Engineer" required>
+      <input type="text" id="profileDesig" placeholder="e.g. AM" required>
       <label>Email Address</label>
       <input type="email" id="profileEmail" readonly class="readonly-field" title="Email cannot be edited here">
       <div style="font-size:0.72rem; color:#7d9aab; margin-top:0.6rem; font-style:italic; padding:0.6rem 0.8rem; background:#f6fafd; border-radius:0.6rem; border-left:3px solid #2c6e8f;">
@@ -1327,6 +1327,26 @@ function isAdminEmail(email) { if (!email) return false; return ADMIN_EMAILS.som
 function canIssueSection(section) { if (!currentUser) return false; if (currentUser.isAdmin) return true; const assigned = currentUser.assignedSections || []; if (assigned.length === 0) return true; return assigned.indexOf(section) !== -1; }
 function getMyIssuableSections() { if (!currentUser) return []; if (currentUser.isAdmin) return SECTIONS.slice(); const assigned = currentUser.assignedSections || []; if (assigned.length === 0) return SECTIONS.slice(); return assigned; }
 function userHasRole(role) { return currentUser && Array.isArray(currentUser.roles) && currentUser.roles.indexOf(role) !== -1; }
+
+// ============================================================
+// 🆕 USER-SCOPED STATS HELPERS
+// ============================================================
+// A permit is "relevant" to a user if they initiated it or performed the
+// corresponding action for that status (issued / completed / rejected / closed).
+function isInitiatedByMe(p) { return currentUser && p.initiatorUid === currentUser.uid; }
+function isCompletedByMe(p) { return currentUser && p.completedByUid === currentUser.uid; }
+function isClosedByMe(p) { return currentUser && p.closedByUid === currentUser.uid; }
+function userInvolved(p) {
+  if (!currentUser) return false;
+  const uid = currentUser.uid;
+  return p.initiatorUid === uid ||
+         p.issuerUid === uid ||
+         p.executorUid === uid ||
+         p.acceptedByUid === uid ||
+         p.completedByUid === uid ||
+         p.rejectedByUid === uid ||
+         p.closedByUid === uid;
+}
 
 // ============================================================
 // CHECKLIST RENDERER
@@ -2648,8 +2668,9 @@ function renderIssued() {
   if (!showAllDates) issued = issued.filter(function(p) { return dateKey(p.issuedAt) === issuedDateFilter; });
   $('issuedCount').textContent = issued.length;
   const today = todayKey();
+  // 🆕 Issued tab count: only permits INITIATED by the user (today)
   $('issuedTabCount').textContent = permits.filter(function(p) {
-    return (p.status === 'issued' || p.status === 'completed' || p.status === 'closed') && dateKey(p.issuedAt) === today;
+    return isMine(p) && (p.status === 'issued' || p.status === 'completed' || p.status === 'closed') && dateKey(p.issuedAt) === today;
   }).length;
 
   if (issued.length === 0) { $('issuedList').innerHTML = '<div class="empty-state"><span class="icon">📋</span>No issued permits.</div>'; return; }
@@ -2714,7 +2735,10 @@ function renderRejected() {
   if (!showAllRejectedDates) rejected = rejected.filter(function(p) { return dateKey(p.rejectedAt) === rejectedDateFilter; });
   $('rejectedCount').textContent = rejected.length;
   const today = todayKey();
-  $('rejectedTabCount').textContent = permits.filter(function(p) { return p.status === 'rejected' && dateKey(p.rejectedAt) === today; }).length;
+  // 🆕 Rejected tab count: only permits INITIATED by the user (today)
+  $('rejectedTabCount').textContent = permits.filter(function(p) {
+    return isMine(p) && p.status === 'rejected' && dateKey(p.rejectedAt) === today;
+  }).length;
 
   if (rejected.length === 0) { $('rejectedList').innerHTML = '<div class="empty-state rejected-empty"><span class="icon">📋</span>No rejected permits.</div>'; return; }
   let html = '';
@@ -3252,7 +3276,7 @@ $('cancelClosureBtn').addEventListener('click', function() {
 });
 
 // ============================================================
-// REFRESH — header shows TOTAL counts of all permits
+// REFRESH
 // ============================================================
 function refreshAll() {
   const isInitiator = currentUser.isAdmin || userHasRole('initiator');
@@ -3265,12 +3289,26 @@ function refreshAll() {
   renderIssued();
   renderRejected();
 
-  // ===== HEADER STATS: total counts of ALL permits =====
-  const totalPending = permits.filter(function(p) { return p.status === 'pending'; }).length;
-  const totalIssued = permits.filter(function(p) { return p.status === 'issued'; }).length;
-  const totalCompleted = permits.filter(function(p) { return p.status === 'completed'; }).length;
-  const totalClosed = permits.filter(function(p) { return p.status === 'closed'; }).length;
-  const totalRejected = permits.filter(function(p) { return p.status === 'rejected'; }).length;
+  // ===== 🆕 HEADER STATS: user-scoped counts =====
+  // Pending: permits initiated by the user
+  // Issued / Completed / Closed / Rejected: permits initiated by the user
+  //                                       OR acted upon by the user.
+  const uid = currentUser ? currentUser.uid : '';
+  const totalPending = permits.filter(function(p) {
+    return p.status === 'pending' && p.initiatorUid === uid;
+  }).length;
+  const totalIssued = permits.filter(function(p) {
+    return p.status === 'issued' && (p.initiatorUid === uid || p.issuerUid === uid);
+  }).length;
+  const totalCompleted = permits.filter(function(p) {
+    return p.status === 'completed' && (p.initiatorUid === uid || p.completedByUid === uid);
+  }).length;
+  const totalClosed = permits.filter(function(p) {
+    return p.status === 'closed' && (p.initiatorUid === uid || p.closedByUid === uid);
+  }).length;
+  const totalRejected = permits.filter(function(p) {
+    return p.status === 'rejected' && (p.initiatorUid === uid || p.rejectedByUid === uid);
+  }).length;
   $('statPending').textContent = totalPending;
   $('statIssued').textContent = totalIssued;
   $('statCompleted').textContent = totalCompleted;
@@ -3281,7 +3319,7 @@ function refreshAll() {
 }
 
 // ============================================================
-// PRINT — timeline heading styled as other sections; includes desig
+// PRINT
 // ============================================================
 function printPermit(permitId) {
   const p = permits.find(function(x) { return x.id === permitId; });
@@ -3402,7 +3440,6 @@ function printPermit(permitId) {
     (p.closureDescription ? '<div class="section-block"><h3>Closure Description</h3><div style="font-size:10pt; white-space:pre-wrap;">' + escapeHtml(p.closureDescription) + '</div></div>' : '') +
     (p.completionRemarks ? '<div class="section-block"><h3>Completion Remarks</h3><div style="font-size:10pt; white-space:pre-wrap;">' + escapeHtml(p.completionRemarks) + '</div></div>' : '') +
     (p.status === 'rejected' ? '<div class="section-block" style="background:#fff5f5;padding:2.5mm;border-left:1mm solid #c0392b;"><h3 style="color:#842029;border-color:#f5c6c0;">❌ Rejection</h3><div style="font-size:10pt;"><b>By:</b> ' + escapeHtml(p.rejectedBy || '') + ' on ' + formatDate(p.rejectedAt) + '<br><b>Reason:</b> ' + escapeHtml(p.rejectionReason || '') + '</div></div>' : '') +
-    // ===== PERMIT TIMELINE (aligned as Closure Remarks, no icon, includes designation) =====
     '<div class="section-block">' +
       '<h3>Permit Timeline</h3>' +
       '<table class="timeline-table">' +
